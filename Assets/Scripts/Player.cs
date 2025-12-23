@@ -142,15 +142,14 @@ public class Player : MonoBehaviour
         if (value.isPressed)
         {
             JumpPressed = true;
-            //JumpReleased = false;
         }
 
-        /*
+
         else
         {
-            JumpReleased = true;
+            JumpPressed = false;
         }
-        */
+
     }
 
 
