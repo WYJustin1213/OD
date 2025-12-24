@@ -120,13 +120,13 @@ public class Player : MonoBehaviour
 
     void Animation()
     {
-        animator.SetBool("isJumping", rb.linearVelocity.y > 0.1f);
+        animator.SetBool("isJumping", rb.linearVelocity.y > 0.01f);
         animator.SetBool("isGrounded", isGrounded);
 
         animator.SetFloat("yVel", rb.linearVelocity.y);
 
-        animator.SetBool("isIdle", Mathf.Abs(moveInput.x) < 0.1f && isGrounded);
-        animator.SetBool("isRunning", Mathf.Abs(moveInput.x) > 0.1f && isGrounded);
+        animator.SetBool("isIdle", Mathf.Abs(moveInput.x) < 0.01f && isGrounded);
+        animator.SetBool("isRunning", Mathf.Abs(moveInput.x) > 0.01f && isGrounded);
     }
 
 
