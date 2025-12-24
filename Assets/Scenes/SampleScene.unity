@@ -2232,7 +2232,8 @@ MonoBehaviour:
   rb: {fileID: 491527188}
   input: {fileID: 491527186}
   animator: {fileID: 1491111117}
-  speed: 3
+  runSpd: 2
+  sprintSpd: 4
   jumpForce: 7
   normalG: 3
   jumpG: 2

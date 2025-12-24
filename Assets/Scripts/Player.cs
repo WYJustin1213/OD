@@ -9,9 +9,9 @@ public class Player : MonoBehaviour
     public Animator animator;
 
     [Header("Movement")]
-    public float speed;
+    public float runSpd;
+    public float sprintSpd;
     public float jumpForce;
-    //public float PowerJumpForce;
 
     public float normalG;
     public float jumpG;
@@ -21,9 +21,8 @@ public class Player : MonoBehaviour
 
     // Input
     public Vector2 moveInput;
-
+    private bool sprintPressed;
     private bool JumpPressed;
-    //private bool JumpReleased;
 
     [Header("Ground Check")]
     public Transform groundCheck;
@@ -53,7 +52,8 @@ public class Player : MonoBehaviour
 
     private void Movement()
     {
-        float targetSpeed = moveInput.x * speed;
+        float currentSpd = sprintPressed ? sprintSpd : runSpd;
+        float targetSpeed = moveInput.x * currentSpd;
         rb.linearVelocity = new Vector2(targetSpeed, rb.linearVelocity.y);
     }
 
@@ -63,22 +63,10 @@ public class Player : MonoBehaviour
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
             JumpPressed = false;
-            //JumpReleased = false;
         }
-
-        /*
-        if (JumpReleased) 
-        {
-            if (rb.linearVelocity.y > 0)
-            {
-                rb.linearVelocity = new Vector2(rb.linearVelocity.x, PowerJumpForce);
-                JumpReleased = false;
-            }
-        }
-        */
     }
 
-
+    
 
 
     // changing gravity
@@ -120,13 +108,18 @@ public class Player : MonoBehaviour
 
     void Animation()
     {
-        animator.SetBool("isJumping", rb.linearVelocity.y > 0.01f);
         animator.SetBool("isGrounded", isGrounded);
+
+        animator.SetBool("isJumping", rb.linearVelocity.y > 0.01f);
+        animator.SetBool("isFalling", rb.linearVelocity.y < 0.01f && !isGrounded);
 
         animator.SetFloat("yVel", rb.linearVelocity.y);
 
-        animator.SetBool("isIdle", Mathf.Abs(moveInput.x) < 0.01f && isGrounded);
-        animator.SetBool("isRunning", Mathf.Abs(moveInput.x) > 0.01f && isGrounded);
+        bool isMoving = Mathf.Abs(moveInput.x) > 0.01f && isGrounded;
+
+        animator.SetBool("isIdle", !isMoving && isGrounded);
+        animator.SetBool("isRunning", isMoving && !sprintPressed);
+        animator.SetBool("isSprinting", isMoving && sprintPressed);
     }
 
 
@@ -137,6 +130,11 @@ public class Player : MonoBehaviour
         moveInput = value.Get<Vector2>();
     }
 
+    public void OnSprint(InputValue value)
+    {
+        sprintPressed = value.isPressed;
+    }
+
     public void OnJump(InputValue value)
     {
         if (value.isPressed)
@@ -144,12 +142,10 @@ public class Player : MonoBehaviour
             JumpPressed = true;
         }
 
-
         else
         {
             JumpPressed = false;
         }
-
     }
 
 
