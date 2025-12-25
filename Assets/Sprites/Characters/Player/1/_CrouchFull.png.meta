@@ -109,12 +109,12 @@ TextureImporter:
       name: _CrouchFull_0
       rect:
         serializedVersion: 2
-        x: 43
+        x: 44
         y: 0
-        width: 29
-        height: 31
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 27
+        height: 30
+      alignment: 9
+      pivot: {x: 0.5, y: 0.6}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -131,12 +131,12 @@ TextureImporter:
       name: _CrouchFull_1
       rect:
         serializedVersion: 2
-        x: 163
+        x: 164
         y: 0
-        width: 29
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 27
+        height: 26
+      alignment: 9
+      pivot: {x: 0.5, y: 0.6}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -153,12 +153,12 @@ TextureImporter:
       name: _CrouchFull_2
       rect:
         serializedVersion: 2
-        x: 283
+        x: 284
         y: 0
-        width: 29
-        height: 31
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 27
+        height: 30
+      alignment: 9
+      pivot: {x: 0.5, y: 0.6}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -175,7 +175,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 571bcb9e008104f4db68d75ab6bcd9ba
     internalID: 0
     vertices: []
     indices: 

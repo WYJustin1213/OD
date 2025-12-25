@@ -112,12 +112,12 @@ TextureImporter:
       name: _SlideFull_0
       rect:
         serializedVersion: 2
-        x: 45
+        x: 46
         y: 0
-        width: 38
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 36
+        height: 23
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -134,12 +134,12 @@ TextureImporter:
       name: _SlideFull_1
       rect:
         serializedVersion: 2
-        x: 165
+        x: 166
         y: 0
-        width: 37
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 35
+        height: 17
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -156,12 +156,12 @@ TextureImporter:
       name: _SlideFull_2
       rect:
         serializedVersion: 2
-        x: 285
+        x: 286
         y: 0
-        width: 37
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 35
+        height: 17
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -178,12 +178,12 @@ TextureImporter:
       name: _SlideFull_3
       rect:
         serializedVersion: 2
-        x: 409
+        x: 410
         y: 0
-        width: 25
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 23
+        height: 26
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -200,7 +200,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: c4a155108b8a0244caeea6d0880a1c79
     internalID: 0
     vertices: []
     indices: 

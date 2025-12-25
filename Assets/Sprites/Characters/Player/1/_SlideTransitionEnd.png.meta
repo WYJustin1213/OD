@@ -103,12 +103,12 @@ TextureImporter:
       name: _SlideTransitionEnd_0
       rect:
         serializedVersion: 2
-        x: 49
+        x: 50
         y: 0
-        width: 25
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 23
+        height: 26
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: ed1ec820e37fe6f4db5e15163f3178eb
     internalID: 0
     vertices: []
     indices: 
