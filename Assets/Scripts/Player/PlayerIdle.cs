@@ -16,7 +16,11 @@ public class PlayerIdle : PlayerState
     {
         base.Update();
 
-        if (JumpPressed)
+        if (AttackOnePressed)
+        {
+            player.ChangeState(player.attackOneState);
+        }
+        else if (JumpPressed)
         {
             JumpPressed = false;
             player.ChangeState(player.jumpState);
@@ -30,7 +34,6 @@ public class PlayerIdle : PlayerState
         {
             player.ChangeState(player.crouchState);
         }
-
     }
 
     public override void Exit()

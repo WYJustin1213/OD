@@ -15,7 +15,11 @@ public class PlayerMove : PlayerState
     {
         base.Update();
 
-        if (JumpPressed)
+        if (AttackOnePressed)
+        {
+            player.ChangeState(player.attackOneState);
+        }
+        else if (JumpPressed)
         {
             player.ChangeState(player.jumpState);
         }

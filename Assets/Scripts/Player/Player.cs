@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     public PlayerMove moveState;
     public PlayerCrouch crouchState;
     public PlayerSlide slideState;
+    public PlayerAttackOne attackOneState;
 
     [Header("Attack")]
     public int damage;
@@ -40,6 +41,9 @@ public class Player : MonoBehaviour
     public Vector2 moveInput;
     public bool sprintPressed;
     public bool JumpPressed;
+
+    public bool attackOnePressed;
+
 
     [Header("Ground Check")]
     public Transform groundCheck;
@@ -73,6 +77,7 @@ public class Player : MonoBehaviour
         moveState = new PlayerMove(this);
         crouchState = new PlayerCrouch(this);
         slideState = new PlayerSlide(this);
+        attackOneState = new PlayerAttackOne(this);
     }
 
     private void Start()
@@ -154,16 +159,19 @@ public class Player : MonoBehaviour
     // to flip left and right when moving
     void Flip()
     {
-        if (moveInput.x > 0.1f)
+        if (!attackOnePressed)
         {
-            faceDir = 1;
-        }
-        else if (moveInput.x < -0.1f)
-        {
-            faceDir = -1;
-        }
+            if (moveInput.x > 0.1f)
+            {
+                faceDir = 1;
+            }
+            else if (moveInput.x < -0.1f)
+            {
+                faceDir = -1;
+            }
 
-        transform.localScale = new Vector3(faceDir, 1, 1);
+            transform.localScale = new Vector3(faceDir, 1, 1);
+        }
     }
 
     void Animation()
@@ -184,6 +192,11 @@ public class Player : MonoBehaviour
     }
 
 
+    public void AttackAnimationFished()
+    {
+        currentState.AttackAnimationFished();
+    }
+
 
     // system
     public void OnMove(InputValue value)
@@ -198,6 +211,8 @@ public class Player : MonoBehaviour
 
     public void OnAttack(InputValue value)
     {
+        attackOnePressed = value.isPressed;
+
         Collider2D enemy = Physics2D.OverlapCircle(attackPoint.position, attackRadius, enemyLayer);
 
         if (enemy != null)

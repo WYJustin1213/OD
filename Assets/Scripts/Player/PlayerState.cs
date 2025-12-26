@@ -8,6 +8,7 @@ public abstract class PlayerState
 
     protected bool JumpPressed { get => player.jumpPressed;set => player.jumpPressed = value; }
     protected bool SprintPressed => player.sprintPressed;
+    protected bool AttackOnePressed => player.attackOnePressed;
     protected Vector2 MoveInput => player.moveInput;
 
     public PlayerState (Player player)
@@ -22,4 +23,5 @@ public abstract class PlayerState
 
     public virtual void Update() { }
     public virtual void FixedUpdate() { }
+    public virtual void AttackAnimationFished() { }
 }
