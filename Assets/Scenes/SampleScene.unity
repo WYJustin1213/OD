@@ -2237,18 +2237,21 @@ MonoBehaviour:
   runSpd: 2
   sprintSpd: 4
   jumpForce: 7
+  jumpPressed: 0
   normalG: 3
   jumpG: 2
   fallG: 2.5
   faceDir: 1
   moveInput: {x: 0, y: 0}
+  sprintPressed: 0
+  JumpPressed: 0
   groundCheck: {fileID: 246771873}
   gcRadius: 0.25
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
   isGrounded: 0
-  headCheck: {fileID: 0}
+  headCheck: {fileID: 1868739329}
   hcRadius: 0.25
   crouchSpd: 1
   slideDuration: 1
