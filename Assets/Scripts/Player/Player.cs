@@ -12,6 +12,12 @@ public class Player : MonoBehaviour
     public PlayerCrouch crouchState;
     public PlayerSlide slideState;
 
+    [Header("Attack")]
+    public int damage;
+    public float attackRadius;
+    public Transform attackPoint;
+    public LayerMask enemyLayer;
+
     [Header("Components")]
     public Rigidbody2D rb;
     public PlayerInput input;
@@ -79,8 +85,6 @@ public class Player : MonoBehaviour
     private void Update()
     {
         currentState.Update();
-
-        Debug.Log(currentState);
 
         if (!isSliding) { Flip(); }
         Animation();
@@ -192,6 +196,16 @@ public class Player : MonoBehaviour
         sprintPressed = value.isPressed;
     }
 
+    public void OnAttack(InputValue value)
+    {
+        Collider2D enemy = Physics2D.OverlapCircle(attackPoint.position, attackRadius, enemyLayer);
+
+        if (enemy != null)
+        {
+            enemy.gameObject.GetComponent<Health>().ChangeHealth(-damage);
+        }
+    }
+
     public void OnJump(InputValue value)
     {
         if (value.isPressed && moveInput.y > -0.01f)
@@ -203,16 +217,5 @@ public class Player : MonoBehaviour
         {
             jumpPressed = false;
         }
-    }
-
-
-    private void onDrawGizmoSelected()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(groundCheck.position, gcRadius);
-
-        Gizmos.color = Color.white;
-        Gizmos.DrawWireSphere(headCheck.position, hcRadius);
-
     }
 }
