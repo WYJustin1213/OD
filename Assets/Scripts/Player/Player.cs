@@ -13,11 +13,9 @@ public class Player : MonoBehaviour
     public PlayerSlide slideState;
     public PlayerAttackOne attackOneState;
 
-    [Header("Attack")]
-    public int damage;
-    public float attackRadius;
-    public Transform attackPoint;
-    public LayerMask enemyLayer;
+    [Header("Core Components")]
+    public Combat combat;
+
 
     [Header("Components")]
     public Rigidbody2D rb;
@@ -91,7 +89,7 @@ public class Player : MonoBehaviour
     {
         currentState.Update();
 
-        if (!isSliding) { Flip(); }
+        if (!isSliding && !attackOnePressed) { Flip(); }
         Animation();
     }
 
@@ -212,13 +210,6 @@ public class Player : MonoBehaviour
     public void OnAttack(InputValue value)
     {
         attackOnePressed = value.isPressed;
-
-        Collider2D enemy = Physics2D.OverlapCircle(attackPoint.position, attackRadius, enemyLayer);
-
-        if (enemy != null)
-        {
-            enemy.gameObject.GetComponent<Health>().ChangeHealth(-damage);
-        }
     }
 
     public void OnJump(InputValue value)

@@ -14,10 +14,18 @@ public class PlayerAttackOne : PlayerState
         rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
     }
 
+    public override void FixedUpdate()
+    {
+        base.FixedUpdate();
+
+        if (SprintPressed)
+        {
+            player.ChangeState(player.moveState);
+        }
+    }
+
     public override void AttackAnimationFished()
     {
-        base.Update();
-
         if (Mathf.Abs(MoveInput.x) > 0.01f)
         {
             player.ChangeState(player.moveState);
