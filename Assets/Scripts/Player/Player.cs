@@ -39,9 +39,8 @@ public class Player : MonoBehaviour
     public Vector2 moveInput;
     public bool sprintPressed;
     public bool JumpPressed;
-
     public bool attackOnePressed;
-
+    public bool portalPressed;
 
     [Header("Ground Check")]
     public Transform groundCheck;
@@ -207,9 +206,14 @@ public class Player : MonoBehaviour
         sprintPressed = value.isPressed;
     }
 
-    public void OnAttack(InputValue value)
+    public void OnAttackOne(InputValue value)
     {
         attackOnePressed = value.isPressed;
+    }
+
+    public void OnPortal(InputValue value)
+    {
+        portalPressed = value.isPressed;
     }
 
     public void OnJump(InputValue value)
