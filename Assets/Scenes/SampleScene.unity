@@ -1528,7 +1528,7 @@ MonoBehaviour:
   headCheck: {fileID: 1868739329}
   hcRadius: 0.25
   crouchSpd: 1
-  slideDuration: 0.5
+  slideDuration: 1
   slideStopDur: 0.15
   slideSpd: 4.5
   slideHeight: 0.3
