@@ -206,7 +206,7 @@ public class Player : MonoBehaviour
         sprintPressed = value.isPressed;
     }
 
-    public void OnAttackOne(InputValue value)
+    public void OnAttack(InputValue value)
     {
         attackOnePressed = value.isPressed;
     }
