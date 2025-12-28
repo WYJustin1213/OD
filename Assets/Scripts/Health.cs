@@ -23,12 +23,14 @@ public class Health : MonoBehaviour
             health = maxHealth; 
         }
 
-        else if (health <= 0)
+        if (health <= 0)
         {
+            health = 0;
             OnDeath?.Invoke();
+            return;
         }
 
-        else if (amount < 0)
+        if (amount < 0)
         {
             OnDamaged?.Invoke();
         }

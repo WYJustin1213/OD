@@ -14,6 +14,8 @@ public class EnemyBrain : MonoBehaviour
     [SerializeField] private float allyRadius = 6f;
     [SerializeField] private LayerMask allyLayer;
 
+    public Vector2 LastDesiredVelocity { get; private set; }
+
     private IAIPolicy _policy;
 
     private void Reset()
@@ -67,7 +69,7 @@ public class EnemyBrain : MonoBehaviour
         AIIntent intent = _policy.Decide(in ctx);
 
         // Execute (simple locomotion)
-        rb.linearVelocity = intent.desiredVelocity;
+        LastDesiredVelocity = intent.desiredVelocity;
 
         // Attack is just a flag here; wire into attack module later.
         // if (intent.wantsAttack) Attack();
