@@ -16,6 +16,9 @@ public class PlayerSlide : PlayerState
 
         player.SetColliderSlide();
         animator.SetBool("isSliding", true);
+
+        animator.SetBool("isRunning", false);
+        animator.SetBool("isSprinting", false);
     }
 
     public override void Update()

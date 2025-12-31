@@ -54,7 +54,6 @@ public class PlayerMove : PlayerState
     {
         base.Exit();
 
-        animator.SetBool("isRunning", false);
-        animator.SetBool("isSprinting", false);
+        
     }
 }

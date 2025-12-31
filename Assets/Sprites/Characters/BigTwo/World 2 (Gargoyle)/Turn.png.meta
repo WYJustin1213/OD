@@ -1,31 +1,25 @@
 fileFormatVersion: 2
-guid: b61f3c56eef83a24d915f8be0a215d85
+guid: 2171a146a502e8940870447a1bfbfd63
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8119200819551934499
-    second: Attack-01-Sheet_0
+      213: 4412929025976260669
+    second: Turn_0
   - first:
-      213: 1229346140777489561
-    second: Attack-01-Sheet_1
+      213: 728960327811184348
+    second: Turn_1
   - first:
-      213: 5711995858355082720
-    second: Attack-01-Sheet_2
+      213: -2822356033809159149
+    second: Turn_2
   - first:
-      213: 6154797753170389393
-    second: Attack-01-Sheet_3
+      213: -6427527288399220792
+    second: Turn_3
   - first:
-      213: -4210757112499032457
-    second: Attack-01-Sheet_4
+      213: 6481996852939261580
+    second: Turn_4
   - first:
-      213: -2830949396554520664
-    second: Attack-01-Sheet_5
-  - first:
-      213: -8560062385378966209
-    second: Attack-01-Sheet_6
-  - first:
-      213: 3869856323132520785
-    second: Attack-01-Sheet_7
+      213: 3838841489834508561
+    second: Turn_5
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -74,7 +68,7 @@ TextureImporter:
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 35
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -93,7 +87,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: 4
     textureCompression: 1
@@ -121,177 +115,133 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Attack-01-Sheet_0
+      name: Turn_0
       rect:
         serializedVersion: 2
-        x: 61
-        y: 0
-        width: 85
-        height: 106
-      alignment: 9
-      pivot: {x: 0.3529412, y: 0.31132075}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: dd7eb8a3fddc25f80800000000000000
-      internalID: -8119200819551934499
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Attack-01-Sheet_1
-      rect:
-        serializedVersion: 2
-        x: 235
-        y: 0
+        x: 62
+        y: 31
         width: 82
-        height: 107
-      alignment: 9
-      pivot: {x: 0.20731707, y: 0.3084112}
+        height: 124
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9942a0b3dc38f0110800000000000000
-      internalID: 1229346140777489561
+      spriteID: d385354819fdd3d30800000000000000
+      internalID: 4412929025976260669
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack-01-Sheet_2
+      name: Turn_1
       rect:
         serializedVersion: 2
-        x: 395
-        y: 0
-        width: 83
-        height: 103
-      alignment: 9
-      pivot: {x: 0.19277108, y: 0.32038835}
+        x: 274
+        y: 31
+        width: 76
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0e5d1cf38f5154f40800000000000000
-      internalID: 5711995858355082720
+      spriteID: cd6b9825e89cd1a00800000000000000
+      internalID: 728960327811184348
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack-01-Sheet_3
+      name: Turn_2
       rect:
         serializedVersion: 2
-        x: 485
-        y: 0
-        width: 130
-        height: 67
-      alignment: 9
-      pivot: {x: 0.65384614, y: 0.49253732}
+        x: 484
+        y: 31
+        width: 73
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 199e71e62fb3a6550800000000000000
-      internalID: 6154797753170389393
+      spriteID: 31cef17042af4d8d0800000000000000
+      internalID: -2822356033809159149
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack-01-Sheet_4
+      name: Turn_3
       rect:
         serializedVersion: 2
-        x: 645
-        y: 0
-        width: 130
-        height: 55
-      alignment: 9
-      pivot: {x: 0.65384614, y: 0.6}
+        x: 691
+        y: 31
+        width: 73
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 77eab0a37b26095c0800000000000000
-      internalID: -4210757112499032457
+      spriteID: 8cfa5d65cf5dcc6a0800000000000000
+      internalID: -6427527288399220792
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack-01-Sheet_5
+      name: Turn_4
       rect:
         serializedVersion: 2
-        x: 806
-        y: 0
-        width: 129
-        height: 60
-      alignment: 9
-      pivot: {x: 0.65891474, y: 0.55}
+        x: 898
+        y: 31
+        width: 76
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8a7e249d58276b8d0800000000000000
-      internalID: -2830949396554520664
+      spriteID: c8605ae6bcda4f950800000000000000
+      internalID: 6481996852939261580
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack-01-Sheet_6
+      name: Turn_5
       rect:
         serializedVersion: 2
-        x: 995
-        y: 0
-        width: 97
-        height: 81
-      alignment: 9
-      pivot: {x: 0.5515464, y: 0.4074074}
+        x: 1104
+        y: 31
+        width: 82
+        height: 124
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f35cd481d9c843980800000000000000
-      internalID: -8560062385378966209
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Attack-01-Sheet_7
-      rect:
-        serializedVersion: 2
-        x: 1165
-        y: 0
-        width: 81
-        height: 64
-      alignment: 9
-      pivot: {x: 0.5185185, y: 0.515625}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 159fc1092dd74b530800000000000000
-      internalID: 3869856323132520785
+      spriteID: 1110e96fefd464530800000000000000
+      internalID: 3838841489834508561
       vertices: []
       indices: 
       edges: []
@@ -300,7 +250,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 562c559930a0a1f4da00e366b7cddbab
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -310,14 +260,12 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Attack-01-Sheet_0: -8119200819551934499
-      Attack-01-Sheet_1: 1229346140777489561
-      Attack-01-Sheet_2: 5711995858355082720
-      Attack-01-Sheet_3: 6154797753170389393
-      Attack-01-Sheet_4: -4210757112499032457
-      Attack-01-Sheet_5: -2830949396554520664
-      Attack-01-Sheet_6: -8560062385378966209
-      Attack-01-Sheet_7: 3869856323132520785
+      Turn_0: 4412929025976260669
+      Turn_1: 728960327811184348
+      Turn_2: -2822356033809159149
+      Turn_3: -6427527288399220792
+      Turn_4: 6481996852939261580
+      Turn_5: 3838841489834508561
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -186,6 +186,14 @@ public class Player : MonoBehaviour
         
         animator.SetBool("isCrouchWalking", isMoving && isCrouching && !isSliding);
 
+
+
+        bool isJumping = animator.GetBool("isJumping");
+        if (isGrounded && isJumping)
+        {
+            animator.SetBool("isJumping", false);
+            animator.SetBool("isSprinting", true);
+        }
     }
 
 

@@ -10,15 +10,22 @@ public class PlayerJump : PlayerState
         base.Enter();
 
         animator.SetBool("isJumping", true);
+        animator.SetTrigger("Jump");
+
+        animator.SetBool("isRunning", false);
+        animator.SetBool("isSprinting", false);
 
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, player.jumpForce);
 
         JumpPressed = false;
+        
     }
 
     public override void Update()
     {
         base.Update();
+
+        animator.SetBool("isSprinting", false);
 
         if (player.isGrounded && rb.linearVelocity.y <= 0)
         {

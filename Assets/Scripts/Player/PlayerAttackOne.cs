@@ -11,7 +11,10 @@ public class PlayerAttackOne : PlayerState
 
         animator.SetBool("isAttacking1", true);
 
-        rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
+        //rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
+
+        animator.SetBool("isRunning", false);
+        animator.SetBool("isSprinting", false);
     }
 
     public override void FixedUpdate()
