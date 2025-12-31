@@ -1,0 +1,431 @@
+fileFormatVersion: 2
+guid: c7cb3022ce4ee5748822962e12b7ecbc
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -8599493422345367615
+    second: Twisted Damned_0
+  - first:
+      213: 186338390760822967
+    second: Twisted Damned_1
+  - first:
+      213: 3858430197520032869
+    second: Twisted Damned_2
+  - first:
+      213: 4993248375694350763
+    second: Twisted Damned_3
+  - first:
+      213: -8108912346104516661
+    second: Twisted Damned_4
+  - first:
+      213: -4858747130653810104
+    second: Twisted Damned_5
+  - first:
+      213: -4226062768624931656
+    second: Twisted Damned_6
+  - first:
+      213: -8431011514622089391
+    second: Twisted Damned_7
+  - first:
+      213: -8355086583299121488
+    second: Twisted Damned_8
+  - first:
+      213: -168628077302296110
+    second: Twisted Damned_9
+  - first:
+      213: 4359850635573402627
+    second: Twisted Damned_10
+  - first:
+      213: 5099924187492409555
+    second: Twisted Damned_11
+  - first:
+      213: 480435828828933777
+    second: Twisted Damned_12
+  - first:
+      213: -7430994237830137843
+    second: Twisted Damned_13
+  - first:
+      213: 8829112325758338776
+    second: Twisted Damned_14
+  - first:
+      213: 8375551389144851662
+    second: Twisted Damned_15
+  - first:
+      213: -7462768383094706369
+    second: Twisted Damned_16
+  - first:
+      213: 6088801429618157780
+    second: Twisted Damned_17
+  - first:
+      213: -917424863738689080
+    second: Twisted Damned_18
+  - first:
+      213: -1320560551657785651
+    second: Twisted Damned_19
+  - first:
+      213: -3572537397535721451
+    second: Twisted Damned_20
+  - first:
+      213: 1804965165562826483
+    second: Twisted Damned_21
+  - first:
+      213: -2694300414174892754
+    second: Twisted Damned_22
+  - first:
+      213: 8917015494045020031
+    second: Twisted Damned_23
+  - first:
+      213: -6267885980805299824
+    second: Twisted Damned_24
+  - first:
+      213: 8576066397073948463
+    second: Twisted Damned_25
+  - first:
+      213: 1062922920611271734
+    second: Twisted Damned_26
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 35
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Twisted Damned 1_0
+      rect:
+        serializedVersion: 2
+        x: 282
+        y: 224
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1caf60f6ba7b9dd448d28d068cf45311
+      internalID: -1797390358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Twisted Damned 1_1
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 78
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9dd0d456ee00d1e479b428098c9f974f
+      internalID: -2026455344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Twisted Damned 1_2
+      rect:
+        serializedVersion: 2
+        x: 470
+        y: 127
+        width: 9
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e656a422ac8e3d45986f7fd6f44f0f9
+      internalID: 207665405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Twisted Damned 1_3
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 127
+        width: 8
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 018d0fab6d2a85b41a6326c858fd17de
+      internalID: 229772326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Twisted Damned 1_4
+      rect:
+        serializedVersion: 2
+        x: 356
+        y: 78
+        width: 5
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83405a3f694e9aa4bb58d9072bfc1c98
+      internalID: 1730529755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Twisted Damned 1_5
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 79
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0181f4d96ca748b4e9a1bd7984f2abdd
+      internalID: -860183608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Twisted Damned 1_6
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 87
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f54f09cc48117546b1c2b140bcd73cd
+      internalID: 2118718396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Twisted Damned 1_7
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 17
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1020e1cd07dd7014fb47de0312869498
+      internalID: 1744025231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Twisted Damned 1_8
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 5
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0cfe639e1fa1b61419c42d36d9e131c5
+      internalID: -1758832927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 80519ce8a515c7d4cae37c373e87401d
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Twisted Damned 1_0: -1797390358
+      Twisted Damned 1_1: -2026455344
+      Twisted Damned 1_2: 207665405
+      Twisted Damned 1_3: 229772326
+      Twisted Damned 1_4: 1730529755
+      Twisted Damned 1_5: -860183608
+      Twisted Damned 1_6: 2118718396
+      Twisted Damned 1_7: 1744025231
+      Twisted Damned 1_8: -1758832927
+      Twisted Damned_0: -8599493422345367615
+      Twisted Damned_1: 186338390760822967
+      Twisted Damned_10: 4359850635573402627
+      Twisted Damned_11: 5099924187492409555
+      Twisted Damned_12: 480435828828933777
+      Twisted Damned_13: -7430994237830137843
+      Twisted Damned_14: 8829112325758338776
+      Twisted Damned_15: 8375551389144851662
+      Twisted Damned_16: -7462768383094706369
+      Twisted Damned_17: 6088801429618157780
+      Twisted Damned_18: -917424863738689080
+      Twisted Damned_19: -1320560551657785651
+      Twisted Damned_2: 3858430197520032869
+      Twisted Damned_20: -3572537397535721451
+      Twisted Damned_21: 1804965165562826483
+      Twisted Damned_22: -2694300414174892754
+      Twisted Damned_23: 8917015494045020031
+      Twisted Damned_24: -6267885980805299824
+      Twisted Damned_25: 8576066397073948463
+      Twisted Damned_3: 4993248375694350763
+      Twisted Damned_4: -8108912346104516661
+      Twisted Damned_5: -4858747130653810104
+      Twisted Damned_6: -4226062768624931656
+      Twisted Damned_7: -8431011514622089391
+      Twisted Damned_8: -8355086583299121488
+      Twisted Damned_9: -168628077302296110
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
