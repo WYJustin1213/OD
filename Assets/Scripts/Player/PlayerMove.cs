@@ -7,7 +7,9 @@ public class PlayerMove : PlayerState
     public override void Enter()
     {
         base.Enter();
-        
+        animator.SetBool("isSprinting", true);
+        animator.SetBool("isRunning", !SprintPressed);
+        animator.SetBool("isSprinting", SprintPressed);
     }
 
 
@@ -54,6 +56,7 @@ public class PlayerMove : PlayerState
     {
         base.Exit();
 
-        
+        animator.SetBool("isRunning", false);
+        animator.SetBool("isSprinting", false);
     }
 }

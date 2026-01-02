@@ -194,6 +194,19 @@ public class Player : MonoBehaviour
             animator.SetBool("isJumping", false);
             animator.SetBool("isSprinting", true);
         }
+
+        if (isGrounded && !isCrouching && !animator.GetBool("isIdle") && !animator.GetBool("isJumping")
+            && !animator.GetBool("isSprinting") && !animator.GetBool("isSliding"))
+        {
+            animator.SetBool("isSprinting", true);
+
+            ChangeState(moveState);
+        }
+
+        if (isJumping && !isGrounded)
+        {
+            animator.SetBool("isSprinting", false);
+        }
     }
 
 

@@ -14129,7 +14129,7 @@ Transform:
   m_GameObject: {fileID: 191784963}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.67, y: -1.82, z: 0}
+  m_LocalPosition: {x: 14.062, y: -0.44999993, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -15005,7 +15005,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.3428571, y: 1.7714286}
+    oldSize: {x: 2.3142858, y: 1.7142857}
     newSize: {x: 1.3428571, y: 1.5142857}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -15180,7 +15180,7 @@ MonoBehaviour:
   chaseSpeed: 2.5
   hitStunTime: 0.15
   attackCooldown: 2
-  attackDamage: 1
+  attackDamage: 3
   attackPoint: {fileID: 569073338}
   attackRadius: 1
   playerMask:
@@ -15639,7 +15639,7 @@ MonoBehaviour:
   chaseSpeed: 1.25
   hitStunTime: 0.15
   attackCooldown: 4
-  attackDamage: 1
+  attackDamage: 3
   attackPoint: {fileID: 1821204513}
   attackRadius: 0.25
   playerMask:
@@ -15731,7 +15731,7 @@ Transform:
   m_GameObject: {fileID: 232715267}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.402, y: -1.82, z: 0}
+  m_LocalPosition: {x: 16.33, y: -0.45, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -16406,7 +16406,7 @@ Transform:
   m_GameObject: {fileID: 257187888}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.114, y: -1.535, z: 0}
+  m_LocalPosition: {x: 0.591, y: -1.535, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -18016,7 +18016,7 @@ Transform:
   m_GameObject: {fileID: 491527184}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 20.77, y: 0.66, z: 0}
+  m_LocalPosition: {x: -10.6, y: -1.61, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -19737,7 +19737,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 20.77, y: 2.16, z: -10}
+  m_LocalPosition: {x: -10.6, y: -0.110000014, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -49080,7 +49080,7 @@ MonoBehaviour:
   chaseSpeed: 2.5
   hitStunTime: 0.15
   attackCooldown: 2
-  attackDamage: 1
+  attackDamage: 5
   attackPoint: {fileID: 320656438}
   attackRadius: 0.75
   playerMask:
@@ -49172,7 +49172,7 @@ Transform:
   m_GameObject: {fileID: 963191538}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.17, y: 0, z: 0}
+  m_LocalPosition: {x: 3.82, y: -0.89, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -50835,7 +50835,7 @@ Transform:
   m_GameObject: {fileID: 1151719045}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.92, y: -1.97, z: 0}
+  m_LocalPosition: {x: 17.66, y: -0.86, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -51056,7 +51056,7 @@ MonoBehaviour:
   chaseSpeed: 2.5
   hitStunTime: 0.15
   attackCooldown: 2
-  attackDamage: 1
+  attackDamage: 2
   attackPoint: {fileID: 1694752531}
   attackRadius: 0.5
   playerMask:
@@ -91113,7 +91113,7 @@ Transform:
   m_GameObject: {fileID: 2062534281}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 20.77, y: 2.16, z: -10}
+  m_LocalPosition: {x: -10.6, y: -0.110000014, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

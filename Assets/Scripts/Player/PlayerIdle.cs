@@ -42,5 +42,6 @@ public class PlayerIdle : PlayerState
     public override void Exit()
     {
         animator.SetBool("isIdle", false);
+        Debug.Log("Leave");
     }
 }
