@@ -6,12 +6,12 @@ public class UniverseHotkeys : MonoBehaviour
     {
         if (UniverseManager.Instance == null) return;
 
-        bool uHeld = Input.GetKey(KeyCode.U);
+        if (!Input.GetKey(KeyCode.U)) return; // U must be held
 
-        if (uHeld && Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Alpha1))
             UniverseManager.Instance.TrySetUniverse(UniverseId.U1);
 
-        if (uHeld && Input.GetKeyDown(KeyCode.Alpha2))
+        if (Input.GetKeyDown(KeyCode.Alpha2))
             UniverseManager.Instance.TrySetUniverse(UniverseId.U2);
     }
 }
