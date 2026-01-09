@@ -16433,7 +16433,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &191784964
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -17911,7 +17911,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &215724813
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -18350,7 +18350,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &232715268
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -55628,7 +55628,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &963191539
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -57494,7 +57494,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!95 &1151719046
 Animator:
   serializedVersion: 7
@@ -120856,7 +120856,6 @@ SceneRoots:
   m_Roots:
   - {fileID: 619394802}
   - {fileID: 1953233017}
-  - {fileID: 491527185}
   - {fileID: 1151719048}
   - {fileID: 215724823}
   - {fileID: 963191549}
@@ -120868,3 +120867,4 @@ SceneRoots:
   - {fileID: 158350320}
   - {fileID: 367574958}
   - {fileID: 243039730}
+  - {fileID: 491527185}
