@@ -15,6 +15,10 @@ public class EnemyMotor2D : MonoBehaviour
 
     [SerializeField] private LayerMask groundMask;
 
+    public void SetGroundCheckOrigin(Transform t) => groundCheckOrigin = t;
+    public void SetWallCheckOrigin(Transform t) => wallCheckOrigin = t;
+
+
     private float _facing = 1f;
 
     private void Reset()
