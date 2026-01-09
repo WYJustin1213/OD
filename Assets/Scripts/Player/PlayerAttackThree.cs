@@ -1,15 +1,15 @@
 using UnityEngine;
 
-public class PlayerAttackOne : PlayerState
+public class PlayerAttackThree : PlayerState
 {
-    public PlayerAttackOne(Player player) : base(player) { }
+    public PlayerAttackThree(Player player) : base(player) { }
 
 
     public override void Enter()
     {
         base.Enter();
 
-        animator.SetBool("isAttacking1", true);
+        animator.SetBool("isAttacking3", true);
 
         rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
     }
@@ -40,6 +40,6 @@ public class PlayerAttackOne : PlayerState
     {
         base.Exit();
 
-        animator.SetBool("isAttacking1", false);
+        animator.SetBool("isAttacking3", false);
     }
 }

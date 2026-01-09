@@ -23,11 +23,20 @@ public class PlayerIdle : PlayerState
         {
             player.ChangeState(player.attackOneState);
         }
+        else if (AttackTwoPressed && combat.CanAttack)
+        {
+            player.ChangeState(player.attackTwoState);
+        }
+        else if (AttackThreePressed && combat.CanAttack)
+        {
+            player.ChangeState(player.attackThreeState);
+        }
+
         else if (JumpPressed)
         {
             JumpPressed = false;
             player.ChangeState(player.jumpState);
-            
+
         }
         else if (Mathf.Abs(player.moveInput.x) > 0.01f)
         {
