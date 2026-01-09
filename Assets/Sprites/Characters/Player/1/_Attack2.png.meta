@@ -145,7 +145,7 @@ TextureImporter:
         width: 42
         height: 37
       alignment: 9
-      pivot: {x: 0.45238096, y: 0.5}
+      pivot: {x: 0.52380955, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -167,7 +167,7 @@ TextureImporter:
         width: 77
         height: 41
       alignment: 9
-      pivot: {x: 0.24675325, y: 0.4512195}
+      pivot: {x: 0.46753246, y: 0.4512195}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -189,7 +189,7 @@ TextureImporter:
         width: 64
         height: 36
       alignment: 9
-      pivot: {x: 0.296875, y: 0.5138889}
+      pivot: {x: 0.5859375, y: 0.5138889}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -211,7 +211,7 @@ TextureImporter:
         width: 46
         height: 36
       alignment: 9
-      pivot: {x: 0.41304347, y: 0.5138889}
+      pivot: {x: 0.8043478, y: 0.5138889}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -233,7 +233,7 @@ TextureImporter:
         width: 45
         height: 36
       alignment: 9
-      pivot: {x: 0.42222223, y: 0.5138889}
+      pivot: {x: 0.7888889, y: 0.5138889}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -266,6 +266,7 @@ TextureImporter:
       _Attack2_3: 794893942373838753
       _Attack2_4: -13754153453958871
       _Attack2_5: -9110880898248618877
+      _Attack2_6: 1733924158
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
