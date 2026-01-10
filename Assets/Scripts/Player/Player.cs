@@ -100,6 +100,8 @@ public class Player : MonoBehaviour
         AttackOne();
         AttackTwo();
         AttackThree();
+
+        Debug.Log(rb.linearVelocity.y);
     }
 
     private void FixedUpdate()

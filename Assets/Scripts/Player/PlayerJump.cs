@@ -10,6 +10,8 @@ public class PlayerJump : PlayerState
         base.Enter();
 
         animator.SetBool("isJumping", true);
+        animator.SetBool("isGrounded", false);
+        Debug.Log("jump");
         animator.SetTrigger("Jump");
 
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, player.jumpForce);
@@ -26,7 +28,7 @@ public class PlayerJump : PlayerState
 
         if (player.isGrounded && rb.linearVelocity.y <= 0)
         {
-            player.ChangeState(player.idleState);
+            player.ChangeState(player.moveState);
         }
     }
 
