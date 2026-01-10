@@ -17,11 +17,6 @@ public class PlayerAttackTwo : PlayerState
     public override void FixedUpdate()
     {
         base.FixedUpdate();
-
-        if (SprintPressed)
-        {
-            player.ChangeState(player.moveState);
-        }
     }
 
     public override void AttackAnimationFished()

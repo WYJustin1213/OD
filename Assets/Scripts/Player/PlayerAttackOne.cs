@@ -1,4 +1,5 @@
 using UnityEngine;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class PlayerAttackOne : PlayerState
 {
@@ -17,11 +18,6 @@ public class PlayerAttackOne : PlayerState
     public override void FixedUpdate()
     {
         base.FixedUpdate();
-
-        if (SprintPressed)
-        {
-            player.ChangeState(player.moveState);
-        }
     }
 
     public override void AttackAnimationFished()
@@ -41,5 +37,7 @@ public class PlayerAttackOne : PlayerState
         base.Exit();
 
         animator.SetBool("isAttacking1", false);
+
+        rb.position = new Vector2(rb.position.x + 0.45f * player.faceDir, rb.position.y);
     }
 }

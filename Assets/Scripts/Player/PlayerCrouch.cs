@@ -11,9 +11,6 @@ public class PlayerCrouch : PlayerState
         animator.SetBool("isCrouching", true);
 
         player.SetColliderSlide();
-
-        animator.SetBool("isRunning", false);
-        animator.SetBool("isSprinting", false);
     }
 
     public override void Update()

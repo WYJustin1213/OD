@@ -7,7 +7,9 @@ public class PlayerMove : PlayerState
     public override void Enter()
     {
         base.Enter();
-        
+
+        animator.SetBool("isRunning", !SprintPressed);
+        animator.SetBool("isSprinting", SprintPressed);
     }
 
 
@@ -19,6 +21,15 @@ public class PlayerMove : PlayerState
         {
             player.ChangeState(player.attackOneState);
         }
+        else if (AttackTwoPressed && combat.CanAttack)
+        {
+            player.ChangeState(player.attackTwoState);
+        }
+        else if (AttackThreePressed && combat.CanAttack)
+        {
+            player.ChangeState(player.attackThreeState);
+        }
+
         else if (JumpPressed)
         {
             player.ChangeState(player.jumpState);
@@ -54,6 +65,9 @@ public class PlayerMove : PlayerState
     {
         base.Exit();
 
-        
+        animator.SetBool("isRunning", false);
+        animator.SetBool("isSprinting", false);
+
+        rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
     }
 }

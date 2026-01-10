@@ -12,9 +12,6 @@ public class PlayerJump : PlayerState
         animator.SetBool("isJumping", true);
         animator.SetTrigger("Jump");
 
-        animator.SetBool("isRunning", false);
-        animator.SetBool("isSprinting", false);
-
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, player.jumpForce);
 
         JumpPressed = false;

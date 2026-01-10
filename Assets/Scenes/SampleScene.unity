@@ -21564,7 +21564,7 @@ Transform:
   m_GameObject: {fileID: 491527184}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -20.01, y: -12.87, z: 0}
+  m_LocalPosition: {x: -21.16, y: -2.42, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -21697,6 +21697,8 @@ MonoBehaviour:
   sprintPressed: 0
   JumpPressed: 0
   attackOnePressed: 0
+  attackTwoPressed: 0
+  attackThreePressed: 0
   portalPressed: 0
   groundCheck: {fileID: 246771873}
   gcRadius: 0.25
@@ -23297,7 +23299,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -20.007977, y: -10.67056, z: -10}
+  m_LocalPosition: {x: -21.16, y: -0.9200001, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -104521,7 +104523,7 @@ Transform:
   m_GameObject: {fileID: 2062534281}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -20.01, y: -11.37, z: -10}
+  m_LocalPosition: {x: -21.16, y: -0.9200001, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -104545,7 +104547,7 @@ MonoBehaviour:
     ScreenPosition: {x: 0, y: 0}
     DeadZone:
       Enabled: 1
-      Size: {x: 0.05, y: 0.01}
+      Size: {x: 0.1, y: 0.01}
     HardLimits:
       Enabled: 0
       Size: {x: 0.8, y: 0.8}

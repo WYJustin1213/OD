@@ -11,8 +11,6 @@ public class PlayerIdle : PlayerState
         animator.SetBool("isIdle", true);
         rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
 
-        animator.SetBool("isRunning", false);
-        animator.SetBool("isSprinting", false);
     }
 
     public override void Update()
