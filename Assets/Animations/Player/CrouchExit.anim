@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SlideEnter
+  m_Name: CrouchExit
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,9 +21,9 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 3587829289488908041, guid: 72dba24c5d9d1694ebdf443231c5107e, type: 3}
+      value: {fileID: -4005074021245359879, guid: 01c1eea64b2ce1447a33476c814164e3, type: 3}
     - time: 0.083333336
-      value: {fileID: 3587829289488908041, guid: 72dba24c5d9d1694ebdf443231c5107e, type: 3}
+      value: {fileID: -4005074021245359879, guid: 01c1eea64b2ce1447a33476c814164e3, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -46,8 +46,8 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 3587829289488908041, guid: 72dba24c5d9d1694ebdf443231c5107e, type: 3}
-    - {fileID: 3587829289488908041, guid: 72dba24c5d9d1694ebdf443231c5107e, type: 3}
+    - {fileID: -4005074021245359879, guid: 01c1eea64b2ce1447a33476c814164e3, type: 3}
+    - {fileID: -4005074021245359879, guid: 01c1eea64b2ce1447a33476c814164e3, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}

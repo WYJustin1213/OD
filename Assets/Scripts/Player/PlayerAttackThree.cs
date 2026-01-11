@@ -21,14 +21,8 @@ public class PlayerAttackThree : PlayerState
 
     public override void AttackAnimationFished()
     {
-        if (Mathf.Abs(MoveInput.x) > 0.01f)
-        {
-            player.ChangeState(player.moveState);
-        }
-        else
-        {
-            player.ChangeState(player.idleState);
-        }
+        
+        player.ChangeState(player.crouchState);
     }
 
     public override void Exit()

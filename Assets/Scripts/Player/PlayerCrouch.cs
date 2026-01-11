@@ -21,6 +21,17 @@ public class PlayerCrouch : PlayerState
         {
             player.ChangeState(player.idleState);
         }
+
+        bool isGrounded = animator.GetBool("isGrounded");
+        bool isMoving = Mathf.Abs(MoveInput.x) > 0.01f && isGrounded;
+
+        animator.SetBool("isCrouchWalking", isMoving);
+
+        if (AttackThreePressed && combat.CanAttack)
+        {
+            animator.SetBool("isCrouchWalking", false);
+            player.ChangeState(player.attackThreeState);
+        }
     }
 
     public override void FixedUpdate()
