@@ -11,9 +11,6 @@ public class PlayerCrouch : PlayerState
         animator.SetBool("isCrouching", true);
 
         player.SetColliderSlide();
-
-        animator.SetBool("isRunning", false);
-        animator.SetBool("isSprinting", false);
     }
 
     public override void Update()
@@ -23,6 +20,17 @@ public class PlayerCrouch : PlayerState
         if (MoveInput.y > -0.01f && !player.CheckForCeiling())
         {
             player.ChangeState(player.idleState);
+        }
+
+        bool isGrounded = animator.GetBool("isGrounded");
+        bool isMoving = Mathf.Abs(MoveInput.x) > 0.01f && isGrounded;
+
+        animator.SetBool("isCrouchWalking", isMoving);
+
+        if (AttackThreePressed && combat.CanAttack)
+        {
+            animator.SetBool("isCrouchWalking", false);
+            player.ChangeState(player.attackThreeState);
         }
     }
 

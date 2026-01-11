@@ -22,6 +22,7 @@ public class UniverseEnemyVariantSwitcher : MonoBehaviour
     [SerializeField] private Enemy enemyFx;                       // your Enemy script (uses animator for isHit)
     [SerializeField] private EnemyCombatController combat;        // uses animator + attackPoint
     [SerializeField] private EnemyMotor2D motor;                  // may use ground/wall origins
+    [SerializeField] private EnemyIdleController idle;
 
     private UniverseManager _um;
 
@@ -33,6 +34,7 @@ public class UniverseEnemyVariantSwitcher : MonoBehaviour
         if (enemyFx == null) enemyFx = GetComponent<Enemy>();
         if (combat == null) combat = GetComponent<EnemyCombatController>();
         if (motor == null) motor = GetComponent<EnemyMotor2D>();
+        if (idle == null) idle = GetComponent<EnemyIdleController>();
     }
 
     private void Start()
@@ -83,23 +85,31 @@ public class UniverseEnemyVariantSwitcher : MonoBehaviour
             return;
         }
 
-        
-
         // Update animator references so hit/attack works in the current universe
         if (enemyFx != null && active.animator != null)
             enemyFx.SetAnimator(active.animator);
 
-        if (combat != null)
+        _activeVariant = active;
+
+        var refs = active.root.GetComponentInChildren<EnemyVariantCombatRefs>(includeInactive: false);
+        if (refs == null)
         {
-            // Inject animator/attack point from the active variant
-            var combatRefs = active.root.GetComponentInChildren<EnemyVariantCombatRefs>(includeInactive: false);
-
-            if (combat != null)
-                combat.ApplyVariantRefs(combatRefs);
-
-            if (enemyFx != null && combatRefs != null && combatRefs.animator != null)
-                enemyFx.SetAnimator(combatRefs.animator);
+            Debug.LogWarning($"UniverseEnemyVariantSwitcher: No EnemyVariantCombatRefs found under {active.root.name}", this);
+            return;
         }
+
+        combat.ApplyVariantAnimatorAndAttackPoint(refs.animator, refs.attackPoint);
+        idle.SetAnimator(refs.animator);
+        enemyFx.SetAnimator(refs.animator);
+
+        Debug.Log($"[VariantSwitcher] {name} applying {u}. refs={(refs != null)} animator={(refs != null ? refs.animator : null)} attackPoint={(refs != null ? refs.attackPoint : null)}", this);
+
+        if (combat != null)
+            combat.ApplyVariantAnimatorAndAttackPoint(refs.animator, refs.attackPoint);
+
+        // Helps physics update when colliders swap
+        Physics2D.SyncTransforms();
+
 
         // Update motor check origins if you use those (optional)
         if (motor != null)

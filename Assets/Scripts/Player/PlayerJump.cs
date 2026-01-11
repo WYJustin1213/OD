@@ -10,10 +10,9 @@ public class PlayerJump : PlayerState
         base.Enter();
 
         animator.SetBool("isJumping", true);
+        animator.SetBool("isGrounded", false);
+        Debug.Log("jump");
         animator.SetTrigger("Jump");
-
-        animator.SetBool("isRunning", false);
-        animator.SetBool("isSprinting", false);
 
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, player.jumpForce);
 
@@ -29,7 +28,14 @@ public class PlayerJump : PlayerState
 
         if (player.isGrounded && rb.linearVelocity.y <= 0)
         {
-            player.ChangeState(player.idleState);
+            if (Mathf.Abs(player.moveInput.x) > 0.01f)
+            {
+                player.ChangeState(player.moveState);
+            }
+            else if (Mathf.Abs(MoveInput.x) < 0.01f)
+            {
+                player.ChangeState(player.idleState);
+            }
         }
     }
 

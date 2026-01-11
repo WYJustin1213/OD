@@ -10,6 +10,8 @@ public abstract class PlayerState
     protected bool JumpPressed { get => player.jumpPressed;set => player.jumpPressed = value; }
     protected bool SprintPressed => player.sprintPressed;
     protected bool AttackOnePressed => player.attackOnePressed;
+    protected bool AttackTwoPressed => player.attackTwoPressed;
+    protected bool AttackThreePressed => player.attackThreePressed;
     protected Vector2 MoveInput => player.moveInput;
 
     public PlayerState (Player player)

@@ -12,6 +12,8 @@ public class Player : MonoBehaviour
     public PlayerCrouch crouchState;
     public PlayerSlide slideState;
     public PlayerAttackOne attackOneState;
+    public PlayerAttackTwo attackTwoState;
+    public PlayerAttackThree attackThreeState;
 
     [Header("Core Components")]
     public Combat combat;
@@ -40,6 +42,8 @@ public class Player : MonoBehaviour
     public bool sprintPressed;
     public bool JumpPressed;
     public bool attackOnePressed;
+    public bool attackTwoPressed;
+    public bool attackThreePressed;
     public bool portalPressed;
 
     [Header("Ground Check")]
@@ -75,6 +79,8 @@ public class Player : MonoBehaviour
         crouchState = new PlayerCrouch(this);
         slideState = new PlayerSlide(this);
         attackOneState = new PlayerAttackOne(this);
+        attackTwoState = new PlayerAttackTwo(this);
+        attackThreeState = new PlayerAttackThree(this);
     }
 
     private void Start()
@@ -90,6 +96,10 @@ public class Player : MonoBehaviour
 
         if (!isSliding && !attackOnePressed) { Flip(); }
         Animation();
+
+        AttackOne();
+        AttackTwo();
+        AttackThree();
     }
 
     private void FixedUpdate()
@@ -186,27 +196,6 @@ public class Player : MonoBehaviour
         
         animator.SetBool("isCrouchWalking", isMoving && isCrouching && !isSliding);
 
-
-
-        bool isJumping = animator.GetBool("isJumping");
-        if (isGrounded && isJumping)
-        {
-            animator.SetBool("isJumping", false);
-            animator.SetBool("isSprinting", true);
-        }
-
-        if (isGrounded && !isCrouching && !animator.GetBool("isIdle") && !animator.GetBool("isJumping")
-            && !animator.GetBool("isSprinting") && !animator.GetBool("isSliding"))
-        {
-            animator.SetBool("isSprinting", true);
-
-            ChangeState(moveState);
-        }
-
-        if (isJumping && !isGrounded)
-        {
-            animator.SetBool("isSprinting", false);
-        }
     }
 
 
@@ -227,9 +216,22 @@ public class Player : MonoBehaviour
         sprintPressed = value.isPressed;
     }
 
-    public void OnAttack(InputValue value)
+    public void AttackOne()
     {
-        attackOnePressed = value.isPressed;
+        Debug.Log("1" + attackOnePressed);
+        attackOnePressed = Input.GetKeyDown(KeyCode.J);
+    }
+
+    public void AttackTwo()
+    {
+        Debug.Log("2" + attackTwoPressed);
+        attackTwoPressed = Input.GetKeyDown(KeyCode.K);
+    }
+
+    public void AttackThree()
+    {
+        Debug.Log("3" + attackThreePressed);
+        attackThreePressed = Input.GetKeyDown(KeyCode.L);
     }
 
     public void OnPortal(InputValue value)

@@ -16576,14 +16576,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 191784965}
+  identity: {fileID: 0}
   groundCheckOrigin: {fileID: 870273402}
   wallCheckOrigin: {fileID: 810092535}
   groundCheckAhead: 0.4
   groundCheckDown: 0.3
   wallCheckDistance: 0.2
+  enemyCheckDistance: 0.35
   groundMask:
     serializedVersion: 2
     m_Bits: 64
+  enemyMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &191784969
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16626,6 +16631,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 191784970}
   motor: {fileID: 191784968}
+  idle: {fileID: 0}
   player: {fileID: 491527185}
   aggroRange: 4
   attackRange: 1
@@ -16637,6 +16643,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   attackLockTime: 0.6
+  disengageTime: 1
+  yChaseTolerance: 0.9
 --- !u!95 &191784972
 Animator:
   serializedVersion: 7
@@ -17660,7 +17668,7 @@ GameObject:
   - component: {fileID: 213855308}
   - component: {fileID: 213855313}
   - component: {fileID: 213855312}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: worldOne
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17741,8 +17749,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.1500573, y: 0.27272367}
-  m_Size: {x: 1.4275185, y: 0.9589542}
+  m_Offset: {x: -0.1500573, y: 0.212946}
+  m_Size: {x: 1.4275188, y: 1.0785106}
   m_Direction: 1
 --- !u!61 &213855310
 BoxCollider2D:
@@ -17781,7 +17789,7 @@ BoxCollider2D:
   m_Offset: {x: -0.16792715, y: -0.8745638}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.14814815, y: 0.5}
     oldSize: {x: 2.3142858, y: 1.8285714}
     newSize: {x: 1.3428571, y: 1.5142857}
     adaptiveTilingThreshold: 0.5
@@ -18054,14 +18062,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 215724814}
+  identity: {fileID: 0}
   groundCheckOrigin: {fileID: 1427011959}
   wallCheckOrigin: {fileID: 1307878484}
   groundCheckAhead: 0.4
   groundCheckDown: 0.3
   wallCheckDistance: 0.2
+  enemyCheckDistance: 0.35
   groundMask:
     serializedVersion: 2
     m_Bits: 64
+  enemyMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &215724818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18104,6 +18117,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 215724819}
   motor: {fileID: 215724817}
+  idle: {fileID: 0}
   player: {fileID: 491527185}
   aggroRange: 8
   attackRange: 1.2
@@ -18115,6 +18129,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   attackLockTime: 0.6
+  disengageTime: 1
+  yChaseTolerance: 0.9
 --- !u!95 &215724821
 Animator:
   serializedVersion: 7
@@ -18493,14 +18509,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 232715269}
+  identity: {fileID: 0}
   groundCheckOrigin: {fileID: 1648930103}
   wallCheckOrigin: {fileID: 1362143779}
   groundCheckAhead: 0.4
   groundCheckDown: 0.3
   wallCheckDistance: 0.2
+  enemyCheckDistance: 0.35
   groundMask:
     serializedVersion: 2
     m_Bits: 64
+  enemyMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &232715273
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18543,6 +18564,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 232715274}
   motor: {fileID: 232715272}
+  idle: {fileID: 0}
   player: {fileID: 491527185}
   aggroRange: 4
   attackRange: 0.9
@@ -18554,6 +18576,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   attackLockTime: 0.6
+  disengageTime: 1
+  yChaseTolerance: 0.9
 --- !u!95 &232715276
 Animator:
   serializedVersion: 7
@@ -18746,6 +18770,8 @@ GameObject:
   m_Component:
   - component: {fileID: 243039730}
   - component: {fileID: 243039729}
+  - component: {fileID: 243039734}
+  - component: {fileID: 243039733}
   - component: {fileID: 243039732}
   - component: {fileID: 243039731}
   - component: {fileID: 243039728}
@@ -18753,7 +18779,7 @@ GameObject:
   - component: {fileID: 243039726}
   - component: {fileID: 243039725}
   - component: {fileID: 243039724}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: EnemyBigTwo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18801,6 +18827,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 243039729}
   motor: {fileID: 243039726}
+  idle: {fileID: 0}
   player: {fileID: 491527185}
   aggroRange: 5
   attackRange: 1.2
@@ -18810,8 +18837,10 @@ MonoBehaviour:
   attackRadius: 0.5
   playerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   attackLockTime: 0.6
+  disengageTime: 1
+  yChaseTolerance: 0.9
 --- !u!114 &243039726
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18825,14 +18854,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 243039724}
+  identity: {fileID: 243039734}
   groundCheckOrigin: {fileID: 557773985}
   wallCheckOrigin: {fileID: 547755093}
   groundCheckAhead: 0.4
   groundCheckDown: 0.8
   wallCheckDistance: 1
+  enemyCheckDistance: 0.35
   groundMask:
     serializedVersion: 2
     m_Bits: 64
+  enemyMask:
+    serializedVersion: 2
+    m_Bits: 640
 --- !u!114 &243039727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18840,7 +18874,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 243039723}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 995d87859147d744186ede25b60e0a72, type: 3}
   m_Name: 
@@ -18851,7 +18885,7 @@ MonoBehaviour:
   allyRadius: 6
   allyLayer:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 640
 --- !u!114 &243039728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18889,7 +18923,7 @@ Transform:
   m_GameObject: {fileID: 243039723}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.15, y: -1.44, z: -0.072631404}
+  m_LocalPosition: {x: -8.2, y: -1.44, z: -0.072631404}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -18939,6 +18973,44 @@ MonoBehaviour:
   enemyFx: {fileID: 243039728}
   combat: {fileID: 243039725}
   motor: {fileID: 243039726}
+  idle: {fileID: 0}
+--- !u!114 &243039733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 243039723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18005b59ad40ec4fbfc5cc404850729, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  motor: {fileID: 243039726}
+  animator: {fileID: 0}
+  idleWalkSpeed: 1.2
+  idleMode: 2
+  walkDuration: 3
+  initialFacing: -1
+--- !u!114 &243039734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 243039723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eee2fe94bfe11fc4db5ab65859a963d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sizeType: 1
+  smallMass: 10
+  largeMass: 100
+  smallSortingOrder: 0
+  largeSortingOrder: 1
+  rb: {fileID: 243039724}
+  mainRenderer: {fileID: 0}
 --- !u!1 &244284114
 GameObject:
   m_ObjectHideFlags: 0
@@ -19515,7 +19587,7 @@ Transform:
   m_GameObject: {fileID: 246771872}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.5, z: 0}
+  m_LocalPosition: {x: 0, y: -0.672, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -21159,7 +21231,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 403511776}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: wallChecck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21564,7 +21636,7 @@ Transform:
   m_GameObject: {fileID: 491527184}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -20.01, y: -12.87, z: 0}
+  m_LocalPosition: {x: -15.1, y: -2.295, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -21638,8 +21710,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.05, y: -0.05}
-  m_Size: {x: 0.3, y: 1}
+  m_Offset: {x: -0.05, y: -0.075}
+  m_Size: {x: 0.3, y: 1.03}
   m_Direction: 0
 --- !u!50 &491527188
 Rigidbody2D:
@@ -21697,6 +21769,8 @@ MonoBehaviour:
   sprintPressed: 0
   JumpPressed: 0
   attackOnePressed: 0
+  attackTwoPressed: 0
+  attackThreePressed: 0
   portalPressed: 0
   groundCheck: {fileID: 246771873}
   gcRadius: 0.25
@@ -21707,15 +21781,15 @@ MonoBehaviour:
   headCheck: {fileID: 1868739329}
   hcRadius: 0.25
   crouchSpd: 1
-  slideDuration: 0.5
+  slideDuration: 0.55
   slideStopDur: 0.05
-  slideSpd: 4.5
+  slideSpd: 5
   slideHeight: 0.3
   slideWidth: 0.3
-  normalHeight: 1
+  normalHeight: 1.03
   normalWidth: 0.3
   slideOffset: {x: 0, y: -0.35}
-  normalOffset: {x: -0.05, y: -0.05}
+  normalOffset: {x: -0.05, y: -0.075}
 --- !u!114 &491527190
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23297,7 +23371,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -20.007977, y: -10.67056, z: -10}
+  m_LocalPosition: {x: -15.1, y: -0.7950001, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -23455,7 +23529,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 547755093}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: wallChecck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23518,7 +23592,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 557773985}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: groundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23555,7 +23629,7 @@ GameObject:
   - component: {fileID: 562544366}
   - component: {fileID: 562544368}
   - component: {fileID: 562544367}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: worldTwo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23677,8 +23751,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.52961916, y: -0.15979597}
-  m_Size: {x: 2.0748045, y: 1.5041844}
+  m_Offset: {x: 0.52961916, y: -0.279349}
+  m_Size: {x: 2.074805, y: 1.743301}
   m_Direction: 1
 --- !u!61 &562544370
 BoxCollider2D:
@@ -23714,7 +23788,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.44996035, y: -1.6748339}
+  m_Offset: {x: 0.44996035, y: -1.6818922}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.69512194, y: 0.5}
@@ -23724,7 +23798,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 2.1355584, y: 0.02713275}
+  m_Size: {x: 2.1355584, y: 0.013016224}
   m_EdgeRadius: 0
 --- !u!212 &562544371
 SpriteRenderer:
@@ -24454,7 +24528,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 605644201}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: groundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54646,7 +54720,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 912444415}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: attackPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55771,14 +55845,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 963191540}
+  identity: {fileID: 0}
   groundCheckOrigin: {fileID: 257187889}
   wallCheckOrigin: {fileID: 682335310}
   groundCheckAhead: 0.4
   groundCheckDown: 0.3
   wallCheckDistance: 0.2
+  enemyCheckDistance: 0.35
   groundMask:
     serializedVersion: 2
     m_Bits: 64
+  enemyMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &963191544
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55821,6 +55900,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 963191545}
   motor: {fileID: 963191543}
+  idle: {fileID: 0}
   player: {fileID: 491527185}
   aggroRange: 8
   attackRange: 2
@@ -55832,6 +55912,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   attackLockTime: 0.6
+  disengageTime: 1
+  yChaseTolerance: 0.9
 --- !u!95 &963191547
 Animator:
   serializedVersion: 7
@@ -57760,14 +57842,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 1151719050}
+  identity: {fileID: 0}
   groundCheckOrigin: {fileID: 12217622}
   wallCheckOrigin: {fileID: 1255791596}
   groundCheckAhead: 0.4
   groundCheckDown: 0.3
   wallCheckDistance: 0.2
+  enemyCheckDistance: 0.35
   groundMask:
     serializedVersion: 2
     m_Bits: 64
+  enemyMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &1151719058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57782,6 +57869,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 1151719053}
   motor: {fileID: 1151719057}
+  idle: {fileID: 0}
   player: {fileID: 491527185}
   aggroRange: 8
   attackRange: 1.2
@@ -57793,6 +57881,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   attackLockTime: 0.6
+  disengageTime: 1
+  yChaseTolerance: 0.9
 --- !u!1 &1151969071
 GameObject:
   m_ObjectHideFlags: 0
@@ -77751,7 +77841,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1640076989}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: attackPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104521,7 +104611,7 @@ Transform:
   m_GameObject: {fileID: 2062534281}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -20.01, y: -11.37, z: -10}
+  m_LocalPosition: {x: -15.1, y: -0.7950001, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -104545,7 +104635,7 @@ MonoBehaviour:
     ScreenPosition: {x: 0, y: 0}
     DeadZone:
       Enabled: 1
-      Size: {x: 0.05, y: 0.01}
+      Size: {x: 0.1, y: 0.01}
     HardLimits:
       Enabled: 0
       Size: {x: 0.8, y: 0.8}
@@ -104839,7 +104929,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -2
+  m_SortingOrder: 2
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
