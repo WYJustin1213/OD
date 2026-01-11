@@ -1,29 +1,49 @@
 using UnityEngine;
 
+public enum BlockReason
+{
+    None,
+    Wall,
+    Cliff,
+    SameTypeEnemy
+}
+
+
 [RequireComponent(typeof(Rigidbody2D))]
 public class EnemyMotor2D : MonoBehaviour
 {
-    [Header("Reference")]
+    [Header("Refs")]
     [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private EnemyIdentity identity;
 
-    [Header("Collision Checks")]
-    [SerializeField] private Transform groundCheckOrigin;  // place near feet center
-    [SerializeField] private Transform wallCheckOrigin;    // place near chest/front
+    [Header("Check Origins")]
+    [SerializeField] private Transform groundCheckOrigin; // near feet
+    [SerializeField] private Transform wallCheckOrigin;   // near chest/front
+
+    [Header("Distances")]
     [SerializeField] private float groundCheckAhead = 0.4f;
-    [SerializeField] private float groundCheckDown = 0.8f;
-    [SerializeField] private float wallCheckDistance = 0.2f;
+    [SerializeField] private float groundCheckDown = 0.9f;
+    [SerializeField] private float wallCheckDistance = 0.25f;
+    [SerializeField] private float enemyCheckDistance = 0.35f;
 
+    [Header("Masks")]
     [SerializeField] private LayerMask groundMask;
-
-    public void SetGroundCheckOrigin(Transform t) => groundCheckOrigin = t;
-    public void SetWallCheckOrigin(Transform t) => wallCheckOrigin = t;
-
+    [SerializeField] private LayerMask enemyMask; // should include both EnemySmall and EnemyLarge layers
 
     private float _facing = 1f;
+
+    public float Facing => _facing;
 
     private void Reset()
     {
         rb = GetComponent<Rigidbody2D>();
+        identity = GetComponent<EnemyIdentity>();
+    }
+
+    private void Awake()
+    {
+        if (rb == null) rb = GetComponent<Rigidbody2D>();
+        if (identity == null) identity = GetComponent<EnemyIdentity>();
     }
 
     public void SetFacing(float dir)
@@ -31,39 +51,50 @@ public class EnemyMotor2D : MonoBehaviour
         if (Mathf.Abs(dir) < 0.001f) return;
         _facing = Mathf.Sign(dir);
 
-        // Optional sprite flip:
+        // Optional flip (only if you want scale flip)
         Vector3 s = transform.localScale;
         s.x = Mathf.Abs(s.x) * _facing;
         transform.localScale = s;
     }
 
-    public bool CanMoveForward()
+    public BlockReason GetForwardBlockReason()
     {
-        // Wall check
         Vector2 wallOrigin = wallCheckOrigin ? (Vector2)wallCheckOrigin.position : rb.position;
+        Vector2 groundOrigin = groundCheckOrigin ? (Vector2)groundCheckOrigin.position : rb.position;
+
+        // 1) Same-type enemy check (short ray)
+        RaycastHit2D enemyHit = Physics2D.Raycast(wallOrigin, Vector2.right * _facing, enemyCheckDistance, enemyMask);
+        if (enemyHit.collider != null)
+        {
+            EnemyIdentity other = enemyHit.collider.GetComponentInParent<EnemyIdentity>();
+            if (other != null && identity != null && other.SizeType == identity.SizeType)
+                return BlockReason.SameTypeEnemy;
+        }
+
+        // 2) Wall check
         RaycastHit2D wallHit = Physics2D.Raycast(wallOrigin, Vector2.right * _facing, wallCheckDistance, groundMask);
         if (wallHit.collider != null)
-            return false;
+            return BlockReason.Wall;
 
-        // Cliff check (is there ground ahead?)
-        Vector2 groundOrigin = groundCheckOrigin ? (Vector2)groundCheckOrigin.position : rb.position;
+        // 3) Cliff check (ground ahead?)
         Vector2 aheadPoint = groundOrigin + Vector2.right * _facing * groundCheckAhead;
-
         RaycastHit2D groundHit = Physics2D.Raycast(aheadPoint, Vector2.down, groundCheckDown, groundMask);
         if (groundHit.collider == null)
-            return false;
+            return BlockReason.Cliff;
 
-        return true;
+        return BlockReason.None;
     }
 
-    public void MoveHorizontally(float desiredSpeed)
+    public bool CanMoveForward() => GetForwardBlockReason() == BlockReason.None;
+
+    public void MoveHorizontally(float desiredSpeed, bool respectBlocks = true)
     {
-        // If trying to move forward but blocked, stop horizontal velocity
         if (Mathf.Abs(desiredSpeed) > 0.01f)
-        {
             SetFacing(desiredSpeed);
 
-            if (!CanMoveForward())
+        if (respectBlocks && Mathf.Abs(desiredSpeed) > 0.01f)
+        {
+            if (GetForwardBlockReason() != BlockReason.None)
             {
                 rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
                 return;
@@ -72,6 +103,10 @@ public class EnemyMotor2D : MonoBehaviour
 
         rb.linearVelocity = new Vector2(desiredSpeed, rb.linearVelocity.y);
     }
+
+    // Setters for variant injection if you want
+    public void SetGroundCheckOrigin(Transform t) => groundCheckOrigin = t;
+    public void SetWallCheckOrigin(Transform t) => wallCheckOrigin = t;
 
 #if UNITY_EDITOR
     private void OnDrawGizmosSelected()

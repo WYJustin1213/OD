@@ -6,6 +6,7 @@ public class EnemyCombatController : MonoBehaviour
     [Header("Refs")]
     [SerializeField] private Health health;
     [SerializeField] private EnemyMotor2D motor;
+    [SerializeField] private EnemyIdleController idle;
 
     [Header("Player")]
     [SerializeField] private Transform player;
@@ -20,11 +21,13 @@ public class EnemyCombatController : MonoBehaviour
     [Header("Attack")]
     [SerializeField] private float attackCooldown = 1.0f;
     [SerializeField] private int attackDamage = 1;
-
     [SerializeField] private float attackRadius = 0.5f;
     [SerializeField] private LayerMask playerMask;
 
-    // These are now VARIANT-INJECTED
+    [Header("Attack timing")]
+    [SerializeField] private float attackLockTime = 0.6f; // anim length (failsafe)
+
+    // Variant-injected
     private Animator animator;
     private Transform attackPoint;
 
@@ -32,22 +35,34 @@ public class EnemyCombatController : MonoBehaviour
     private bool _isAttacking;
     private float _attackUnlockTime;
 
-    [SerializeField] private float attackLockTime = 0.6f; // set to your attack anim length
-
     private int AnimIsWalking = Animator.StringToHash("isWalking");
     private int AnimAttack = Animator.StringToHash("attack");
+
+    [Header("Disengage (prevents flip-flop when player is unreachable)")]
+    [SerializeField] private float disengageTime = 1.0f;      // how long to stop chasing after blocked
+    [SerializeField] private float yChaseTolerance = 0.9f;     // if player is too high/low, treat as unreachable
+
+    private float _disengageUntil;
+
+    private bool IsDisengaged => Time.time < _disengageUntil;
+
+    private void Disengage()
+    {
+        _disengageUntil = Time.time + disengageTime;
+    }
 
     private void Awake()
     {
         if (health == null) health = GetComponent<Health>();
         if (motor == null) motor = GetComponent<EnemyMotor2D>();
+        if (idle == null) idle = GetComponent<EnemyIdleController>();
     }
 
     private void Start()
     {
         if (player == null)
         {
-            GameObject p = GameObject.FindGameObjectWithTag("Player");
+            var p = GameObject.FindGameObjectWithTag("Player");
             if (p != null) player = p.transform;
         }
     }
@@ -62,29 +77,16 @@ public class EnemyCombatController : MonoBehaviour
         if (health != null) health.OnDeath -= HandleDeath;
     }
 
-    /// <summary>
-    /// Called by UniverseEnemyVariantSwitcher whenever the universe changes.
-    /// </summary>
-    public void ApplyVariantRefs(EnemyVariantCombatRefs refs)
+    public void ApplyVariantAnimatorAndAttackPoint(Animator a, Transform ap)
     {
-        if (refs == null)
-        {
-            Debug.LogWarning($"EnemyCombatController on {name}: received null variant refs.", this);
-            animator = null;
-            attackPoint = null;
-            return;
-        }
-
-        animator = refs.animator;
-        attackPoint = refs.attackPoint;
-
-        if (refs.attackRangeOverride > 0f) attackRange = refs.attackRangeOverride;
-        if (refs.attackRadiusOverride > 0f) attackRadius = refs.attackRadiusOverride;
+        animator = a;
+        attackPoint = ap;
+        if (idle != null) idle.SetAnimator(a);
     }
 
     private void HandleDeath()
     {
-        if (motor != null) motor.MoveHorizontally(0f);
+        motor.MoveHorizontally(0f);
         enabled = false;
     }
 
@@ -94,43 +96,75 @@ public class EnemyCombatController : MonoBehaviour
         if (_isAttacking && Time.time >= _attackUnlockTime)
             _isAttacking = false;
 
-        if (player == null) return;
-
-        // If refs not injected yet, just idle
-        if (animator == null || attackPoint == null)
+        // If we don't have refs yet, just idle
+        if (animator == null || motor == null || idle == null || player == null)
         {
-            if (motor != null) motor.MoveHorizontally(0f);
+            if (idle != null) idle.TickIdle();
             return;
         }
 
+        // During attack, motor is stopped (hit layer can still play)
         if (_isAttacking) return;
 
+        // If we recently hit a cliff/wall or the player is unreachable, just idle for a bit.
+        if (IsDisengaged)
+        {
+            idle.TickIdle();
+            return;
+        }
+
         float dist = Vector2.Distance(transform.position, player.position);
+        float yDiff = Mathf.Abs(player.position.y - transform.position.y);
+        if (yDiff > yChaseTolerance)
+        {
+            // Player likely on another platform; without pathfinding, don't spam chase.
+            Disengage();
+            idle.TickIdle();
+            return;
+        }
 
         if (dist > aggroRange)
         {
-            animator.SetBool(AnimIsWalking, false);
-            motor.MoveHorizontally(0f);
+            idle.TickIdle();
             return;
         }
 
+        // If close enough, attack
         if (dist <= attackRange && Time.time >= _nextAttackTime)
         {
             StartAttack();
             return;
         }
 
-        Chase();
+        // Chase
+        ChasePlayer();
     }
 
-    private void Chase()
+    private void ChasePlayer()
     {
         float dir = Mathf.Sign(player.position.x - transform.position.x);
 
-        animator.SetBool(AnimIsWalking, true);
+        // We do NOT force facing if we’re going to disengage this frame.
+        // Check block reason first using current intended facing:
         motor.SetFacing(dir);
+        BlockReason reason = motor.GetForwardBlockReason();
+
+        // If blocked by wall/cliff, give up chase temporarily and return to idle.
+        if (reason == BlockReason.Wall || reason == BlockReason.Cliff)
+        {
+            animator.SetBool("AnimIsWalking", false);
+            motor.MoveHorizontally(0f);
+
+            Disengage();          // <-- key line: prevents next frame from re-chasing immediately
+            idle.TickIdle();
+            return;
+        }
+
+        // Same-type enemy block: keep trying (or you could idle, but you asked not to disengage for this case)
+        animator.SetBool("AnimIsWalking", true);
         motor.MoveHorizontally(dir * chaseSpeed);
     }
+
 
     private void StartAttack()
     {
@@ -138,15 +172,13 @@ public class EnemyCombatController : MonoBehaviour
         _attackUnlockTime = Time.time + attackLockTime;
         _nextAttackTime = Time.time + attackCooldown;
 
-        animator.SetBool(AnimIsWalking, false);
+        animator.SetBool("AnimIsWalking", false);
         motor.MoveHorizontally(0f);
 
-        animator.SetTrigger(AnimAttack);
+        animator.SetTrigger("AnimAttack");
     }
 
-    /// <summary>
-    /// Animation Event: call at hit frame.
-    /// </summary>
+    // Animation Event on the variant animator (use a proxy if needed)
     public void DealDamage()
     {
         if (attackPoint == null) return;
@@ -159,9 +191,7 @@ public class EnemyCombatController : MonoBehaviour
             playerHealth.ChangeHealth(-attackDamage);
     }
 
-    /// <summary>
-    /// Animation Event: call at end of attack clip.
-    /// </summary>
+    // Animation Event at end of clip
     public void EndAttack()
     {
         _isAttacking = false;
