@@ -1,4 +1,4 @@
-using UnityEngine;
+    using UnityEngine;
 
 [RequireComponent(typeof(Health))]
 public class EnemyCombatController : MonoBehaviour
@@ -186,9 +186,19 @@ public class EnemyCombatController : MonoBehaviour
         Collider2D hit = Physics2D.OverlapCircle((Vector2)attackPoint.position, attackRadius, playerMask);
         if (hit == null) return;
 
-        Health playerHealth = hit.GetComponent<Health>();
+        Hurtbox hurtbox = hit.GetComponent<Hurtbox>() ?? hit.GetComponentInParent<Hurtbox>();
+        if (hurtbox != null)
+        {
+            hurtbox.TakeHit(attackDamage, transform);
+            return;
+        }
+
+        // fallback only if hurtbox is missing
+        Health playerHealth = hit.GetComponent<Health>() ?? hit.GetComponentInParent<Health>();
         if (playerHealth != null)
             playerHealth.ChangeHealth(-attackDamage);
+
+        Debug.Log($"Enemy DealDamage hit: {(hit ? hit.name : "none")}", this);
     }
 
     // Animation Event at end of clip

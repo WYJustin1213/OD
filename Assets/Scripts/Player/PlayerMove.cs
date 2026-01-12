@@ -11,8 +11,7 @@ public class PlayerMove : PlayerState
         animator.SetBool("isRunning", !SprintPressed);
         animator.SetBool("isSprinting", SprintPressed);
     }
-
-
+    
     public override void Update()
     {
         base.Update();

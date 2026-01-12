@@ -14,11 +14,11 @@ public class Player : MonoBehaviour
     public PlayerAttackOne attackOneState;
     public PlayerAttackTwo attackTwoState;
     public PlayerAttackThree attackThreeState;
+    public PlayerHit hitState;
 
     [Header("Core Components")]
     public Combat combat;
-
-
+    
     [Header("Components")]
     public Rigidbody2D rb;
     public PlayerInput input;
@@ -71,6 +71,8 @@ public class Player : MonoBehaviour
     public Vector2 slideOffset;
     public Vector2 normalOffset;
 
+    public bool inputLocked;
+
     private void Awake()
     {
         idleState = new PlayerIdle(this);
@@ -81,6 +83,7 @@ public class Player : MonoBehaviour
         attackOneState = new PlayerAttackOne(this);
         attackTwoState = new PlayerAttackTwo(this);
         attackThreeState = new PlayerAttackThree(this);
+        hitState = new PlayerHit(this);
     }
 
     private void Start()
@@ -92,14 +95,16 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        currentState.Update();
+        if (!inputLocked)
+        {
+            if (!isSliding && !attackOnePressed) { Flip(); }
+            AttackOne();
+            AttackTwo();
+            AttackThree();
+        }
 
-        if (!isSliding && !attackOnePressed) { Flip(); }
         Animation();
-
-        AttackOne();
-        AttackTwo();
-        AttackThree();
+        currentState.Update();
     }
 
     private void FixedUpdate()
@@ -117,7 +122,13 @@ public class Player : MonoBehaviour
         currentState.Enter();
     }
 
-    
+    public void TakeHitFromEnemy(Transform attacker)
+    {
+        // You can ignore hits if dead, or add i-frames checks elsewhere.
+        hitState.SetAttacker(attacker);
+        ChangeState(hitState);
+    }
+
 
     public void SetColliderNormal()
     {

@@ -17668,6 +17668,7 @@ GameObject:
   - component: {fileID: 213855308}
   - component: {fileID: 213855313}
   - component: {fileID: 213855312}
+  - component: {fileID: 213855314}
   m_Layer: 9
   m_Name: worldOne
   m_TagString: Untagged
@@ -17894,6 +17895,19 @@ MonoBehaviour:
   attackPoint: {fileID: 1640076989}
   attackRangeOverride: -1
   attackRadiusOverride: -1
+--- !u!114 &213855314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 213855306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e8c12243509835419d62730613f3c61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 243039725}
 --- !u!1 &215724812
 GameObject:
   m_ObjectHideFlags: 0
@@ -18830,7 +18844,7 @@ MonoBehaviour:
   idle: {fileID: 0}
   player: {fileID: 491527185}
   aggroRange: 5
-  attackRange: 1.2
+  attackRange: 2
   chaseSpeed: 2.5
   attackCooldown: 3
   attackDamage: 5
@@ -19571,7 +19585,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 246771873}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21616,11 +21630,12 @@ GameObject:
   - component: {fileID: 491527185}
   - component: {fileID: 491527190}
   - component: {fileID: 491527191}
+  - component: {fileID: 491527192}
   - component: {fileID: 491527189}
   - component: {fileID: 491527188}
   - component: {fileID: 491527187}
   - component: {fileID: 491527186}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -21790,6 +21805,7 @@ MonoBehaviour:
   normalWidth: 0.3
   slideOffset: {x: 0, y: -0.35}
   normalOffset: {x: -0.05, y: -0.075}
+  inputLocked: 0
 --- !u!114 &491527190
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21816,6 +21832,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fa98cf8fa540ec4aa56e303e5195434, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &491527192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 491527184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cebd7b641efe80940a950686e6288183, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 491527189}
+  health: {fileID: 491527190}
+  iFrameTime: 0.25
 --- !u!1001 &495820392
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23629,6 +23660,7 @@ GameObject:
   - component: {fileID: 562544366}
   - component: {fileID: 562544368}
   - component: {fileID: 562544367}
+  - component: {fileID: 562544372}
   m_Layer: 9
   m_Name: worldTwo
   m_TagString: Untagged
@@ -23855,6 +23887,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &562544372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 562544364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e8c12243509835419d62730613f3c61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 243039725}
 --- !u!1 &569073337
 GameObject:
   m_ObjectHideFlags: 0
@@ -54736,7 +54781,7 @@ Transform:
   m_GameObject: {fileID: 912444414}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.01, y: -0.32, z: 0}
+  m_LocalPosition: {x: 1.742, y: -0.32, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -63547,7 +63592,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1481303741}
   - component: {fileID: 1481303742}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: AttackPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -63636,7 +63681,7 @@ GameObject:
   - component: {fileID: 1491111116}
   - component: {fileID: 1491111117}
   - component: {fileID: 1491111118}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -77857,7 +77902,7 @@ Transform:
   m_GameObject: {fileID: 1640076988}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.01, y: -0.32, z: 0}
+  m_LocalPosition: {x: 0.768, y: -0.32, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -101010,7 +101055,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1868739329}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: HeadCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
