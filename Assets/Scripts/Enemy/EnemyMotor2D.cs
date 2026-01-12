@@ -15,7 +15,6 @@ public class EnemyMotor2D : MonoBehaviour
     [Header("Refs")]
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private EnemyIdentity identity;
-    [SerializeField] private Animator animator;
 
     [Header("Check Origins")]
     [SerializeField] private Transform groundCheckOrigin; // near feet
@@ -51,12 +50,7 @@ public class EnemyMotor2D : MonoBehaviour
 
     private void Update()
     {
-        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
-
-        if ((stateInfo.IsTag("Attack")))
-        {
-            rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
-        }
+        
     }
 
     public void SetMovementLocked(bool locked)

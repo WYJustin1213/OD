@@ -31,7 +31,7 @@ public class EnemyIdleController : MonoBehaviour
     
     private float _nextTurnTime;
 
-    private int AnimIsWalking = Animator.StringToHash("isWalking");
+    private int AnimIsWalking = Animator.StringToHash("AnimIsWalking");
 
     private void Awake()
     {
