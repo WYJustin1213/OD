@@ -23,6 +23,12 @@ public class EnemyIdleController : MonoBehaviour
     [Header("Initial Direction")]
     [SerializeField] private float initialFacing = 1f; // +1 right, -1 left
 
+    [Header("Turn Delay")]
+    [SerializeField] private float turnDelay = 1f; // pause before turning
+    private bool _turnPending;
+    private float _turnAtTime;
+
+    
     private float _nextTurnTime;
 
     private int AnimIsWalking = Animator.StringToHash("isWalking");
@@ -43,6 +49,17 @@ public class EnemyIdleController : MonoBehaviour
         idleMode = mode;
         // Reset timers so changing modes mid-game feels consistent
         _nextTurnTime = Time.time + walkDuration;
+    }
+
+    private void RequestTurn()
+    {
+        if (_turnPending) return;
+        _turnPending = true;
+        _turnAtTime = Time.time + turnDelay;
+
+        // Stop while preparing to turn
+        SetWalking(false);
+        motor.MoveHorizontally(0f);
     }
 
     public void TickIdle()
@@ -75,29 +92,42 @@ public class EnemyIdleController : MonoBehaviour
 
             case EnemyIdleMode.WalkTimedTurn:
                 {
-                    BlockReason reason = motor.GetForwardBlockReason();
-
-                    // If blocked, turn around immediately
-                    if (reason != BlockReason.None)
+                    // If we're waiting to turn, stand still until the delay finishes
+                    if (_turnPending)
                     {
-                        TurnAround();
-                        SetWalking(true);
-                        motor.MoveHorizontally(motor.Facing * idleWalkSpeed);
-                        _nextTurnTime = Time.time + walkDuration;
+                        if (Time.time >= _turnAtTime)
+                        {
+                            motor.SetFacing(-motor.Facing);
+                            _turnPending = false;
+                            _nextTurnTime = Time.time + walkDuration;
+                        }
+
+                        SetWalking(false);
+                        motor.MoveHorizontally(0f);
                         break;
                     }
 
-                    // Normal timed turn
+                    BlockReason reason = motor.GetForwardBlockReason();
+
+                    // If blocked (cliff/wall/same-type enemy), request a delayed turn
+                    if (reason != BlockReason.None)
+                    {
+                        RequestTurn();
+                        break;
+                    }
+
+                    // Timed turn
                     if (Time.time >= _nextTurnTime)
                     {
-                        TurnAround();
-                        _nextTurnTime = Time.time + walkDuration;
+                        RequestTurn();
+                        break;
                     }
 
                     SetWalking(true);
                     motor.MoveHorizontally(motor.Facing * idleWalkSpeed);
                     break;
                 }
+
         }
     }
 

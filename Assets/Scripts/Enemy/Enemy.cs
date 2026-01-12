@@ -15,6 +15,11 @@ public class Enemy : MonoBehaviour
         health.OnDamaged -= HandleDamage;
     }
 
+    private void Update()
+    {
+        
+    }
+
     public void SetAnimator(Animator newAnimator) => animator = newAnimator;
 
     void HandleDamage()

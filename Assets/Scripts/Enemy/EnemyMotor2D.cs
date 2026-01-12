@@ -15,6 +15,7 @@ public class EnemyMotor2D : MonoBehaviour
     [Header("Refs")]
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private EnemyIdentity identity;
+    [SerializeField] private Animator animator;
 
     [Header("Check Origins")]
     [SerializeField] private Transform groundCheckOrigin; // near feet
@@ -34,6 +35,8 @@ public class EnemyMotor2D : MonoBehaviour
 
     public float Facing => _facing;
 
+    private bool _movementLocked;
+
     private void Reset()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -44,6 +47,23 @@ public class EnemyMotor2D : MonoBehaviour
     {
         if (rb == null) rb = GetComponent<Rigidbody2D>();
         if (identity == null) identity = GetComponent<EnemyIdentity>();
+    }
+
+    private void Update()
+    {
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+
+        if ((stateInfo.IsTag("Attack")))
+        {
+            rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+        }
+    }
+
+    public void SetMovementLocked(bool locked)
+    {
+        _movementLocked = locked;
+        if (locked && rb != null)
+            rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
     }
 
     public void SetFacing(float dir)
@@ -89,6 +109,12 @@ public class EnemyMotor2D : MonoBehaviour
 
     public void MoveHorizontally(float desiredSpeed, bool respectBlocks = true)
     {
+        if (_movementLocked)
+        {
+            rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+            return;
+        }
+
         if (Mathf.Abs(desiredSpeed) > 0.01f)
             SetFacing(desiredSpeed);
 
