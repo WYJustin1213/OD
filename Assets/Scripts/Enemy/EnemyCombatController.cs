@@ -1,4 +1,4 @@
-    using UnityEngine;
+using UnityEngine;
 
 [RequireComponent(typeof(Health))]
 public class EnemyCombatController : MonoBehaviour
@@ -24,37 +24,27 @@ public class EnemyCombatController : MonoBehaviour
     [SerializeField] private float attackRadius = 0.5f;
     [SerializeField] private LayerMask playerMask;
 
-    [Header("Attack timing")]
-    [SerializeField] private float attackLockTime = 0.6f; // anim length (failsafe)
+    [Header("Attack Safety")]
+    [Tooltip("Only used if EndAttack animation event fails. Set longer than your longest attack clip.")]
+    [SerializeField] private float attackFailsafeTime = 2.0f;
 
-    // Variant-injected
+    [Header("Disengage")]
+    [SerializeField] private float disengageTime = 1.0f;
+    [SerializeField] private float yChaseTolerance = 0.9f;
+
+    // Animator param names (must match your controller)
+    private const string PARAM_WALK = "AnimIsWalking";
+    private const string TRIG_ATTACK = "AnimAttack";
+
     private Animator animator;
     private Transform attackPoint;
 
     private float _nextAttackTime;
     private bool _isAttacking;
-    private float _attackUnlockTime;
-
-    private int AnimIsWalking = Animator.StringToHash("AnimIsWalking");
-    private int AnimAttack = Animator.StringToHash("AnimAttack");
-
-    [Header("Disengage (prevents flip-flop when player is unreachable)")]
-    [SerializeField] private float disengageTime = 1.0f;      // how long to stop chasing after blocked
-    [SerializeField] private float yChaseTolerance = 0.9f;     // if player is too high/low, treat as unreachable
+    private float _attackFailsafeUntil;
 
     private float _disengageUntil;
-
     private bool IsDisengaged => Time.time < _disengageUntil;
-
-    private bool _attackRequested;
-    private float _attackRequestUntil;
-    [SerializeField] private float attackEnterTimeout = 0.15f; // how long we wait for animator to enter attack
-
-
-    private void Disengage()
-    {
-        _disengageUntil = Time.time + disengageTime;
-    }
 
     private void Awake()
     {
@@ -91,69 +81,50 @@ public class EnemyCombatController : MonoBehaviour
 
     private void HandleDeath()
     {
-        motor.MoveHorizontally(0f);
+        StopAttackLocks();
+        motor.MoveHorizontally(0f, respectBlocks: false);
         enabled = false;
     }
 
     private void Update()
     {
-        // failsafe unlock
-        if (_isAttacking && Time.time >= _attackUnlockTime)
-            _isAttacking = false;
-
-        // If we don't have refs yet, just idle
         if (animator == null || motor == null || idle == null || player == null)
         {
             if (idle != null) idle.TickIdle();
             return;
         }
 
-        // 1) If we requested an attack, wait briefly for animator to enter the attack state
-        if (_attackRequested)
+        // If we are attacking, we NEVER move/turn until EndAttack.
+        if (_isAttacking)
         {
-            // If you have your attack state tagged "Attack", this is the cleanest check:
-            bool inAttack = animator.GetCurrentAnimatorStateInfo(0).IsTag("AnimAttack");
-
-            if (inAttack)
+            // Emergency escape only if animation event fails
+            if (Time.time >= _attackFailsafeUntil)
             {
-                _attackRequested = false;
-                _isAttacking = true;
-                _attackUnlockTime = Time.time + attackLockTime;
-
-                // Only lock movement once we know attack is playing
-                motor.SetMovementLocked(true);
-            }
-            else if (Time.time >= _attackRequestUntil)
-            {
-                // Animator didn't enter attack -> cancel request, do not lock forever
-                _attackRequested = false;
-                _isAttacking = false;
-                motor.SetMovementLocked(false);
+                StopAttackLocks();
+                return;
             }
 
-            // Either way, stand still while we’re trying to enter attack
-            animator.SetBool("AnimIsWalking", false);
-            motor.MoveHorizontally(0f, respectBlocks: false);
+            animator.SetBool(PARAM_WALK, false);
+            motor.SetMovementLocked(true);
+            motor.SetFacingLocked(true);
             return;
         }
 
-
-        // If we recently hit a cliff/wall or the player is unreachable, just idle for a bit.
         if (IsDisengaged)
         {
             idle.TickIdle();
             return;
         }
 
-        float dist = Vector2.Distance(transform.position, player.position);
         float yDiff = Mathf.Abs(player.position.y - transform.position.y);
         if (yDiff > yChaseTolerance)
         {
-            // Player likely on another platform; without pathfinding, don't spam chase.
             Disengage();
             idle.TickIdle();
             return;
         }
+
+        float dist = Vector2.Distance(transform.position, player.position);
 
         if (dist > aggroRange)
         {
@@ -161,72 +132,61 @@ public class EnemyCombatController : MonoBehaviour
             return;
         }
 
-        // If close enough, attack
         if (dist <= attackRange && Time.time >= _nextAttackTime)
         {
             StartAttack();
             return;
         }
 
-        // Chase
         ChasePlayer();
-
-        if (_isAttacking && Time.time >= _attackUnlockTime)
-        {
-            _isAttacking = false;
-            motor.SetMovementLocked(false);
-        }
     }
+
+    private void Disengage() => _disengageUntil = Time.time + disengageTime;
 
     private void ChasePlayer()
     {
         float dir = Mathf.Sign(player.position.x - transform.position.x);
 
-        // We do NOT force facing if we’re going to disengage this frame.
-        // Check block reason first using current intended facing:
         motor.SetFacing(dir);
-        BlockReason reason = motor.GetForwardBlockReason();
 
-        // If blocked by wall/cliff, give up chase temporarily and return to idle.
+        BlockReason reason = motor.GetForwardBlockReason();
         if (reason == BlockReason.Wall || reason == BlockReason.Cliff)
         {
-            animator.SetBool("AnimIsWalking", false);
-            motor.MoveHorizontally(0f);
-
-            Disengage();          // <-- key line: prevents next frame from re-chasing immediately
+            animator.SetBool(PARAM_WALK, false);
+            motor.MoveHorizontally(0f, respectBlocks: false);
+            Disengage();
             idle.TickIdle();
             return;
         }
 
-        // Same-type enemy block: keep trying (or you could idle, but you asked not to disengage for this case)
-        animator.SetBool("AnimIsWalking", true);
+        animator.SetBool(PARAM_WALK, true);
         motor.MoveHorizontally(dir * chaseSpeed);
     }
 
-
     private void StartAttack()
     {
-        if (animator == null) return;
-
-        _attackRequested = true;
-        _attackRequestUntil = Time.time + attackEnterTimeout;
-
         _nextAttackTime = Time.time + attackCooldown;
 
-        animator.SetBool("AnimIsWalking", false);
-        motor.MoveHorizontally(0f, respectBlocks: false);
+        // Enter attack immediately: locks apply from the first frame.
+        _isAttacking = true;
+        _attackFailsafeUntil = Time.time + attackFailsafeTime;
 
-        animator.ResetTrigger("AnimAttack");     // optional safety
-        animator.SetTrigger("AnimAttack");
+        animator.SetBool(PARAM_WALK, false);
+
+        motor.SetMovementLocked(true);
+        motor.SetFacingLocked(true);
+
+        animator.ResetTrigger(TRIG_ATTACK);
+        animator.SetTrigger(TRIG_ATTACK);
     }
 
-
-    // Animation Event on the variant animator (use a proxy if needed)
+    // Animation Event: call at hit frame
     public void DealDamage()
     {
+        // Must NOT unlock or change movement here
         if (attackPoint == null) return;
 
-        Collider2D hit = Physics2D.OverlapCircle((Vector2)attackPoint.position, attackRadius, playerMask);
+        Collider2D hit = Physics2D.OverlapCircle(attackPoint.position, attackRadius, playerMask);
         if (hit == null) return;
 
         Hurtbox hurtbox = hit.GetComponent<Hurtbox>() ?? hit.GetComponentInParent<Hurtbox>();
@@ -236,27 +196,20 @@ public class EnemyCombatController : MonoBehaviour
             return;
         }
 
-        // fallback only if hurtbox is missing
-        Health playerHealth = hit.GetComponent<Health>() ?? hit.GetComponentInParent<Health>();
-        if (playerHealth != null)
-            playerHealth.ChangeHealth(-attackDamage);
-
-        Debug.Log($"Enemy DealDamage hit: {(hit ? hit.name : "none")}", this);
+        Health h = hit.GetComponent<Health>() ?? hit.GetComponentInParent<Health>();
+        if (h != null) h.ChangeHealth(-attackDamage);
     }
 
-    // Animation Event at end of clip
+    // Animation Event: call at end of attack clip
     public void EndAttack()
+    {
+        StopAttackLocks();
+    }
+
+    private void StopAttackLocks()
     {
         _isAttacking = false;
         motor.SetMovementLocked(false);
+        motor.SetFacingLocked(false);
     }
-
-#if UNITY_EDITOR
-    private void OnDrawGizmosSelected()
-    {
-        if (attackPoint == null) return;
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(attackPoint.position, attackRadius);
-    }
-#endif
 }

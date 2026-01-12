@@ -66,6 +66,13 @@ public class EnemyIdleController : MonoBehaviour
     {
         if (motor == null) return;
 
+        if (motor != null && motor.IsMovementLocked)
+        {
+            SetWalking(false);
+            motor.MoveHorizontally(0f, respectBlocks: false);
+            return;
+        }
+
         switch (idleMode)
         {
             case EnemyIdleMode.StandStill:
