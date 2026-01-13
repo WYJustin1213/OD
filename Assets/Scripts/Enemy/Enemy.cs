@@ -7,12 +7,12 @@ public class Enemy : MonoBehaviour
 
     private void OnEnable()
     {
-        health.OnDamaged += HandleDamage;
+        //health.OnDamaged += PlayHit;
     }
 
     private void OnDisable()
     {
-        health.OnDamaged -= HandleDamage;
+        //health.OnDamaged -= PlayHit;
     }
 
     private void Update()
@@ -22,9 +22,10 @@ public class Enemy : MonoBehaviour
 
     public void SetAnimator(Animator newAnimator) => animator = newAnimator;
 
-    void HandleDamage()
+    public void PlayHit()
     {
         if (animator != null)
             animator.SetTrigger("isHit");
     }
+
 }

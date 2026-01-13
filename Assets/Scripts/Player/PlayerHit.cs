@@ -60,8 +60,8 @@ public class PlayerHit : PlayerState
         float dir = (player.transform.position.x >= attackerX) ? 1f : -1f;
 
         // TUNING: you can expose these on Player later
-        float kbX = 17f;
-        float kbY = 3f;
+        float kbX = 35f;
+        float kbY = 15f;
 
         // Clear current x vel so the knockback feels consistent
         rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);

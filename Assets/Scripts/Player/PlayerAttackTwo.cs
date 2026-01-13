@@ -10,6 +10,8 @@ public class PlayerAttackTwo : PlayerState
         base.Enter();
 
         animator.SetBool("isAttacking2", true);
+        combat.attackType = PlayerAttackType.AttackTwo;
+        combat.damage = AttackTwoDamage;
 
         rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
     }

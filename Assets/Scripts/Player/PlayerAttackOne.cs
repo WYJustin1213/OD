@@ -11,6 +11,8 @@ public class PlayerAttackOne : PlayerState
         base.Enter();
 
         animator.SetBool("isAttacking1", true);
+        combat.attackType = PlayerAttackType.AttackOne;
+        combat.damage = AttackOneDamage;
 
         rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
     }

@@ -14,6 +14,10 @@ public abstract class PlayerState
     protected bool AttackThreePressed => player.attackThreePressed;
     protected Vector2 MoveInput => player.moveInput;
 
+    protected int AttackOneDamage => player.attackOneDamage;
+    protected int AttackTwoDamage => player.attackTwoDamage;
+    protected int AttackThreeDamage => player.attackThreeDamage;
+
     public PlayerState (Player player)
     {
         this.player = player;

@@ -11,6 +11,9 @@ public class Combat : MonoBehaviour
     public Transform attackPoint;
     public LayerMask enemyLayer;
 
+    [Header("Attack Type")]
+    public PlayerAttackType attackType;
+
     public bool CanAttack => Time.time >= nextAttackTime;
     private float nextAttackTime;
 
@@ -21,15 +24,27 @@ public class Combat : MonoBehaviour
 
     public void Attack()
     {
-        if (!CanAttack) { return; }
+        if (!CanAttack) return;
 
         nextAttackTime = Time.time + attackCD;
 
-        Collider2D enemy = Physics2D.OverlapCircle(attackPoint.position, attackRadius, enemyLayer);
+        Collider2D hit = Physics2D.OverlapCircle(attackPoint.position, attackRadius, enemyLayer);
+        if (hit == null) return;
 
-        if (enemy != null)
+        EnemyHurtbox hurtbox = hit.GetComponent<EnemyHurtbox>() ?? hit.GetComponentInParent<EnemyHurtbox>();
+        if (hurtbox != null)
         {
-            enemy.gameObject.GetComponent<Health>().ChangeHealth(-damage);
+            hurtbox.TakeHit(damage, attackType);
+            return;
         }
     }
+
+#if UNITY_EDITOR
+    private void OnDrawGizmosSelected()
+    {
+        if (attackPoint == null) return;
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(attackPoint.position, attackRadius);
+    }
+#endif
 }

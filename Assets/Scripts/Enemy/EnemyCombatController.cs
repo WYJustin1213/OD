@@ -42,6 +42,12 @@ public class EnemyCombatController : MonoBehaviour
     private float _nextAttackTime;
     private bool _isAttacking;
     private float _attackFailsafeUntil;
+    public bool IsAttacking => _isAttacking;
+
+    private float _stunnedUntil;
+
+    
+
 
     private float _disengageUntil;
     private bool IsDisengaged => Time.time < _disengageUntil;
@@ -91,6 +97,14 @@ public class EnemyCombatController : MonoBehaviour
         if (animator == null || motor == null || idle == null || player == null)
         {
             if (idle != null) idle.TickIdle();
+            return;
+        }
+
+        if (IsStunned)
+        {
+            animator.SetBool("AnimIsWalking", false);
+            motor.SetMovementLocked(true);
+            motor.SetFacingLocked(true);
             return;
         }
 
@@ -199,6 +213,16 @@ public class EnemyCombatController : MonoBehaviour
         Health h = hit.GetComponent<Health>() ?? hit.GetComponentInParent<Health>();
         if (h != null) h.ChangeHealth(-attackDamage);
     }
+
+    public void StunInterrupt(float stunDuration)
+    {
+        // Stop attack immediately and lock behavior briefly
+        EndAttack(); // unlocks motor & stops attack state in our final version
+        _stunnedUntil = Time.time + stunDuration;
+    }
+
+    private bool IsStunned => Time.time < _stunnedUntil;
+
 
     // Animation Event: call at end of attack clip
     public void EndAttack()

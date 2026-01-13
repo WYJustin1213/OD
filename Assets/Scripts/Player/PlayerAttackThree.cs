@@ -10,6 +10,8 @@ public class PlayerAttackThree : PlayerState
         base.Enter();
 
         animator.SetBool("isAttacking3", true);
+        combat.attackType = PlayerAttackType.AttackThree;
+        combat.damage = AttackThreeDamage;
 
         rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
     }

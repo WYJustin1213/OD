@@ -70,8 +70,13 @@ public class Player : MonoBehaviour
     public float normalWidth;
     public Vector2 slideOffset;
     public Vector2 normalOffset;
-
+    
     public bool inputLocked;
+
+    [Header("Combat")]
+    public int attackOneDamage;
+    public int attackTwoDamage;
+    public int attackThreeDamage;
 
     private void Awake()
     {
@@ -159,8 +164,6 @@ public class Player : MonoBehaviour
             rb.gravityScale = normalG;
         }
     }
-
-  
 
     void checkGrounded()
     {
@@ -262,4 +265,11 @@ public class Player : MonoBehaviour
             jumpPressed = false;
         }
     }
+}
+
+public enum PlayerAttackType
+{
+    AttackOne,
+    AttackTwo,
+    AttackThree
 }
