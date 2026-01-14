@@ -34,11 +34,8 @@ public class EnemyCombatController : MonoBehaviour
 
     [Header("Post-attack behavior")]
     [SerializeField] private float postAttackStandTime = 0.25f; // stand briefly after attack
-    [SerializeField] private float chaseWhenPlayerSpeedAbove = 0.05f; // ignore tiny jitter
-    [SerializeField] private bool chaseOnlyIfSeparating = true;
 
     private float _postAttackUntil;
-    private Vector3 _lastPlayerPos;
 
     // Animator param names (must match your controller)
     private const string PARAM_WALK = "AnimIsWalking";
@@ -70,7 +67,6 @@ public class EnemyCombatController : MonoBehaviour
         {
             var p = GameObject.FindGameObjectWithTag("Player");
             if (p != null) player = p.transform;
-            _lastPlayerPos = player.position;
         }
     }
 
@@ -114,15 +110,9 @@ public class EnemyCombatController : MonoBehaviour
             return;
         }
 
-        float playerDx = player.position.x - _lastPlayerPos.x;
-        float playerSpeedX = Mathf.Abs(playerDx) / Mathf.Max(Time.deltaTime, 0.0001f);
-        _lastPlayerPos = player.position;
-
         // Are they moving away from the enemy?
+        float dist = Vector2.Distance(transform.position, player.position);
         float dirToPlayer = Mathf.Sign(player.position.x - transform.position.x);
-        bool playerMovingAway =
-            (dirToPlayer > 0f && playerDx > 0f) ||   // player to the right and moving right
-            (dirToPlayer < 0f && playerDx < 0f);     // player to the left and moving left
 
         // If we are attacking, we NEVER move/turn until EndAttack.
         if (_isAttacking)
@@ -140,13 +130,6 @@ public class EnemyCombatController : MonoBehaviour
             return;
         }
 
-        if (Time.time < _postAttackUntil)
-        {
-            animator.SetBool(PARAM_WALK, false);
-            motor.MoveHorizontally(0f, respectBlocks: false);
-            return;
-        }
-
         if (IsDisengaged)
         {
             idle.TickIdle();
@@ -161,45 +144,47 @@ public class EnemyCombatController : MonoBehaviour
             return;
         }
 
-        float dist = Vector2.Distance(transform.position, player.position);
+        // Distance (use x distance for side scroller feel)
+        float dx = Mathf.Abs(player.position.x - transform.position.x);
 
+        // Out of aggro -> idle
         if (dist > aggroRange)
         {
+            StopAttackLocks();
             idle.TickIdle();
             return;
         }
 
-        if (dist <= attackRange && Time.time >= _nextAttackTime)
+        // Post-attack hold: freeze so we never shove the player
+        if (Time.time < _postAttackUntil)
         {
-            StartAttack();
+            animator.SetBool(PARAM_WALK, false);
+            motor.SetMovementLocked(true);
+            motor.SetFacingLocked(false); // can still look at player
+            motor.SetFacing(Mathf.Sign(player.position.x - transform.position.x));
             return;
         }
 
-        bool playerIsActuallyMoving = playerSpeedX > chaseWhenPlayerSpeedAbove;
+        // In attack range -> stand still and attack when ready
+        if (dx <= attackRange)
+        {
+            animator.SetBool(PARAM_WALK, false);
 
-        if (chaseOnlyIfSeparating)
-        {
-            if (!playerIsActuallyMoving || !playerMovingAway)
-            {
-                // Stand still (no shove). Still face the player if you want.
-                animator.SetBool(PARAM_WALK, false);
-                motor.MoveHorizontally(0f, respectBlocks: false);
-                motor.SetFacing(dirToPlayer); // optional: face player while waiting
-                return;
-            }
-        }
-        else
-        {
-            // If you only want chase when player moves at all (not necessarily away):
-            if (!playerIsActuallyMoving)
-            {
-                animator.SetBool(PARAM_WALK, false);
-                motor.MoveHorizontally(0f, respectBlocks: false);
-                return;
-            }
+            // Hold position while "boxing"
+            motor.SetMovementLocked(true);
+            motor.SetFacingLocked(false);
+            motor.SetFacing(Mathf.Sign(player.position.x - transform.position.x));
+
+            if (Time.time >= _nextAttackTime)
+                StartAttack();
+
+            return;
         }
 
+        // Outside attack range (but in aggro) -> chase
+        StopAttackLocks();              // unlock so we can move
         ChasePlayer();
+
     }
 
     private void Disengage() => _disengageUntil = Time.time + disengageTime;
@@ -274,15 +259,18 @@ public class EnemyCombatController : MonoBehaviour
     // Animation Event: call at end of attack clip
     public void EndAttack()
     {
-        StopAttackLocks();
+        _isAttacking = false;
 
-        // Stand for a short moment so we don't shove the player
+        // Hold position after attack
         _postAttackUntil = Time.time + postAttackStandTime;
 
-        // Ensure walk bool is off immediately
         if (animator != null) animator.SetBool(PARAM_WALK, false);
-        if (motor != null) motor.MoveHorizontally(0f, respectBlocks: false);
+
+        // Keep movement locked during the hold
+        motor.SetMovementLocked(true);
+        motor.SetFacingLocked(false);
     }
+
 
     private void StopAttackLocks()
     {

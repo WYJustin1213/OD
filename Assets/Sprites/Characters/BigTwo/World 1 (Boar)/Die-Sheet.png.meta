@@ -74,7 +74,7 @@ TextureImporter:
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 35
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -151,7 +151,7 @@ TextureImporter:
         width: 76
         height: 84
       alignment: 9
-      pivot: {x: 0.5394737, y: 0.3690476}
+      pivot: {x: 0.13157895, y: 0.3690476}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
