@@ -29,6 +29,22 @@ public class PlayerMove : PlayerState
             player.ChangeState(player.attackThreeState);
         }
 
+        // Auto step-up if a small ledge is in front
+        else if (player.CanAutoStepUp())
+        {
+            player.ChangeState(player.stepUpState);
+            return;
+        }
+
+        /*
+        // Wall climb (press jump or W while touching wall)
+        else if (player.IsTouchingClimbableWall() && player.climbPressed)
+        {
+            player.ChangeState(player.wallClimbState);
+            return;
+        }
+        */
+
         else if (JumpPressed)
         {
             player.ChangeState(player.jumpState);

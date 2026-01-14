@@ -15,6 +15,8 @@ public class Player : MonoBehaviour
     public PlayerAttackTwo attackTwoState;
     public PlayerAttackThree attackThreeState;
     public PlayerHit hitState;
+    public PlayerStepUp stepUpState;
+    //public PlayerWallClimb wallClimbState;
 
     [Header("Core Components")]
     public Combat combat;
@@ -78,6 +80,31 @@ public class Player : MonoBehaviour
     public int attackTwoDamage;
     public int attackThreeDamage;
 
+    [Header("Step Up (Auto Climb)")]
+    public bool enableAutoStep = true;
+    public float stepCheckDistance = 0.2f;
+    public float stepHeight = 0.5f;        // max ledge height
+    public float stepForward = 0.25f;      // how far forward to move
+    public float stepDuration = 0.15f;
+    public Transform stepCheckOriginLow;   // near feet
+    public Transform stepCheckOriginHigh;  // at stepHeight
+    public LayerMask stepGroundLayer;
+
+    /*
+    [Header("Wall Climb")]
+    public bool enableWallClimb = true;
+    public Transform wallCheck;            // chest/hand height
+    public float wallCheckRadius = 0.15f;
+    public LayerMask climbableWallLayer;
+    public float wallClimbUp = 1.0f;       // how high to climb (tune to tile height)
+    public float wallClimbForward = 0.3f;  // mantle forward
+    public float wallClimbDuration = 0.25f;
+
+    [Header("Climb Input")]
+    public bool climbPressed;              // W
+    public bool climbUpPressed;            // Space (jump)
+    */
+
     private void Awake()
     {
         idleState = new PlayerIdle(this);
@@ -89,6 +116,8 @@ public class Player : MonoBehaviour
         attackTwoState = new PlayerAttackTwo(this);
         attackThreeState = new PlayerAttackThree(this);
         hitState = new PlayerHit(this);
+        stepUpState = new PlayerStepUp(this);
+        //wallClimbState = new PlayerWallClimb(this);
     }
 
     private void Start()
@@ -106,6 +135,7 @@ public class Player : MonoBehaviour
             AttackOne();
             AttackTwo();
             AttackThree();
+            //Climb();
         }
 
         Animation();
@@ -195,6 +225,38 @@ public class Player : MonoBehaviour
         }
     }
 
+    public bool CanAutoStepUp()
+    {
+        if (!enableAutoStep) return false;
+        if (!isGrounded) return false;
+        if (Mathf.Abs(moveInput.x) < 0.01f) return false;
+        if (CheckForCeiling()) return false; // optional safety
+
+        Vector2 dir = Vector2.right * faceDir;
+
+        // Low ray: is there a block in front at foot height?
+        Vector2 lowOrigin = stepCheckOriginLow ? (Vector2)stepCheckOriginLow.position : (Vector2)transform.position;
+        RaycastHit2D lowHit = Physics2D.Raycast(lowOrigin, dir, stepCheckDistance, stepGroundLayer);
+        if (!lowHit.collider) return false;
+
+        // High ray: is there free space above the ledge?
+        Vector2 highOrigin = stepCheckOriginHigh ? (Vector2)stepCheckOriginHigh.position : lowOrigin + Vector2.up * stepHeight;
+        RaycastHit2D highHit = Physics2D.Raycast(highOrigin, dir, stepCheckDistance, stepGroundLayer);
+        if (highHit.collider) return false;
+
+        return true;
+    }
+
+    /*
+    public bool IsTouchingClimbableWall()
+    {
+        if (!enableWallClimb) return false;
+        if (!wallCheck) return false;
+
+        return Physics2D.OverlapCircle(wallCheck.position, wallCheckRadius, climbableWallLayer);
+    }
+    */
+
     void Animation()
     {
         bool isCrouching = animator.GetBool("isCrouching");
@@ -247,6 +309,13 @@ public class Player : MonoBehaviour
         Debug.Log("3" + attackThreePressed);
         attackThreePressed = Input.GetKeyDown(KeyCode.L);
     }
+
+    /*
+    public void Climb()
+    {
+        climbPressed = Input.GetKey(KeyCode.W);
+    }
+    */
 
     public void OnPortal(InputValue value)
     {
