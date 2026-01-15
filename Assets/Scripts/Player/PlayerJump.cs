@@ -26,6 +26,13 @@ public class PlayerJump : PlayerState
 
         animator.SetBool("isSprinting", false);
 
+        // Auto step-up if a small ledge is in front
+        if (player.CanAutoStepUp())
+        {
+            player.ChangeState(player.stepUpState);
+            return;
+        }
+
         if (player.isGrounded && rb.linearVelocity.y <= 0)
         {
             if (Mathf.Abs(player.moveInput.x) > 0.01f)
