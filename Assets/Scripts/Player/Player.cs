@@ -90,6 +90,20 @@ public class Player : MonoBehaviour
     public Transform stepCheckOriginHigh;  // at stepHeight
     public LayerMask stepGroundLayer;
 
+    [Header("Ledge Mantle (Air Step Up)")]
+    public bool enableAirMantle = true;
+    public float mantleCheckDistance = 0.25f;
+    public float mantleUp = 0.5f;         // usually ~1 tile
+    public float mantleForward = 0.25f;
+    public float mantleDuration = 0.15f;
+    public float mantleMinUpVel = -2f;    // allow even if falling a bit
+    public Transform mantleCheckOrigin;   // around chest/head
+    public LayerMask mantleGroundLayer;
+
+    public float mantleCooldown = 0.2f;
+    [HideInInspector] public float nextMantleTime;
+
+
     /*
     [Header("Wall Climb")]
     public bool enableWallClimb = true;
@@ -246,6 +260,44 @@ public class Player : MonoBehaviour
 
         return true;
     }
+
+    public bool CanAirMantle()
+    {
+        if (Time.time < nextMantleTime) return false;
+
+        if (!enableAirMantle) return false;
+        if (isGrounded) return false; // airborne only
+        if (rb.linearVelocity.y < mantleMinUpVel) return false; // too fast falling -> optional
+
+        // must be holding toward ledge
+        if (Mathf.Abs(moveInput.x) < 0.01f) return false;
+        if (Mathf.Sign(moveInput.x) != faceDir) return false;
+
+        Vector2 dir = Vector2.right * faceDir;
+
+        Vector2 origin = mantleCheckOrigin
+            ? (Vector2)mantleCheckOrigin.position
+            : (Vector2)transform.position + Vector2.up * 0.6f;
+
+        // 1) wall in front (edge)
+        RaycastHit2D wallHit = Physics2D.Raycast(origin, dir, mantleCheckDistance, mantleGroundLayer);
+        if (!wallHit.collider) return false;
+
+        // 2) free space above (where your torso/head will go)
+        Vector2 aboveOrigin = origin + Vector2.up * mantleUp;
+        RaycastHit2D aboveHit = Physics2D.Raycast(aboveOrigin, dir, mantleCheckDistance, mantleGroundLayer);
+        if (aboveHit.collider) return false;
+
+        // 3) find landing ground on top
+        Vector2 landingProbe = (Vector2)transform.position
+                               + new Vector2(faceDir * mantleForward, mantleUp + 0.1f);
+
+        RaycastHit2D downHit = Physics2D.Raycast(landingProbe, Vector2.down, mantleUp + 0.3f, mantleGroundLayer);
+        if (!downHit.collider) return false;
+
+        return true;
+    }
+
 
     /*
     public bool IsTouchingClimbableWall()

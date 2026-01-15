@@ -6,6 +6,11 @@ public class PlayerStepUp : PlayerState
     private Vector2 _startPos;
     private Vector2 _targetPos;
 
+    // Cache values so it works the same for ground and air
+    private float _up;
+    private float _forward;
+    private float _duration;
+
     public PlayerStepUp(Player player) : base(player) { }
 
     public override void Enter()
@@ -14,30 +19,37 @@ public class PlayerStepUp : PlayerState
 
         _startTime = Time.time;
 
-        // lock horizontal movement
-        rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+        // Decide which "mode" we are using
+        bool fromAir = !player.isGrounded && player.enableAirMantle;
 
-        animator.SetTrigger("stepUp"); 
+        _up = fromAir ? player.mantleUp : player.stepHeight;
+        _forward = fromAir ? player.mantleForward : player.stepForward;
+        _duration = fromAir ? player.mantleDuration : player.stepDuration;
+
+        // Freeze physics-ish for a clean animation move
+        rb.linearVelocity = Vector2.zero;
+        rb.gravityScale = 0f;
+
+        animator.SetTrigger("stepUp"); // set your triggers
 
         _startPos = rb.position;
+        _targetPos = _startPos + new Vector2(_forward * player.faceDir, _up);
 
-        float forward = player.stepForward * player.faceDir;
-        _targetPos = _startPos + new Vector2(forward, player.stepHeight);
+        player.nextMantleTime = Time.time + player.mantleCooldown;
     }
 
     public override void FixedUpdate()
     {
         base.FixedUpdate();
 
-        float t = Mathf.Clamp01((Time.time - _startTime) / player.stepDuration);
-
-        // Smooth step movement
+        float t = Mathf.Clamp01((Time.time - _startTime) / Mathf.Max(_duration, 0.01f));
         Vector2 newPos = Vector2.Lerp(_startPos, _targetPos, t);
         rb.MovePosition(newPos);
 
         if (t >= 1f)
         {
-            // Finish by returning to Move or Idle depending on input
+            rb.gravityScale = player.normalG;
+
             if (Mathf.Abs(player.moveInput.x) > 0.01f)
                 player.ChangeState(player.moveState);
             else
@@ -48,6 +60,6 @@ public class PlayerStepUp : PlayerState
     public override void Exit()
     {
         base.Exit();
-        // nothing special
+        rb.gravityScale = player.normalG;
     }
 }
