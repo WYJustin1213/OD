@@ -19,6 +19,9 @@ public class PlayerStepUp : PlayerState
 
         player.ConsumeStepUp();
 
+        player.playerCollider.enabled = false;
+        //player.SetColliderSlide();
+
         rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
 
         player.ApplySpeedCap(player.runSpd, player.stepUpSpeedCapDuration);
@@ -66,6 +69,8 @@ public class PlayerStepUp : PlayerState
     public override void Exit()
     {
         base.Exit();
+        //player.SetColliderNormal();
+        player.playerCollider.enabled = true;
         rb.gravityScale = player.normalG;
     }
 }

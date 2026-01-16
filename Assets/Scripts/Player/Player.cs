@@ -95,7 +95,9 @@ public class Player : MonoBehaviour
     [SerializeField] private bool stepUpReady = true; // starts ready
     [SerializeField] private float stepUpChainCooldown = 0.05f;
     private float _nextStepUpCheckTime;
-
+    public Vector2 stepOffset;
+    public float stepHeightCollider;
+    public float stepWidthCollider;
     public bool StepUpReady => stepUpReady;
 
     [Header("Ledge Mantle (Air Step Up)")]
@@ -219,6 +221,11 @@ public class Player : MonoBehaviour
         playerCollider.offset = slideOffset;
     }
 
+    public void SetColliderStep()
+    {
+        playerCollider.size = new Vector2(stepWidthCollider, stepHeightCollider);
+        playerCollider.offset = stepOffset;
+    }
 
     // changing gravity
     public void ApplyVariableGravity()
