@@ -72,8 +72,10 @@ public class PlayerMove : PlayerState
     {
         base.FixedUpdate();
 
-        float speed = SprintPressed ? player.sprintSpd : player.runSpd;
-        rb.linearVelocity = new Vector2(speed * player.faceDir, rb.linearVelocity.y);
+        float baseSpeed = SprintPressed ? player.sprintSpd : player.runSpd;
+        float cappedSpeed = player.GetCappedSpeed(baseSpeed);
+
+        rb.linearVelocity = new Vector2(cappedSpeed * player.faceDir, rb.linearVelocity.y);
     }
 
     public override void Exit()

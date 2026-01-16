@@ -52,9 +52,12 @@ public class PlayerJump : PlayerState
 
         player.ApplyVariableGravity();
 
-        float speed = SprintPressed ? player.sprintSpd : player.runSpd;
-        float targetSpd = speed * MoveInput.x;
-        rb.linearVelocity = new Vector2(targetSpd, rb.linearVelocity.y);
+        float baseSpeed = SprintPressed ? player.sprintSpd : player.runSpd;
+        float targetSpd = baseSpeed * MoveInput.x;
+        float cappedSpeed = player.GetCappedSpeed(baseSpeed);
+
+        rb.linearVelocity = new Vector2(cappedSpeed * player.faceDir, rb.linearVelocity.y);
+
     }
 
     public override void Exit()

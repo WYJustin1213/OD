@@ -1,6 +1,7 @@
-using Unity.IO.LowLevel.Unsafe;
+﻿using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static Unity.Burst.Intrinsics.X86.Avx;
 
 public class Player : MonoBehaviour
 {
@@ -90,6 +91,13 @@ public class Player : MonoBehaviour
     public Transform stepCheckOriginHigh;  // at stepHeight
     public LayerMask stepGroundLayer;
 
+    [Header("Step Up Gate")]
+    [SerializeField] private bool stepUpReady = true; // starts ready
+    [SerializeField] private float stepUpChainCooldown = 0.05f;
+    private float _nextStepUpCheckTime;
+
+    public bool StepUpReady => stepUpReady;
+
     [Header("Ledge Mantle (Air Step Up)")]
     public bool enableAirMantle = true;
     public float mantleCheckDistance = 0.25f;
@@ -103,6 +111,11 @@ public class Player : MonoBehaviour
     public float mantleCooldown = 0.2f;
     [HideInInspector] public float nextMantleTime;
 
+    [Header("Temporary Speed Cap")]
+    public float stepUpSpeedCapDuration = 0.5f;
+
+    private float speedCapUntilTime = -1f;
+    private float currentSpeedCap = float.PositiveInfinity;
 
     /*
     [Header("Wall Climb")]
@@ -169,6 +182,21 @@ public class Player : MonoBehaviour
         
         currentState = newState;
         currentState.Enter();
+    }
+
+    public void ApplySpeedCap(float maxSpeed, float duration)
+    {
+        currentSpeedCap = maxSpeed;
+        speedCapUntilTime = Time.time + duration;
+    }
+
+    public float GetCappedSpeed(float desiredSpeed)
+    {
+        if (Time.time > speedCapUntilTime)
+            return desiredSpeed;
+
+        float sign = Mathf.Sign(desiredSpeed);
+        return sign * Mathf.Min(Mathf.Abs(desiredSpeed), currentSpeedCap);
     }
 
     public void TakeHitFromEnemy(Transform attacker)
@@ -242,24 +270,41 @@ public class Player : MonoBehaviour
     public bool CanAutoStepUp()
     {
         if (!enableAutoStep) return false;
+        if (!stepUpReady) return false;   // gate
         if (!isGrounded) return false;
         if (Mathf.Abs(moveInput.x) < 0.01f) return false;
-        if (CheckForCeiling()) return false; // optional safety
+        if (Mathf.Sign(moveInput.x) != faceDir) return false;
+        if (CheckForCeiling()) return false;
 
         Vector2 dir = Vector2.right * faceDir;
 
-        // Low ray: is there a block in front at foot height?
-        Vector2 lowOrigin = stepCheckOriginLow ? (Vector2)stepCheckOriginLow.position : (Vector2)transform.position;
-        RaycastHit2D lowHit = Physics2D.Raycast(lowOrigin, dir, stepCheckDistance, stepGroundLayer);
+        Vector2 lowOrigin = stepCheckOriginLow
+            ? (Vector2)stepCheckOriginLow.position
+            : (Vector2)transform.position;
+
+        RaycastHit2D lowHit = Physics2D.Raycast(
+            lowOrigin,
+            dir,
+            stepCheckDistance,
+            stepGroundLayer
+        );
         if (!lowHit.collider) return false;
 
-        // High ray: is there free space above the ledge?
-        Vector2 highOrigin = stepCheckOriginHigh ? (Vector2)stepCheckOriginHigh.position : lowOrigin + Vector2.up * stepHeight;
-        RaycastHit2D highHit = Physics2D.Raycast(highOrigin, dir, stepCheckDistance, stepGroundLayer);
+        Vector2 highOrigin = stepCheckOriginHigh
+            ? (Vector2)stepCheckOriginHigh.position
+            : lowOrigin + Vector2.up * stepHeight;
+
+        RaycastHit2D highHit = Physics2D.Raycast(
+            highOrigin,
+            dir,
+            stepCheckDistance,
+            stepGroundLayer
+        );
         if (highHit.collider) return false;
 
         return true;
     }
+
 
     public bool CanAirMantle()
     {
@@ -326,6 +371,28 @@ public class Player : MonoBehaviour
 
     }
 
+    public void StepUpAnimationFinished()
+    {
+        stepUpReady = true;
+
+        if (Time.time < _nextStepUpCheckTime) return;
+        _nextStepUpCheckTime = Time.time + stepUpChainCooldown;
+
+        // Apply temporary speed cap after stepping up
+        ApplySpeedCap(runSpd, stepUpSpeedCapDuration);
+
+        // If still trying to move forward and another step is available,
+        // immediately chain into another step-up.
+        if (enableAutoStep && Mathf.Abs(moveInput.x) > 0.01f && CanAutoStepUp())
+        {
+            ChangeState(stepUpState);
+        }
+    }
+
+    public void ConsumeStepUp()
+    {
+        stepUpReady = false;
+    }
 
     public void AttackAnimationFished()
     {

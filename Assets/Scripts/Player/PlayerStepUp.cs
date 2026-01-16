@@ -17,6 +17,12 @@ public class PlayerStepUp : PlayerState
     {
         base.Enter();
 
+        player.ConsumeStepUp();
+
+        rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
+
+        player.ApplySpeedCap(player.runSpd, player.stepUpSpeedCapDuration);
+
         _startTime = Time.time;
 
         // Decide which "mode" we are using

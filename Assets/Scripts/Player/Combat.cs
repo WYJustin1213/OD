@@ -21,6 +21,10 @@ public class Combat : MonoBehaviour
     {
         player.AttackAnimationFished();
     }
+    public void StepUpAnimationFinished()
+    {
+        player.StepUpAnimationFinished();
+    }
 
     public void Attack()
     {
