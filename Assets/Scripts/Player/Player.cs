@@ -420,19 +420,19 @@ public class Player : MonoBehaviour
 
     public void AttackOne()
     {
-        Debug.Log("1" + attackOnePressed);
+        //Debug.Log("1" + attackOnePressed);
         attackOnePressed = Input.GetKeyDown(KeyCode.J);
     }
 
     public void AttackTwo()
     {
-        Debug.Log("2" + attackTwoPressed);
+        //Debug.Log("2" + attackTwoPressed);
         attackTwoPressed = Input.GetKeyDown(KeyCode.K);
     }
 
     public void AttackThree()
     {
-        Debug.Log("3" + attackThreePressed);
+       // Debug.Log("3" + attackThreePressed);
         attackThreePressed = Input.GetKeyDown(KeyCode.L);
     }
 
