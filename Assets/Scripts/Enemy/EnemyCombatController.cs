@@ -10,6 +10,7 @@ public class EnemyCombatController : MonoBehaviour
 
     [Header("Player")]
     [SerializeField] private Transform player;
+    public Player playerScript;
 
     [Header("Ranges")]
     [SerializeField] private float aggroRange = 8f;
@@ -96,6 +97,13 @@ public class EnemyCombatController : MonoBehaviour
 
     private void Update()
     {
+        if (playerScript.isDead)
+        {
+            StopAttackLocks();
+            idle.TickIdle();
+            return;
+        }
+
         if (animator == null || motor == null || idle == null || player == null)
         {
             if (idle != null) idle.TickIdle();

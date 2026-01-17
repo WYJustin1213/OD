@@ -988,7 +988,8 @@ MonoBehaviour:
   health: {fileID: 2466668706907735013}
   motor: {fileID: 1974798266674434926}
   idle: {fileID: 3883827062034942812}
-  player: {fileID: 0}
+  player: {fileID: 605253725166433639, guid: b70ad14e6e850524f85dc13e00889570, type: 3}
+  playerScript: {fileID: 5061285284689610891, guid: b70ad14e6e850524f85dc13e00889570, type: 3}
   aggroRange: 3
   attackRange: 0.75
   chaseSpeed: 2

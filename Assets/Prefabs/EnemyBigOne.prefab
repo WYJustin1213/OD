@@ -1107,7 +1107,8 @@ MonoBehaviour:
   health: {fileID: 1416201467020142289}
   motor: {fileID: 6224855072797816391}
   idle: {fileID: 607487217466192225}
-  player: {fileID: 0}
+  player: {fileID: 605253725166433639, guid: b70ad14e6e850524f85dc13e00889570, type: 3}
+  playerScript: {fileID: 5061285284689610891, guid: b70ad14e6e850524f85dc13e00889570, type: 3}
   aggroRange: 6
   attackRange: 1.5
   chaseSpeed: 3
@@ -1462,7 +1463,7 @@ Transform:
   m_GameObject: {fileID: 7073772931945130079}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.285, y: -0.616, z: 0}
+  m_LocalPosition: {x: 1.097, y: -0.562, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

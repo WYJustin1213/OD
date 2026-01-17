@@ -1,4 +1,5 @@
 ﻿using Unity.IO.LowLevel.Unsafe;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static Unity.Burst.Intrinsics.X86.Avx;
@@ -29,6 +30,8 @@ public class Player : MonoBehaviour
     public PlayerInput input;
     public Animator animator;
     public CapsuleCollider2D playerCollider;
+    public GameObject Portal, RestartText;
+    public bool isDead = false;
     public int hp;
 
     [Header("Movement")]
@@ -157,6 +160,8 @@ public class Player : MonoBehaviour
     {
         rb.gravityScale = normalG;
 
+        RestartText.SetActive(false);
+
         ChangeState(idleState);
     }
 
@@ -173,6 +178,7 @@ public class Player : MonoBehaviour
             //Climb();
         }
 
+        PortalAnimation();
         Animation();
         currentState.Update();
     }
@@ -366,6 +372,28 @@ public class Player : MonoBehaviour
         return Physics2D.OverlapCircle(wallCheck.position, wallCheckRadius, climbableWallLayer);
     }
     */
+
+    void PortalAnimation()
+    {
+        //Portal.transform.position = new Vector2(transform.position.x, transform.position.y);
+        Renderer portalRenderer = Portal.GetComponent<Renderer>();
+
+        if (portalPressed)
+        {
+            Portal.SetActive(true);
+
+            if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                portalRenderer.sortingOrder = 1;    
+            }
+        }
+
+        else
+        {
+            Portal.SetActive(false);
+            portalRenderer.sortingOrder = -1;
+        }
+    }
 
     void Animation()
     {
