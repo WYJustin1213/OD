@@ -26,6 +26,11 @@ public class PlayerJump : PlayerState
 
         animator.SetBool("isSprinting", false);
 
+        if (HP <= 0)
+        {
+            player.ChangeState(player.deathState);
+        }
+
         // Auto step-up if a small ledge is in front
         if (player.CanAirMantle())
         {

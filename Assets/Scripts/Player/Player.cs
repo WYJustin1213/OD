@@ -17,16 +17,19 @@ public class Player : MonoBehaviour
     public PlayerAttackThree attackThreeState;
     public PlayerHit hitState;
     public PlayerStepUp stepUpState;
+    public PlayerDeath deathState;
     //public PlayerWallClimb wallClimbState;
 
     [Header("Core Components")]
     public Combat combat;
+    public Health health;
     
     [Header("Components")]
     public Rigidbody2D rb;
     public PlayerInput input;
     public Animator animator;
     public CapsuleCollider2D playerCollider;
+    public int hp;
 
     [Header("Movement")]
     public float runSpd;
@@ -146,6 +149,7 @@ public class Player : MonoBehaviour
         attackThreeState = new PlayerAttackThree(this);
         hitState = new PlayerHit(this);
         stepUpState = new PlayerStepUp(this);
+        deathState = new PlayerDeath(this);
         //wallClimbState = new PlayerWallClimb(this);
     }
 
@@ -158,6 +162,8 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        hp = health.health;
+
         if (!inputLocked)
         {
             if (!isSliding && !attackOnePressed) { Flip(); }

@@ -21,6 +21,15 @@ public class PlayerAttackTwo : PlayerState
         base.FixedUpdate();
     }
 
+    public override void Update()
+    {
+        base.Update();
+
+        if (HP <= 0)
+        {
+            player.ChangeState(player.deathState);
+        }
+    }
     public override void AttackAnimationFished()
     {
         if (Mathf.Abs(MoveInput.x) > 0.01f)

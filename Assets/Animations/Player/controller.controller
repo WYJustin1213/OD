@@ -645,6 +645,12 @@ AnimatorController:
   m_Name: controller
   serializedVersion: 5
   m_AnimatorParameters:
+  - m_Name: isDead
+    m_Type: 9
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
   - m_Name: stepUp
     m_Type: 9
     m_DefaultFloat: 0
@@ -1199,6 +1205,7 @@ AnimatorStateMachine:
   - {fileID: -7744623388040827869}
   - {fileID: 6064760750618331137}
   - {fileID: 4584089977849810000}
+  - {fileID: 7982088834962751181}
   m_StateMachineTransitions:
   - first: {fileID: -6558916728475454741}
     second:
@@ -1463,6 +1470,23 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
+--- !u!1109 &7982088834962751181
+AnimatorTransition:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: isDead
+    m_EventTreshold: 0
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: 3305319659167089557}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 1
 --- !u!1109 &8084667175258833707
 AnimatorTransition:
   m_ObjectHideFlags: 1

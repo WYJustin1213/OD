@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerStepUp : PlayerState
@@ -45,6 +46,16 @@ public class PlayerStepUp : PlayerState
         _targetPos = _startPos + new Vector2(_forward * player.faceDir, _up);
 
         player.nextMantleTime = Time.time + player.mantleCooldown;
+    }
+
+    public override void Update()
+    {
+        base.Update();
+
+        if (HP <= 0)
+        {
+            player.ChangeState(player.deathState);
+        }
     }
 
     public override void FixedUpdate()

@@ -22,7 +22,12 @@ public class PlayerSlide : PlayerState
     {
         base.Update();
 
-        if (slideTimer > 0)
+        if (HP <= 0)
+        {
+            player.ChangeState(player.deathState);
+        }
+
+        else if(slideTimer > 0)
         {
             slideTimer -= Time.deltaTime;
         }

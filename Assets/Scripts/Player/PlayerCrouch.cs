@@ -17,6 +17,11 @@ public class PlayerCrouch : PlayerState
     {
         base.Update();
 
+        if (HP <= 0)
+        {
+            player.ChangeState(player.deathState);
+        }
+
         if (MoveInput.y > -0.01f && !player.CheckForCeiling())
         {
             player.ChangeState(player.idleState);

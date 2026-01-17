@@ -16,7 +16,12 @@ public class PlayerMove : PlayerState
     {
         base.Update();
 
-        if (AttackOnePressed && combat.CanAttack)
+        if (HP <= 0)
+        {
+            player.ChangeState(player.deathState);
+        }
+
+        else if (AttackOnePressed && combat.CanAttack)
         {
             player.ChangeState(player.attackOneState);
         }

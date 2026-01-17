@@ -50,6 +50,11 @@ public class PlayerHit : PlayerState
     {
         base.Update();
 
+        if (HP <= 0)
+        {
+            player.ChangeState(player.deathState);
+        }
+
         // Optional: apply variable gravity while in hit (so it still falls correctly)
         player.ApplyVariableGravity();
     }

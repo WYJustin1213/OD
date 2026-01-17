@@ -6,7 +6,10 @@ public abstract class PlayerState
     protected Animator animator;
     protected Rigidbody2D rb;
     protected Combat combat;
+    protected Health healthObject;
 
+    protected int HP => player.hp;
+    
     protected bool JumpPressed { get => player.jumpPressed;set => player.jumpPressed = value; }
     protected bool SprintPressed => player.sprintPressed;
     protected bool AttackOnePressed => player.attackOnePressed;

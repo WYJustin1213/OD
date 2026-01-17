@@ -29,6 +29,7 @@ public class HazardousEnvironment : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         TryDamage(other);
+        Debug.Log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
     }
 
     private void OnTriggerStay2D(Collider2D other)
