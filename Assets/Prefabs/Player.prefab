@@ -488,6 +488,8 @@ MonoBehaviour:
   animator: {fileID: 8865671024288067676}
   playerCollider: {fileID: 419945976664307105}
   Portal: {fileID: 3052613611734895981}
+  RestartText: {fileID: 0}
+  isDead: 0
   hp: 0
   runSpd: 2
   sprintSpd: 4
@@ -524,7 +526,7 @@ MonoBehaviour:
   normalOffset: {x: -0.05, y: -0.075}
   inputLocked: 0
   attackOneDamage: 2
-  attackTwoDamage: 1
+  attackTwoDamage: 0
   attackThreeDamage: 1
   enableAutoStep: 1
   stepCheckDistance: 0.15

@@ -49,10 +49,12 @@ public class PlayerAttackOne : PlayerState
 
         animator.SetBool("isAttacking1", false);
 
+        /*
         if (Mathf.Abs(MoveInput.x) < 0.01f)
         {
             float stepUp = 0.5f * player.faceDir;
             rb.position = new Vector2(rb.position.x + stepUp, rb.position.y);
         }
+        */
     }
 }
