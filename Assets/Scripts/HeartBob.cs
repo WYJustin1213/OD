@@ -29,6 +29,6 @@ public class HeartBob : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(_startLocalPos);
+        //Debug.Log(_startLocalPos);
     }
 }
