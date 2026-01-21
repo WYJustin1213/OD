@@ -20115,7 +20115,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Press U and 1 or 2 to transform between two worlds.
+  m_text: "Press \u201CU\u201D and \u201C1\u201D or \u201C2\u201D to transform between
+    worlds. As the Chosen, you are fated to collect all of the keys."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2f5a19874e7125d4097908a0cb6c8b7f, type: 2}
   m_sharedMaterial: {fileID: 7481810752256006085, guid: 2f5a19874e7125d4097908a0cb6c8b7f, type: 2}
