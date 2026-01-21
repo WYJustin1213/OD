@@ -387,7 +387,7 @@ MonoBehaviour:
   - {fileID: 2756532452675945776, guid: 0a0901c0a697f6b43be3288a44206d95, type: 3}
   - {fileID: 6170466668215706375, guid: 718048a7d760d0645aad3ead9597c874, type: 3}
   - {fileID: 5509784464551491537, guid: fe48a600d867128418646cd1f8b93c4a, type: 3}
-  spawnForce: 2
+  spawnForce: 1
   torque: 1
   lifeTime: 1
 --- !u!114 &961224338915702769
@@ -741,7 +741,7 @@ MonoBehaviour:
   - {fileID: 8190250950193139494, guid: f7d68d6cb4dfe454ab1239108acea877, type: 3}
   - {fileID: 1906862293908341098, guid: 12e34da670469e04c803807eaddfff56, type: 3}
   - {fileID: 6487310024801693191, guid: d25f9e09562898848b63fd1ce2e52b78, type: 3}
-  spawnForce: 2
+  spawnForce: 1
   torque: 1
   lifeTime: 1
 --- !u!114 &5759324412277503057

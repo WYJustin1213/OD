@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - Tutorial
+  - DeathFX
   layers:
   - Default
   - TransparentFX
@@ -16,7 +17,7 @@ TagManager:
   - EnemySmall
   - Player
   - EnemyLarge
-  - 
+  - DeathFX
   - 
   - 
   - 

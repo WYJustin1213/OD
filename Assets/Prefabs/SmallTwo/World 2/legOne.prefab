@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 1647935556985846298}
   - component: {fileID: 3170551711826485988}
   - component: {fileID: 3347480765551688571}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: legOne
-  m_TagString: Untagged
+  m_TagString: DeathFX
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

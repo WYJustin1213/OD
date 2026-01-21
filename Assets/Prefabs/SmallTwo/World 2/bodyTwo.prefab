@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 6893056474386172404}
   - component: {fileID: 1938884654249471544}
   - component: {fileID: 1383312373491407357}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bodyTwo
-  m_TagString: Untagged
+  m_TagString: DeathFX
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

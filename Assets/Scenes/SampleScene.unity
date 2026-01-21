@@ -24496,7 +24496,7 @@ Transform:
   m_GameObject: {fileID: 619692779}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -22.78, y: 0.034, z: 0}
+  m_LocalPosition: {x: -15.516, y: 0.033, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -53768,7 +53768,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptText: {fileID: 930098505}
-  message: Press space to jum and J for heavy attack.s
+  message: Press space to jum and J for attacking.
   showDistance: 2
   player: {fileID: 491527185}
 --- !u!50 &837651288
@@ -55835,7 +55835,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: S to crouch. Press white sprinting to slide.
+  m_text: Press space to jum and J for attacking.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2f5a19874e7125d4097908a0cb6c8b7f, type: 2}
   m_sharedMaterial: {fileID: 7481810752256006085, guid: 2f5a19874e7125d4097908a0cb6c8b7f, type: 2}
@@ -65118,7 +65118,7 @@ PrefabInstance:
       objectReference: {fileID: 519420031}
     - target: {fileID: 594296724683295331, guid: 2dc7a40baf9b27042aa099d5acf7197b, type: 3}
       propertyPath: m_FlipX
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 611867461340004190, guid: 2dc7a40baf9b27042aa099d5acf7197b, type: 3}
       propertyPath: m_Camera
@@ -65190,7 +65190,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7192684272203693356, guid: 2dc7a40baf9b27042aa099d5acf7197b, type: 3}
       propertyPath: m_FlipX
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8554909874676789209, guid: 2dc7a40baf9b27042aa099d5acf7197b, type: 3}
       propertyPath: followTarget

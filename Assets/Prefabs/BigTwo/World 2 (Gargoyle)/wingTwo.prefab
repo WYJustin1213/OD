@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 1477969467350110935}
   - component: {fileID: 8144502364119516724}
   - component: {fileID: 3406769824347711567}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: wingTwo
-  m_TagString: Untagged
+  m_TagString: DeathFX
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

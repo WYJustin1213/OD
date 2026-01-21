@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 8783059783991057707}
   - component: {fileID: 9095027187463569245}
   - component: {fileID: 9177297417845367461}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: flameOne
-  m_TagString: Untagged
+  m_TagString: DeathFX
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

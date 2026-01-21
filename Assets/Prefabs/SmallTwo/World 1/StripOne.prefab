@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 2384410054405505234}
   - component: {fileID: 9168926969113073621}
   - component: {fileID: 5617818792179034705}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: StripOne
-  m_TagString: Untagged
+  m_TagString: DeathFX
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
