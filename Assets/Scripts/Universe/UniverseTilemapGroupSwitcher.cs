@@ -5,6 +5,7 @@ public class UniverseTilemapGroupSwitcher : MonoBehaviour
     [Header("Parents that contain tilemap layers for each universe")]
     [SerializeField] private GameObject universe1Root;
     [SerializeField] private GameObject universe2Root;
+    [SerializeField] private GameObject universe3Root;
 
     [Header("Debug")]
     [SerializeField] private bool debugLogs = true;
@@ -55,21 +56,25 @@ public class UniverseTilemapGroupSwitcher : MonoBehaviour
 
         bool u1Active = (u == UniverseId.U1);
         bool u2Active = (u == UniverseId.U2);
+        bool u3Active = (u == UniverseId.U3);
 
         if (debugLogs)
         {
-            Debug.Log($"[TilemapSwitcher] Applying {u}: U1Root -> {u1Active}, U2Root -> {u2Active}", this);
+            Debug.Log($"[TilemapSwitcher] Applying {u}: U1Root -> {u1Active}, U2Root -> {u2Active}, U3Root -> {u3Active}", this);
             Debug.Log($"U1Root name={universe1Root.name} activeBefore={universe1Root.activeSelf}", this);
             Debug.Log($"U2Root name={universe2Root.name} activeBefore={universe2Root.activeSelf}", this);
+            Debug.Log($"U3Root name={universe3Root.name} activeBefore={universe3Root.activeSelf}", this);
         }
 
         universe1Root.SetActive(u1Active);
         universe2Root.SetActive(u2Active);
+        universe3Root.SetActive(u3Active);
 
         if (debugLogs)
         {
             Debug.Log($"U1Root activeAfter={universe1Root.activeSelf}", this);
             Debug.Log($"U2Root activeAfter={universe2Root.activeSelf}", this);
+            Debug.Log($"U3Root activeAfter={universe3Root.activeSelf}", this);
         }
     }
 }

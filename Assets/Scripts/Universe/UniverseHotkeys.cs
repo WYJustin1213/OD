@@ -13,5 +13,8 @@ public class UniverseHotkeys : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha2))
             UniverseManager.Instance.TrySetUniverse(UniverseId.U2);
+
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+            UniverseManager.Instance.TrySetUniverse(UniverseId.U3);
     }
 }

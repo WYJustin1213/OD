@@ -1,0 +1,767 @@
+fileFormatVersion: 2
+guid: fe14ed04418405d4a991d755651b5c09
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4061772098762986246
+    second: dissolve_0
+  - first:
+      213: 1946488412401023783
+    second: dissolve_1
+  - first:
+      213: -2322512643493820439
+    second: dissolve_2
+  - first:
+      213: 8016227629654618351
+    second: dissolve_3
+  - first:
+      213: -4046840548973992434
+    second: dissolve_4
+  - first:
+      213: 6496704006171079717
+    second: dissolve_5
+  - first:
+      213: 7967371171239399875
+    second: dissolve_6
+  - first:
+      213: 4471995101631342241
+    second: dissolve_7
+  - first:
+      213: 8835460368028674833
+    second: dissolve_8
+  - first:
+      213: -2310375803468038002
+    second: dissolve_9
+  - first:
+      213: 8237245717233629017
+    second: dissolve_10
+  - first:
+      213: 1178507627620120514
+    second: dissolve_11
+  - first:
+      213: 7239965557156069869
+    second: dissolve_12
+  - first:
+      213: 1828258370247714525
+    second: dissolve_13
+  - first:
+      213: 8928929937191321658
+    second: dissolve_14
+  - first:
+      213: 1644769870621066049
+    second: dissolve_15
+  - first:
+      213: -1172291428380112901
+    second: dissolve_16
+  - first:
+      213: 9161001615165169364
+    second: dissolve_17
+  - first:
+      213: -3822333587687769248
+    second: dissolve_18
+  - first:
+      213: 2197224285490249839
+    second: dissolve_19
+  - first:
+      213: 3496234569745927861
+    second: dissolve_20
+  - first:
+      213: -2261319930779091186
+    second: dissolve_21
+  - first:
+      213: -6351704879912388979
+    second: dissolve_22
+  - first:
+      213: 4405286586709242170
+    second: dissolve_23
+  - first:
+      213: 6764780630379909875
+    second: dissolve_24
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 35
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: dissolve_0
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 14
+        width: 65
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6035c5124305e5830800000000000000
+      internalID: 4061772098762986246
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dissolve_1
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 14
+        width: 67
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 72bb39ce5e0530b10800000000000000
+      internalID: 1946488412401023783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dissolve_2
+      rect:
+        serializedVersion: 2
+        x: 247
+        y: 14
+        width: 20
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e782325e07c4cfd0800000000000000
+      internalID: -2322512643493820439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dissolve_3
+      rect:
+        serializedVersion: 2
+        x: 268
+        y: 14
+        width: 46
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe03c30be8c5f3f60800000000000000
+      internalID: 8016227629654618351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dissolve_4
+      rect:
+        serializedVersion: 2
+        x: 359
+        y: 14
+        width: 20
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0622c736fbb6d7c0800000000000000
+      internalID: -4046840548973992434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dissolve_5
+      rect:
+        serializedVersion: 2
+        x: 380
+        y: 14
+        width: 46
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5243fa26fdde82a50800000000000000
+      internalID: 6496704006171079717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dissolve_6
+      rect:
+        serializedVersion: 2
+        x: 471
+        y: 14
+        width: 20
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c199670ed9c19e60800000000000000
+      internalID: 7967371171239399875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dissolve_7
+      rect:
+        serializedVersion: 2
+        x: 492
+        y: 14
+        width: 46
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a6e50ee9d7bf0e30800000000000000
+      internalID: 4471995101631342241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dissolve_8
+      rect:
+        serializedVersion: 2
+        x: 583
+        y: 14
+        width: 20
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11b2467746cdd9a70800000000000000
+      internalID: 8835460368028674833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dissolve_9
+      rect:
+        serializedVersion: 2
+        x: 604
+        y: 14
+        width: 46
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8041a89275efefd0800000000000000
+      internalID: -2310375803468038002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dissolve_10
+      rect:
+        serializedVersion: 2
+        x: 695
+        y: 14
+        width: 20
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 95771574653905270800000000000000
+      internalID: 8237245717233629017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dissolve_11
+      rect:
+        serializedVersion: 2
+        x: 716
+        y: 14
+        width: 46
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c7b26d7176ea5010800000000000000
+      internalID: 1178507627620120514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dissolve_12
+      rect:
+        serializedVersion: 2
+        x: 807
+        y: 14
+        width: 20
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de1c954b056897460800000000000000
+      internalID: 7239965557156069869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dissolve_13
+      rect:
+        serializedVersion: 2
+        x: 828
+        y: 14
+        width: 46
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd6ef3c1d474f5910800000000000000
+      internalID: 1828258370247714525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dissolve_14
+      rect:
+        serializedVersion: 2
+        x: 919
+        y: 14
+        width: 20
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a30c3aa687ee9eb70800000000000000
+      internalID: 8928929937191321658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dissolve_15
+      rect:
+        serializedVersion: 2
+        x: 940
+        y: 14
+        width: 46
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14342a3ab7563d610800000000000000
+      internalID: 1644769870621066049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dissolve_16
+      rect:
+        serializedVersion: 2
+        x: 1031
+        y: 14
+        width: 20
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf70b2e282f2bbfe0800000000000000
+      internalID: -1172291428380112901
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dissolve_17
+      rect:
+        serializedVersion: 2
+        x: 1052
+        y: 14
+        width: 46
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4de13b29e6a622f70800000000000000
+      internalID: 9161001615165169364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dissolve_18
+      rect:
+        serializedVersion: 2
+        x: 1143
+        y: 14
+        width: 20
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06b73d48ad754fac0800000000000000
+      internalID: -3822333587687769248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dissolve_19
+      rect:
+        serializedVersion: 2
+        x: 1165
+        y: 14
+        width: 45
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f600284a8db1e7e10800000000000000
+      internalID: 2197224285490249839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dissolve_20
+      rect:
+        serializedVersion: 2
+        x: 1255
+        y: 14
+        width: 17
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5be852d31de158030800000000000000
+      internalID: 3496234569745927861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dissolve_21
+      rect:
+        serializedVersion: 2
+        x: 1278
+        y: 14
+        width: 12
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0fb662018d2e90e0800000000000000
+      internalID: -2261319930779091186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dissolve_22
+      rect:
+        serializedVersion: 2
+        x: 1290
+        y: 14
+        width: 14
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d86f4b280163ad7a0800000000000000
+      internalID: -6351704879912388979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dissolve_23
+      rect:
+        serializedVersion: 2
+        x: 1303
+        y: 14
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a31f8967fc8b22d30800000000000000
+      internalID: 4405286586709242170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dissolve_24
+      rect:
+        serializedVersion: 2
+        x: 1312
+        y: 14
+        width: 118
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f2dc39542451ed50800000000000000
+      internalID: 6764780630379909875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      dissolve_0: 4061772098762986246
+      dissolve_1: 1946488412401023783
+      dissolve_10: 8237245717233629017
+      dissolve_11: 1178507627620120514
+      dissolve_12: 7239965557156069869
+      dissolve_13: 1828258370247714525
+      dissolve_14: 8928929937191321658
+      dissolve_15: 1644769870621066049
+      dissolve_16: -1172291428380112901
+      dissolve_17: 9161001615165169364
+      dissolve_18: -3822333587687769248
+      dissolve_19: 2197224285490249839
+      dissolve_2: -2322512643493820439
+      dissolve_20: 3496234569745927861
+      dissolve_21: -2261319930779091186
+      dissolve_22: -6351704879912388979
+      dissolve_23: 4405286586709242170
+      dissolve_24: 6764780630379909875
+      dissolve_3: 8016227629654618351
+      dissolve_4: -4046840548973992434
+      dissolve_5: 6496704006171079717
+      dissolve_6: 7967371171239399875
+      dissolve_7: 4471995101631342241
+      dissolve_8: 8835460368028674833
+      dissolve_9: -2310375803468038002
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
