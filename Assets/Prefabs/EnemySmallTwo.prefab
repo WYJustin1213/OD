@@ -240,10 +240,10 @@ MonoBehaviour:
   idle: {fileID: 3409058740434413318}
   player: {fileID: 605253725166433639, guid: b70ad14e6e850524f85dc13e00889570, type: 3}
   playerScript: {fileID: 5061285284689610891, guid: b70ad14e6e850524f85dc13e00889570, type: 3}
-  aggroRange: 3
+  aggroRange: 5
   attackRange: 0.75
-  chaseSpeed: 2.5
-  attackCooldown: 2
+  chaseSpeed: 4
+  attackCooldown: 3
   attackDamage: 1
   attackRadius: 0.35
   playerMask:

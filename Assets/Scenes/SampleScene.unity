@@ -241597,6 +241597,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1149214265}
     - target: {fileID: 5061285284689610891, guid: b70ad14e6e850524f85dc13e00889570, type: 3}
+      propertyPath: slideCost
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5061285284689610891, guid: b70ad14e6e850524f85dc13e00889570, type: 3}
       propertyPath: RestartText
       value: 
       objectReference: {fileID: 1522940431}
