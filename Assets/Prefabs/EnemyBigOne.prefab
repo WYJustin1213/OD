@@ -174,7 +174,7 @@ Transform:
   m_GameObject: {fileID: 1473498606207902834}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.102, y: -0.042, z: 0}
+  m_LocalPosition: {x: 0.355, y: -0.334, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -226,7 +226,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 4723107735738678597, guid: 867af6c00701edf48a25729627a26907, type: 3}
+  m_Sprite: {fileID: 4723107735738678597, guid: 13c0db518fc98ee44b13b270fa3c4182, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
@@ -271,17 +271,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.079172194, y: -1.0944923}
+  m_Offset: {x: -0.09792431, y: -0.8023975}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.9142857, y: 2.2571428}
+    oldSize: {x: 1.4571428, y: 1.6285714}
     newSize: {x: 1.3428571, y: 1.5142857}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.2132038, y: 0.039255857}
+  m_Size: {x: 0.5359212, y: 0.02127099}
   m_EdgeRadius: 0
 --- !u!70 &4028905993425278254
 CapsuleCollider2D:
@@ -330,7 +330,7 @@ Animator:
   m_GameObject: {fileID: 1473498606207902834}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 18d3565008131ef4c86b5d04eeefff90, type: 2}
+  m_Controller: {fileID: 9100000, guid: 548a424803af7b045b5f49af3cfb6b69, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -426,17 +426,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.024494648, y: 0.26958585}
+  m_Offset: {x: -0.042455137, y: 0.44274634}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.9142857, y: 2.2571428}
+    oldSize: {x: 1.4571428, y: 1.6285714}
     newSize: {x: 1.3428571, y: 1.5142857}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.8712614, y: 1.5261245}
+  m_Size: {x: 1.1348151, y: 1.1798035}
   m_EdgeRadius: 0
 --- !u!1 &2884286445815290515
 GameObject:
@@ -811,7 +811,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.12080017, y: -0.691295}
+  m_Offset: {x: -0.12080017, y: -0.70298874}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -821,7 +821,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.3946516, y: 0.057226658}
+  m_Size: {x: 0.3946516, y: 0.033839226}
   m_EdgeRadius: 0
 --- !u!70 &7160265125241422233
 CapsuleCollider2D:
@@ -1312,7 +1312,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.079172194, y: -0.9860786}
+  m_Offset: {x: -0.079172194, y: -1.0036191}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1322,7 +1322,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.2132038, y: 0.06674123}
+  m_Size: {x: 1.2132038, y: 0.03166032}
   m_EdgeRadius: 0
 --- !u!70 &938433672682614158
 CapsuleCollider2D:
@@ -1616,6 +1616,12 @@ MonoBehaviour:
   - universe: 1
     root: {fileID: 5036757899310505318}
     animator: {fileID: 1257416968978283416}
+    attackPoint: {fileID: 7064514497824872702}
+    groundCheckOrigin: {fileID: 8583739411576652121}
+    wallCheckOrigin: {fileID: 1142404372154281170}
+  - universe: 3
+    root: {fileID: 1473498606207902834}
+    animator: {fileID: 1316318521143579775}
     attackPoint: {fileID: 7064514497824872702}
     groundCheckOrigin: {fileID: 8583739411576652121}
     wallCheckOrigin: {fileID: 1142404372154281170}
@@ -2021,7 +2027,7 @@ GameObject:
   - component: {fileID: 3909871792687872861}
   - component: {fileID: 8290267824414635638}
   m_Layer: 5
-  m_Name: EnemyHeartsUITwo
+  m_Name: EnemyHeartsUIThree
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -212,7 +212,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 5061285284689610891}
   damage: 1
-  attackRadius: 1.5
+  attackRadius: 0.5
   attackCD: 0.5
   attackPoint: {fileID: 7402879938428942960}
   enemyLayer:
