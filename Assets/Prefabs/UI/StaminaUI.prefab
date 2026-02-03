@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2993226587233033475}
   - component: {fileID: 4476961714279062192}
   m_Layer: 0
-  m_Name: HeartUI
+  m_Name: StaminaUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58,7 +58,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -2031911665, guid: b6268e22534984c4784a0990dbd46946, type: 3}
+  m_Sprite: {fileID: 793272447, guid: b6268e22534984c4784a0990dbd46946, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -112,7 +112,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 100
-  m_Sprite: {fileID: -2031911665, guid: b6268e22534984c4784a0990dbd46946, type: 3}
+  m_Sprite: {fileID: 793272447, guid: b6268e22534984c4784a0990dbd46946, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

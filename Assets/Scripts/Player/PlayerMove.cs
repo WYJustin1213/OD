@@ -23,15 +23,23 @@ public class PlayerMove : PlayerState
 
         else if (AttackOnePressed && combat.CanAttack)
         {
-            player.ChangeState(player.attackOneState);
+            if (player.stamina != null && player.stamina.TrySpend(player.attackOneCost))
+                player.ChangeState(player.attackOneState);
+            return;
         }
+
         else if (AttackTwoPressed && combat.CanAttack)
         {
-            player.ChangeState(player.attackTwoState);
+            if (player.stamina != null && player.stamina.TrySpend(player.attackTwoCost))
+                player.ChangeState(player.attackTwoState);
+            return;
         }
+
         else if (AttackThreePressed && combat.CanAttack)
         {
-            player.ChangeState(player.attackThreeState);
+            if (player.stamina != null && player.stamina.TrySpend(player.attackThreeCost))
+                player.ChangeState(player.attackThreeState);
+            return;
         }
 
         // Auto step-up if a small ledge is in front
@@ -60,7 +68,9 @@ public class PlayerMove : PlayerState
         }
         else if (player.isGrounded && SprintPressed && MoveInput.y < -0.01f)
         {
-            player.ChangeState(player.slideState);
+            if (player.stamina != null && player.stamina.TrySpend(player.slideCost))
+                player.ChangeState(player.slideState);
+            return;
         }
         else if (MoveInput.y < -0.01f)
         {

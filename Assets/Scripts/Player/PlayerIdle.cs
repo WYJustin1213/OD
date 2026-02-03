@@ -24,15 +24,21 @@ public class PlayerIdle : PlayerState
 
         else if (AttackOnePressed && combat.CanAttack)
         {
-            player.ChangeState(player.attackOneState);
+            if (player.stamina != null && player.stamina.TrySpend(player.attackOneCost))
+                player.ChangeState(player.attackOneState);
+            return;
         }
         else if (AttackTwoPressed && combat.CanAttack)
         {
-            player.ChangeState(player.attackTwoState);
+            if (player.stamina != null && player.stamina.TrySpend(player.attackTwoCost))
+                player.ChangeState(player.attackTwoState);
+            return;
         }
         else if (AttackThreePressed && combat.CanAttack)
         {
-            player.ChangeState(player.attackThreeState);
+            if (player.stamina != null && player.stamina.TrySpend(player.attackThreeCost))
+                player.ChangeState(player.attackThreeState);
+            return;
         }
 
         // Auto step-up if a small ledge is in front

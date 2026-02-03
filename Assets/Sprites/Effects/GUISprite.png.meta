@@ -702,7 +702,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -711,6 +711,50 @@ TextureImporter:
       bones: []
       spriteID: 8f7981644754b474d85247ec0599de55
       internalID: 1586857069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUISprite_25
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 192
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f0bd254a1668384ca18172c86f4ac09
+      internalID: -2031911665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUISprite_26
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 192
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9b8f295aeb01254789c3af3ba8201e6
+      internalID: 856751134
       vertices: []
       indices: 
       edges: []
@@ -747,6 +791,8 @@ TextureImporter:
       GUISprite_22: 1271153015362947193
       GUISprite_23: 793272447
       GUISprite_24: 1586857069
+      GUISprite_25: -2031911665
+      GUISprite_26: 856751134
       GUISprite_3: 8739634473082209670
       GUISprite_4: -2389778857952874588
       GUISprite_5: -9118704788917776629

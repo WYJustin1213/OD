@@ -19,6 +19,8 @@ public class Player : MonoBehaviour
     public PlayerHit hitState;
     public PlayerStepUp stepUpState;
     public PlayerDeath deathState;
+
+    public Stamina stamina;
     //public PlayerWallClimb wallClimbState;
 
     [Header("Core Components")]
@@ -140,6 +142,12 @@ public class Player : MonoBehaviour
     public bool climbUpPressed;            // Space (jump)
     */
 
+    [Header("Stamina Costs")]
+    public int attackOneCost = 1;
+    public int attackTwoCost = 2;
+    public int attackThreeCost = 1;
+    public int slideCost = 1;
+
     private void Awake()
     {
         idleState = new PlayerIdle(this);
@@ -154,6 +162,8 @@ public class Player : MonoBehaviour
         stepUpState = new PlayerStepUp(this);
         deathState = new PlayerDeath(this);
         //wallClimbState = new PlayerWallClimb(this);
+
+        if (stamina == null) stamina = GetComponentInChildren<Stamina>();
     }
 
     private void Start()

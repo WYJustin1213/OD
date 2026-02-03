@@ -34,8 +34,11 @@ public class PlayerCrouch : PlayerState
 
         if (AttackThreePressed && combat.CanAttack)
         {
-            animator.SetBool("isCrouchWalking", false);
-            player.ChangeState(player.attackThreeState);
+            if (player.stamina != null && player.stamina.TrySpend(player.attackThreeCost))
+            {
+                animator.SetBool("isCrouchWalking", false);
+                player.ChangeState(player.attackThreeState);
+            }
         }
     }
 
