@@ -26,6 +26,8 @@ public class Hurtbox : MonoBehaviour
         if (player != null)
             player.TakeHitFromEnemy(attacker);
 
+        ShakeBus.Instance?.PlayerHurt();
+
         Debug.Log($"Hurtbox.TakeHit called on {name}, attacker={attacker.name}", this);
     }
 }

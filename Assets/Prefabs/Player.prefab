@@ -537,6 +537,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0355e3093cd2b594b9b5b207edbc7ec5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stamina: {fileID: 0}
   combat: {fileID: 1133409606889723864}
   health: {fileID: 4952023999217223063}
   rb: {fileID: 2900248711496166398}
@@ -587,7 +588,7 @@ MonoBehaviour:
   enableAutoStep: 1
   stepCheckDistance: 0.15
   stepHeight: 0.75
-  stepForward: 0.7
+  stepForward: 1.25
   stepDuration: 0.5
   stepCheckOriginLow: {fileID: 3125666231469267303}
   stepCheckOriginHigh: {fileID: 1088168704617933189}
@@ -602,7 +603,7 @@ MonoBehaviour:
   enableAirMantle: 1
   mantleCheckDistance: 0.2
   mantleUp: 0.95
-  mantleForward: 0.9
+  mantleForward: 1.2
   mantleDuration: 0.3
   mantleMinUpVel: -2
   mantleCheckOrigin: {fileID: 3125666231469267303}
@@ -612,6 +613,10 @@ MonoBehaviour:
   mantleCooldown: 0.2
   nextMantleTime: 0
   stepUpSpeedCapDuration: 0.2
+  attackOneCost: 1
+  attackTwoCost: 2
+  attackThreeCost: 3
+  slideCost: 2
 --- !u!114 &6641377328751139796
 MonoBehaviour:
   m_ObjectHideFlags: 0

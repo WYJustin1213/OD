@@ -252,6 +252,8 @@ public class EnemyCombatController : MonoBehaviour
 
         Health h = hit.GetComponent<Health>() ?? hit.GetComponentInParent<Health>();
         if (h != null) h.ChangeHealth(-attackDamage);
+
+        ShakeBus.Instance?.EnemyAttack();
     }
 
     public void StunInterrupt(float stunDuration)

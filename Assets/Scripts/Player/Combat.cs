@@ -39,6 +39,7 @@ public class Combat : MonoBehaviour
         if (hurtbox != null)
         {
             hurtbox.TakeHit(damage, attackType);
+            ShakeBus.Instance?.HitConfirm();
             return;
         }
     }
