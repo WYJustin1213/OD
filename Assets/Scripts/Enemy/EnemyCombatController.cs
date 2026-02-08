@@ -36,6 +36,9 @@ public class EnemyCombatController : MonoBehaviour
     [Header("Post-attack behavior")]
     [SerializeField] private float postAttackStandTime = 0.25f; // stand briefly after attack
 
+    private bool _isTargetingPlayer;
+
+
     private float _postAttackUntil;
 
     // Animator param names (must match your controller)
@@ -78,7 +81,21 @@ public class EnemyCombatController : MonoBehaviour
 
     private void OnDisable()
     {
+        if (_isTargetingPlayer && BattleTracker.Instance != null)
+            BattleTracker.Instance.NotifyTargetingStopped();
+
         if (health != null) health.OnDeath -= HandleDeath;
+    }
+
+    private void SetTargeting(bool targeting)
+    {
+        if (_isTargetingPlayer == targeting) return;
+        _isTargetingPlayer = targeting;
+
+        if (BattleTracker.Instance == null) return;
+
+        if (targeting) BattleTracker.Instance.NotifyTargetingStarted();
+        else BattleTracker.Instance.NotifyTargetingStopped();
     }
 
     public void ApplyVariantAnimatorAndAttackPoint(Animator a, Transform ap)
@@ -151,6 +168,9 @@ public class EnemyCombatController : MonoBehaviour
             idle.TickIdle();
             return;
         }
+
+        bool targetingNow = dist <= aggroRange && !IsDisengaged && yDiff <= yChaseTolerance && !IsStunned;
+        SetTargeting(targetingNow);
 
         // Distance (use x distance for side scroller feel)
         float dx = Mathf.Abs(player.position.x - transform.position.x);
@@ -255,6 +275,12 @@ public class EnemyCombatController : MonoBehaviour
 
         ShakeBus.Instance?.EnemyAttack();
     }
+
+    private void ClearTargeting()
+    {
+        SetTargeting(false);
+    }
+
 
     public void StunInterrupt(float stunDuration)
     {

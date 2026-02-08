@@ -2014,10 +2014,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathParts:
-  - {fileID: 3201018065186376318, guid: 6a56e628d9894914ea3941a30eebe251, type: 3}
-  - {fileID: 5242301111015807105, guid: d27da70bafdd9534fb60bb49e0ed9fc4, type: 3}
-  - {fileID: 7901237343926026443, guid: 2296e8c9a24c140418cd40e9d661be58, type: 3}
-  - {fileID: 7670296686421513608, guid: 80bf448229747c94fb2efb087a9e731e, type: 3}
+  - {fileID: 5890245213097815025, guid: 429953f545ddda34ba43571f725c0b8b, type: 3}
+  - {fileID: 2395152165539074355, guid: d14cf7e3c3f1edd4f8673f99cb375735, type: 3}
+  - {fileID: 8204276759617875165, guid: e7136c17f866cfd418cf3104df5c38d2, type: 3}
+  - {fileID: 5175916499785211923, guid: 5d1dc7b8bcd61fb4db80c4c2f24ded76, type: 3}
   spawnForce: 2
   torque: 1
   lifeTime: 1

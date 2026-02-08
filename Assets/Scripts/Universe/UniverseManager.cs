@@ -50,6 +50,8 @@ public sealed class UniverseManager : MonoBehaviour
 
             CurrentUniverse = newUniverse;
 
+            MusicManager.Instance?.SetUniverse(CurrentUniverse);
+
             if (logChanges)
             { Debug.Log($"Universe changed: {old} -> {newUniverse}", this); }
 

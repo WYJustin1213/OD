@@ -214,13 +214,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathParts:
-  - {fileID: 7496012380409484596, guid: 6857283eb816e7947a298a8dbc693e2b, type: 3}
-  - {fileID: 1546864685135143705, guid: 0045ca7869f732444a3d1c25d6128116, type: 3}
-  - {fileID: 220582171609397998, guid: 91ab5a1e741ae6c4689f54f6d135ce1d, type: 3}
-  - {fileID: 648183174739538952, guid: 0bfdbf93a0439c74591dd05c7b3e51a6, type: 3}
-  - {fileID: 8190250950193139494, guid: f7d68d6cb4dfe454ab1239108acea877, type: 3}
-  - {fileID: 1906862293908341098, guid: 12e34da670469e04c803807eaddfff56, type: 3}
-  - {fileID: 6487310024801693191, guid: d25f9e09562898848b63fd1ce2e52b78, type: 3}
+  - {fileID: 7873880275783356721, guid: a91533eb2efee9a4583e9ed742477556, type: 3}
+  - {fileID: 7274234333807374899, guid: 9483b968ddadb264892a78b04154ed1d, type: 3}
+  - {fileID: 3401752972331598359, guid: da5922a3f5695f64e84cfd4a612ba66d, type: 3}
+  - {fileID: 1711028695335837962, guid: 62745cc9bb8423d4db4ced8788a770be, type: 3}
   spawnForce: 1
   torque: 1
   lifeTime: 1
