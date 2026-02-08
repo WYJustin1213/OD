@@ -49873,7 +49873,7 @@ MonoBehaviour:
   universe1Root: {fileID: 549873052}
   universe2Root: {fileID: 300327540}
   universe3Root: {fileID: 1920436375}
-  debugLogs: 1
+  debugLogs: 0
 --- !u!4 &367574958
 Transform:
   m_ObjectHideFlags: 0
@@ -72015,7 +72015,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -38.81, y: -4.51, z: -10}
+  m_LocalPosition: {x: -38.7, y: -4.54, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -164436,7 +164436,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f02e555a300d9c43b9ab728a7dbb6d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  battleEndGraceSeconds: 2
+  battleEndGraceSeconds: 1.5
 --- !u!1 &1593360070
 GameObject:
   m_ObjectHideFlags: 0
@@ -164577,10 +164577,10 @@ MonoBehaviour:
   - universeId: 0
     normal: {fileID: 1598281752}
     battle: {fileID: 1598281749}
-  - universeId: 0
+  - universeId: 1
     normal: {fileID: 1598281751}
     battle: {fileID: 1598281749}
-  - universeId: 0
+  - universeId: 3
     normal: {fileID: 1598281750}
     battle: {fileID: 1598281749}
   startingUniverse: 0
@@ -164797,7 +164797,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: b070581a61b7c9b4382b962bc172afe3, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
@@ -164894,7 +164894,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 3be68f35be892d84ab6591171ba2fc83, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
@@ -164991,7 +164991,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 5d65565d2aeec3644a34a98403aa021e, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
@@ -218961,7 +218961,7 @@ Transform:
   m_GameObject: {fileID: 2062534281}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -38.81, y: -4.51, z: -10}
+  m_LocalPosition: {x: -38.7, y: -4.54, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -240059,11 +240059,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 605253725166433639, guid: b70ad14e6e850524f85dc13e00889570, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -38.81
+      value: -38.7
       objectReference: {fileID: 0}
     - target: {fileID: 605253725166433639, guid: b70ad14e6e850524f85dc13e00889570, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.51
+      value: -5.54
       objectReference: {fileID: 0}
     - target: {fileID: 605253725166433639, guid: b70ad14e6e850524f85dc13e00889570, type: 3}
       propertyPath: m_LocalPosition.z
