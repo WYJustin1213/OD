@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class MusicManager : MonoBehaviour
@@ -9,35 +10,35 @@ public class MusicManager : MonoBehaviour
     public class UniverseMusicLayer
     {
         public UniverseId universeId;
-        public AudioSource normal;
-        public AudioSource battle;
+        public AudioSource normal; // loop
+        public AudioSource battle; // loop (optional)
     }
 
     [Header("Universe Layers")]
     [SerializeField] private UniverseMusicLayer[] universes;
-    [SerializeField] private int startingUniverseIndex = 0;
+    [SerializeField] private UniverseId startingUniverse = UniverseId.U1;
 
-    [Header("End Music")]
-    [SerializeField] private AudioSource endMusic; // optional, loop or not
-
-    [Header("Fades")]
-    [SerializeField] private float universeFadeTime = 0.6f;
-    [SerializeField] private float battleFadeTime = 0.5f;
-    [SerializeField] private float endFadeTime = 1.0f;
+    [Header("End Music (optional)")]
+    [SerializeField] private AudioSource endMusic;
 
     [Header("Volumes")]
     [Range(0f, 1f)][SerializeField] private float normalVolume = 1f;
     [Range(0f, 1f)][SerializeField] private float battleVolume = 1f;
     [Range(0f, 1f)][SerializeField] private float endVolume = 1f;
 
-    private int _currentUniverse;
+    [Header("Fade Times")]
+    [SerializeField] private float universeFadeTime = 0.7f;
+    [SerializeField] private float battleFadeTime = 0.5f;
+    [SerializeField] private float endFadeTime = 1.0f;
+
+    private readonly Dictionary<UniverseId, UniverseMusicLayer> _layerById = new();
+    private readonly List<AudioSource> _allSources = new();
+
+    private UniverseId _currentUniverse;
     private bool _inBattle;
     private bool _gameEnded;
 
-    private Coroutine _fadeRoutine;
-
-    private readonly System.Collections.Generic.Dictionary<UniverseId, int> _indexByUniverse
-    = new System.Collections.Generic.Dictionary<UniverseId, int>();
+    private Coroutine _stateRoutine;
 
     private void Awake()
     {
@@ -45,62 +46,58 @@ public class MusicManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
-        _indexByUniverse.Clear();
-        for (int i = 0; i < universes.Length; i++)
-        {
-            _indexByUniverse[universes[i].universeId] = i;
-        }
-
+        BuildLookup();
     }
 
     private void Start()
     {
-        // Start everything playing at volume 0 (so switching is seamless).
-        for (int i = 0; i < universes.Length; i++)
+        // Start everything playing at volume 0 so switching is seamless
+        foreach (var layer in universes)
         {
-            SafePlayLoop(universes[i].normal);
-            SafePlayLoop(universes[i].battle);
-            SetVol(universes[i].normal, 0f);
-            SetVol(universes[i].battle, 0f);
+            SafePlayLoop(layer.normal);
+            SafePlayLoop(layer.battle);
+            SetVol(layer.normal, 0f);
+            SetVol(layer.battle, 0f);
         }
 
         SafePlayLoop(endMusic);
         SetVol(endMusic, 0f);
 
-        _currentUniverse = Mathf.Clamp(startingUniverseIndex, 0, universes.Length - 1);
+        _currentUniverse = startingUniverse;
 
-        // Initial state: normal on, battle off
-        ApplyStateImmediate(_currentUniverse, inBattle: false);
+        // Try to sync to UniverseManager if it already exists
+        SyncUniverseFromManager();
 
-        if (UniverseManager.Instance != null)
-        {
-            // Initialize from current universe
-            SetUniverse(UniverseManager.Instance.CurrentUniverse);
-
-            // Listen for changes
-            UniverseManager.Instance.UniverseChanged += OnUniverseChanged;
-        }
-
-        // Hook battle tracker if present
+        // Hook battle tracker
         if (BattleTracker.Instance != null)
             BattleTracker.Instance.OnBattleStateChanged += HandleBattleChanged;
+
+        // Apply initial state immediately
+        ApplyStateImmediate(_currentUniverse, inBattle: false);
     }
 
     private void OnDestroy()
     {
         if (BattleTracker.Instance != null)
             BattleTracker.Instance.OnBattleStateChanged -= HandleBattleChanged;
-
-        if (UniverseManager.Instance != null)
-            UniverseManager.Instance.UniverseChanged -= OnUniverseChanged;
     }
 
-
-    private void OnUniverseChanged(UniverseId oldU, UniverseId newU)
+    private void BuildLookup()
     {
-        SetUniverse(newU);
-    }
+        _layerById.Clear();
+        _allSources.Clear();
 
+        foreach (var layer in universes)
+        {
+            if (layer == null) continue;
+            _layerById[layer.universeId] = layer;
+
+            if (layer.normal != null) _allSources.Add(layer.normal);
+            if (layer.battle != null) _allSources.Add(layer.battle);
+        }
+
+        if (endMusic != null) _allSources.Add(endMusic);
+    }
 
     private void HandleBattleChanged(bool inBattle)
     {
@@ -109,51 +106,48 @@ public class MusicManager : MonoBehaviour
         ApplyStateSmooth();
     }
 
-    /// Call this from UniverseManager when universe changes.
+    /// Call this from UniverseManager (or via a bridge script) whenever universe changes.
     public void SetUniverse(UniverseId id)
     {
         if (_gameEnded) return;
+        if (_currentUniverse == id) return;
 
-        if (!_indexByUniverse.TryGetValue(id, out int idx))
-        {
-            Debug.LogWarning($"[MusicManager] No music layer configured for {id}.", this);
-            return;
-        }
+        _currentUniverse = id;
 
-        if (_currentUniverse == idx) return;
+        LogUniverseAudioState(id);
 
-        _currentUniverse = idx;
         ApplyStateSmooth();
     }
 
+    /// Useful if scene reloads recreate UniverseManager.
+    public void SyncUniverseFromManager()
+    {
+        if (UniverseManager.Instance != null)
+            _currentUniverse = UniverseManager.Instance.CurrentUniverse;
+    }
 
-    /// Call this when game ends (reaching your end object).
     public void TriggerGameEnd()
     {
         if (_gameEnded) return;
         _gameEnded = true;
 
-        if (_fadeRoutine != null) StopCoroutine(_fadeRoutine);
-        _fadeRoutine = StartCoroutine(FadeToEndRoutine());
+        if (_stateRoutine != null) StopCoroutine(_stateRoutine);
+        _stateRoutine = StartCoroutine(FadeToEndRoutine());
     }
 
-    private void ApplyStateSmooth()
+    private void ApplyStateImmediate(UniverseId universeId, bool inBattle)
     {
-        if (_fadeRoutine != null) StopCoroutine(_fadeRoutine);
-        _fadeRoutine = StartCoroutine(FadeToStateRoutine(_currentUniverse, _inBattle));
-    }
+        // Everything off
+        foreach (var src in _allSources) SetVol(src, 0f);
 
-    private void ApplyStateImmediate(int universeIndex, bool inBattle)
-    {
-        // everything off first
-        for (int i = 0; i < universes.Length; i++)
-        {
-            SetVol(universes[i].normal, 0f);
-            SetVol(universes[i].battle, 0f);
-        }
+        // End off during gameplay
         SetVol(endMusic, 0f);
 
-        var layer = universes[universeIndex];
+        if (!_layerById.TryGetValue(universeId, out var layer))
+        {
+            Debug.LogWarning($"[MusicManager] No layer configured for {universeId}");
+            return;
+        }
 
         if (!inBattle)
         {
@@ -162,7 +156,6 @@ public class MusicManager : MonoBehaviour
         }
         else
         {
-            // If you don't assign a battle track, you can keep normal up.
             if (layer.battle != null)
             {
                 SetVol(layer.normal, 0f);
@@ -170,63 +163,148 @@ public class MusicManager : MonoBehaviour
             }
             else
             {
+                // If no battle track assigned, keep normal
                 SetVol(layer.normal, normalVolume);
             }
         }
     }
 
-    private IEnumerator FadeToStateRoutine(int universeIndex, bool inBattle)
+    private void ApplyStateSmooth()
     {
-        // Target volumes
-        for (int i = 0; i < universes.Length; i++)
-        {
-            float targetNormal = 0f;
-            float targetBattle = 0f;
+        if (_stateRoutine != null) StopCoroutine(_stateRoutine);
 
-            if (i == universeIndex)
+        float fadeTime = _inBattle ? battleFadeTime : universeFadeTime;
+        _stateRoutine = StartCoroutine(FadeToStateRoutine(_currentUniverse, _inBattle, fadeTime));
+    }
+
+    private IEnumerator FadeToStateRoutine(UniverseId universeId, bool inBattle, float fadeTime)
+    {
+        // Determine targets for each source
+        var targets = new Dictionary<AudioSource, float>();
+
+        foreach (var layer in universes)
+        {
+            if (layer == null) continue;
+            if (layer.normal != null) targets[layer.normal] = 0f;
+            if (layer.battle != null) targets[layer.battle] = 0f;
+        }
+
+        if (endMusic != null) targets[endMusic] = 0f;
+
+        if (_layerById.TryGetValue(universeId, out var active))
+        {
+            if (!inBattle)
             {
-                if (!inBattle)
+                if (active.normal != null) targets[active.normal] = normalVolume;
+                if (active.battle != null) targets[active.battle] = 0f;
+            }
+            else
+            {
+                if (active.battle != null)
                 {
-                    targetNormal = normalVolume;
-                    targetBattle = 0f;
+                    targets[active.normal] = 0f;
+                    targets[active.battle] = battleVolume;
                 }
                 else
                 {
-                    // If no battle clip assigned, keep normal up.
-                    if (universes[i].battle != null)
-                    {
-                        targetNormal = 0f;
-                        targetBattle = battleVolume;
-                    }
-                    else
-                    {
-                        targetNormal = normalVolume;
-                        targetBattle = 0f;
-                    }
+                    targets[active.normal] = normalVolume;
                 }
             }
-
-            // Two different fade speeds: universe swap vs battle swap
-            float t = (i == universeIndex) ? battleFadeTime : universeFadeTime;
-            StartCoroutine(FadeAudio(universes[i].normal, targetNormal, t));
-            StartCoroutine(FadeAudio(universes[i].battle, targetBattle, t));
         }
 
-        // Ensure end music off during gameplay
-        yield return FadeAudio(endMusic, 0f, 0.2f);
+        // Snapshot start volumes
+        var starts = new Dictionary<AudioSource, float>();
+        foreach (var kv in targets)
+        {
+            if (kv.Key == null) continue;
+            starts[kv.Key] = kv.Key.volume;
+
+            // ensure playing & unmuted if target > 0
+            if (kv.Value > 0f)
+            {
+                kv.Key.mute = false;
+                if (!kv.Key.isPlaying) kv.Key.Play();
+            }
+        }
+
+        float t = 0f;
+        fadeTime = Mathf.Max(0.01f, fadeTime);
+
+        while (t < fadeTime)
+        {
+            t += Time.deltaTime;
+            float k = Mathf.Clamp01(t / fadeTime);
+
+            foreach (var kv in targets)
+            {
+                var src = kv.Key;
+                if (src == null) continue;
+
+                float start = starts[src];
+                float target = kv.Value;
+                src.volume = Mathf.Lerp(start, target, k);
+            }
+
+            yield return null;
+        }
+
+        // finalize & mute if basically 0
+        foreach (var kv in targets)
+        {
+            var src = kv.Key;
+            if (src == null) continue;
+            src.volume = kv.Value;
+            src.mute = src.volume <= 0.0001f;
+        }
+
+        Debug.Log($"Music applied: universe={universeId}, inBattle={inBattle}");
     }
 
     private IEnumerator FadeToEndRoutine()
     {
-        // Fade all universe layers to 0
-        for (int i = 0; i < universes.Length; i++)
+        // fade all to 0
+        var starts = new Dictionary<AudioSource, float>();
+        foreach (var src in _allSources)
         {
-            StartCoroutine(FadeAudio(universes[i].normal, 0f, endFadeTime));
-            StartCoroutine(FadeAudio(universes[i].battle, 0f, endFadeTime));
+            if (src == null) continue;
+            starts[src] = src.volume;
         }
 
-        // Fade end music up
-        yield return FadeAudio(endMusic, endVolume, endFadeTime);
+        float t = 0f;
+        float fadeTime = Mathf.Max(0.01f, endFadeTime);
+
+        // ensure end music playing
+        if (endMusic != null)
+        {
+            endMusic.mute = false;
+            if (!endMusic.isPlaying) endMusic.Play();
+        }
+
+        while (t < fadeTime)
+        {
+            t += Time.deltaTime;
+            float k = Mathf.Clamp01(t / fadeTime);
+
+            foreach (var src in _allSources)
+            {
+                if (src == null) continue;
+
+                float start = starts[src];
+                float target = (src == endMusic) ? endVolume : 0f;
+                src.volume = Mathf.Lerp(start, target, k);
+            }
+
+            yield return null;
+        }
+
+        foreach (var src in _allSources)
+        {
+            if (src == null) continue;
+            src.volume = (src == endMusic) ? endVolume : 0f;
+            src.mute = src.volume <= 0.0001f;
+        }
+
+        
     }
 
     private static void SafePlayLoop(AudioSource s)
@@ -243,28 +321,34 @@ public class MusicManager : MonoBehaviour
         s.mute = s.volume <= 0.0001f;
     }
 
-    private IEnumerator FadeAudio(AudioSource s, float target, float time)
+    private void LogUniverseAudioState(UniverseId id)
     {
-        if (s == null) yield break;
-
-        target = Mathf.Clamp01(target);
-
-        // unmute before fading in
-        if (target > 0f) s.mute = false;
-
-        float start = s.volume;
-        float t = 0f;
-        time = Mathf.Max(0.01f, time);
-
-        while (t < time)
+        if (!_layerById.TryGetValue(id, out var layer) || layer == null)
         {
-            t += Time.deltaTime;
-            float k = Mathf.Clamp01(t / time);
-            s.volume = Mathf.Lerp(start, target, k);
-            yield return null;
+            Debug.LogWarning($"[MusicManager] No layer configured for {id}", this);
+            return;
         }
 
-        s.volume = target;
-        s.mute = s.volume <= 0.0001f;
+        void LogSource(string label, AudioSource s)
+        {
+            if (s == null)
+            {
+                Debug.LogWarning($"[MusicManager] {id} {label}: AudioSource is NULL", this);
+                return;
+            }
+
+            string clipName = s.clip ? s.clip.name : "NULL_CLIP";
+            Debug.Log(
+                $"[MusicManager] {id} {label}: " +
+                $"clip={clipName}, playing={s.isPlaying}, enabled={s.enabled}, goActive={s.gameObject.activeInHierarchy}, " +
+                $"mute={s.mute}, vol={s.volume:0.000}, spatialBlend={s.spatialBlend:0.00}, " +
+                $"outputMixer={(s.outputAudioMixerGroup ? s.outputAudioMixerGroup.name : "None")}",
+                s
+            );
+        }
+
+        LogSource("NORMAL", layer.normal);
+        LogSource("BATTLE", layer.battle);
     }
+
 }

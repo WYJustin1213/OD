@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(Health))]
 public class EnemyCombatController : MonoBehaviour
@@ -37,7 +37,6 @@ public class EnemyCombatController : MonoBehaviour
     [SerializeField] private float postAttackStandTime = 0.25f; // stand briefly after attack
 
     private bool _isTargetingPlayer;
-
 
     private float _postAttackUntil;
 
@@ -107,112 +106,122 @@ public class EnemyCombatController : MonoBehaviour
 
     private void HandleDeath()
     {
+        SetTargeting(false); // ✅ ensure battle tracker decrements now
         StopAttackLocks();
         motor.MoveHorizontally(0f, respectBlocks: false);
         enabled = false;
     }
 
+
     private void Update()
     {
-        if (playerScript.isDead)
-        {
-            StopAttackLocks();
-            idle.TickIdle();
-            return;
-        }
+        bool shouldTarget = false; // we will set this true only if we truly want battle music on
 
-        if (animator == null || motor == null || idle == null || player == null)
+        try
         {
-            if (idle != null) idle.TickIdle();
-            return;
-        }
-
-        if (IsStunned)
-        {
-            animator.SetBool("AnimIsWalking", false);
-            motor.SetMovementLocked(true);
-            motor.SetFacingLocked(true);
-            return;
-        }
-
-        // Are they moving away from the enemy?
-        float dist = Vector2.Distance(transform.position, player.position);
-        float dirToPlayer = Mathf.Sign(player.position.x - transform.position.x);
-
-        // If we are attacking, we NEVER move/turn until EndAttack.
-        if (_isAttacking)
-        {
-            // Emergency escape only if animation event fails
-            if (Time.time >= _attackFailsafeUntil)
+            // Missing refs -> cannot target
+            if (player == null)
             {
-                StopAttackLocks();
+                if (idle != null) idle.TickIdle();
                 return;
             }
 
-            animator.SetBool(PARAM_WALK, false);
-            motor.SetMovementLocked(true);
-            motor.SetFacingLocked(true);
-            return;
-        }
+            // If player dead -> cannot target
+            if (playerScript != null && playerScript.isDead)
+            {
+                StopAttackLocks();
+                if (idle != null) idle.TickIdle();
+                return;
+            }
 
-        if (IsDisengaged)
-        {
-            idle.TickIdle();
-            return;
-        }
+            if (animator == null || motor == null || idle == null)
+            {
+                if (idle != null) idle.TickIdle();
+                return;
+            }
 
-        float yDiff = Mathf.Abs(player.position.y - transform.position.y);
-        if (yDiff > yChaseTolerance)
-        {
-            Disengage();
-            idle.TickIdle();
-            return;
-        }
+            // Basic checks we use both for AI & battle state
+            float dist = Vector2.Distance(transform.position, player.position);
+            float yDiff = Mathf.Abs(player.position.y - transform.position.y);
 
-        bool targetingNow = dist <= aggroRange && !IsDisengaged && yDiff <= yChaseTolerance && !IsStunned;
-        SetTargeting(targetingNow);
+            // Out of aggro or unreachable -> not targeting
+            if (dist > aggroRange || yDiff > yChaseTolerance)
+            {
+                StopAttackLocks();
+                if (yDiff > yChaseTolerance) Disengage();
+                idle.TickIdle();
+                return;
+            }
 
-        // Distance (use x distance for side scroller feel)
-        float dx = Mathf.Abs(player.position.x - transform.position.x);
+            // Disengaged -> not targeting
+            if (IsDisengaged)
+            {
+                idle.TickIdle();
+                return;
+            }
 
-        // Out of aggro -> idle
-        if (dist > aggroRange)
-        {
+            // Stunned -> not targeting
+            if (IsStunned)
+            {
+                animator.SetBool(PARAM_WALK, false);
+                motor.SetMovementLocked(true);
+                motor.SetFacingLocked(true);
+                return;
+            }
+
+            // ✅ If we reach here, enemy is actively targeting player (in aggro & reachable & not disengaged/stunned)
+            shouldTarget = true;
+
+            // ---- Your existing combat/chase logic below ----
+            float dx = Mathf.Abs(player.position.x - transform.position.x);
+
+            if (_isAttacking)
+            {
+                if (Time.time >= _attackFailsafeUntil)
+                {
+                    StopAttackLocks();
+                    return;
+                }
+
+                animator.SetBool(PARAM_WALK, false);
+                motor.SetMovementLocked(true);
+                motor.SetFacingLocked(true);
+                return;
+            }
+
+            // Post-attack hold
+            if (Time.time < _postAttackUntil)
+            {
+                animator.SetBool(PARAM_WALK, false);
+                motor.SetMovementLocked(true);
+                motor.SetFacingLocked(false);
+                motor.SetFacing(Mathf.Sign(player.position.x - transform.position.x));
+                return;
+            }
+
+            // In attack range
+            if (dx <= attackRange)
+            {
+                animator.SetBool(PARAM_WALK, false);
+                motor.SetMovementLocked(true);
+                motor.SetFacingLocked(false);
+                motor.SetFacing(Mathf.Sign(player.position.x - transform.position.x));
+
+                if (Time.time >= _nextAttackTime)
+                    StartAttack();
+
+                return;
+            }
+
+            // Chase
             StopAttackLocks();
-            idle.TickIdle();
-            return;
+            ChasePlayer();
         }
-
-        // Post-attack hold: freeze so we never shove the player
-        if (Time.time < _postAttackUntil)
+        finally
         {
-            animator.SetBool(PARAM_WALK, false);
-            motor.SetMovementLocked(true);
-            motor.SetFacingLocked(false); // can still look at player
-            motor.SetFacing(Mathf.Sign(player.position.x - transform.position.x));
-            return;
+            // ✅ Always keep BattleTracker correct
+            SetTargeting(shouldTarget);
         }
-
-        // In attack range -> stand still and attack when ready
-        if (dx <= attackRange)
-        {
-            animator.SetBool(PARAM_WALK, false);
-
-            // Hold position while "boxing"
-            motor.SetMovementLocked(true);
-            motor.SetFacingLocked(false);
-            motor.SetFacing(Mathf.Sign(player.position.x - transform.position.x));
-
-            if (Time.time >= _nextAttackTime)
-                StartAttack();
-
-            return;
-        }
-
-        // Outside attack range (but in aggro) -> chase
-        StopAttackLocks();              // unlock so we can move
-        ChasePlayer();
-
     }
 
     private void Disengage() => _disengageUntil = Time.time + disengageTime;

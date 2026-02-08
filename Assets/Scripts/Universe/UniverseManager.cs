@@ -27,11 +27,9 @@ public sealed class UniverseManager : MonoBehaviour
         }
 
         Instance = this;
-        // DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(gameObject);
     }
-
-
-
+    
     public bool TrySetUniverse(UniverseId newUniverse)
     {
         if (_isSwitching)

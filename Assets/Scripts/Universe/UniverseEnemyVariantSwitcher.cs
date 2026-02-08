@@ -81,7 +81,7 @@ public class UniverseEnemyVariantSwitcher : MonoBehaviour
 
         if (active == null)
         {
-            Debug.LogWarning($"UniverseEnemyVariantSwitcher: No variant configured for {u} on {name}", this);
+            //Debug.LogWarning($"UniverseEnemyVariantSwitcher: No variant configured for {u} on {name}", this);
             return;
         }
 
@@ -94,7 +94,7 @@ public class UniverseEnemyVariantSwitcher : MonoBehaviour
         var refs = active.root.GetComponentInChildren<EnemyVariantCombatRefs>(includeInactive: false);
         if (refs == null)
         {
-            Debug.LogWarning($"UniverseEnemyVariantSwitcher: No EnemyVariantCombatRefs found under {active.root.name}", this);
+           // Debug.LogWarning($"UniverseEnemyVariantSwitcher: No EnemyVariantCombatRefs found under {active.root.name}", this);
             return;
         }
 
@@ -102,7 +102,7 @@ public class UniverseEnemyVariantSwitcher : MonoBehaviour
         idle.SetAnimator(refs.animator);
         enemyFx.SetAnimator(refs.animator);
 
-        Debug.Log($"[VariantSwitcher] {name} applying {u}. refs={(refs != null)} animator={(refs != null ? refs.animator : null)} attackPoint={(refs != null ? refs.attackPoint : null)}", this);
+        //Debug.Log($"[VariantSwitcher] {name} applying {u}. refs={(refs != null)} animator={(refs != null ? refs.animator : null)} attackPoint={(refs != null ? refs.attackPoint : null)}", this);
 
         if (combat != null)
             combat.ApplyVariantAnimatorAndAttackPoint(refs.animator, refs.attackPoint);

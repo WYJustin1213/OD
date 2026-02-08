@@ -105,7 +105,7 @@ public class PlayerHeartsUI : MonoBehaviour
             _hearts.Add(heart);
         }
 
-        Debug.Log($"[PlayerHeartsUI] Built {max} hearts under '{container.name}'.", this);
+        //Debug.Log($"[PlayerHeartsUI] Built {max} hearts under '{container.name}'.", this);
     }
 
     private void HandleHealthChanged(int current, int max)
