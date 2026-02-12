@@ -3,9 +3,13 @@ using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class PlayerAttackOne : PlayerState
 {
-    public PlayerAttackOne(Player player) : base(player) { }
+    private PlayerSfxController sfx;
 
-
+    public PlayerAttackOne(Player player) : base(player) 
+    {
+        sfx = player.GetComponent<PlayerSfxController>();
+    }
+    
     public override void Enter()
     {
         base.Enter();
@@ -15,6 +19,8 @@ public class PlayerAttackOne : PlayerState
         combat.damage = AttackOneDamage;
 
         rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
+
+        sfx?.PlayAttack1Start();
     }
 
     public override void FixedUpdate()

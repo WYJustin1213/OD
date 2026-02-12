@@ -13,6 +13,8 @@ public class UniverseEnemyVariantSwitcher : MonoBehaviour
         // Optional: per-variant motor check origins (useful if sprite size changes)
         public Transform groundCheckOrigin;
         public Transform wallCheckOrigin;
+
+        public EnemySfxProfile sfxProfile;
     }
 
     [Header("Variants")]
@@ -23,6 +25,7 @@ public class UniverseEnemyVariantSwitcher : MonoBehaviour
     [SerializeField] private EnemyCombatController combat;        // uses animator + attackPoint
     [SerializeField] private EnemyMotor2D motor;                  // may use ground/wall origins
     [SerializeField] private EnemyIdleController idle;
+    [SerializeField] private EnemySfxController sfx;
 
     private UniverseManager _um;
 
@@ -35,6 +38,7 @@ public class UniverseEnemyVariantSwitcher : MonoBehaviour
         if (combat == null) combat = GetComponent<EnemyCombatController>();
         if (motor == null) motor = GetComponent<EnemyMotor2D>();
         if (idle == null) idle = GetComponent<EnemyIdleController>();
+        if (sfx == null) sfx = GetComponent<EnemySfxController>();
     }
 
     private void Start()
@@ -85,6 +89,9 @@ public class UniverseEnemyVariantSwitcher : MonoBehaviour
             return;
         }
 
+        if (sfx != null)
+            sfx.SetProfile(active.sfxProfile);
+
         // Update animator references so hit/attack works in the current universe
         if (enemyFx != null && active.animator != null)
             enemyFx.SetAnimator(active.animator);
@@ -101,6 +108,7 @@ public class UniverseEnemyVariantSwitcher : MonoBehaviour
         combat.ApplyVariantAnimatorAndAttackPoint(refs.animator, refs.attackPoint);
         idle.SetAnimator(refs.animator);
         enemyFx.SetAnimator(refs.animator);
+        
 
         //Debug.Log($"[VariantSwitcher] {name} applying {u}. refs={(refs != null)} animator={(refs != null ? refs.animator : null)} attackPoint={(refs != null ? refs.attackPoint : null)}", this);
 

@@ -464,6 +464,7 @@ GameObject:
   - component: {fileID: 2900248711496166398}
   - component: {fileID: 419945976664307105}
   - component: {fileID: 6701775685708915135}
+  - component: {fileID: 6887791442532521739}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -738,6 +739,22 @@ MonoBehaviour:
   m_DefaultActionMap: 
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &6887791442532521739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6831866604481985029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c2e6e99787a6b847a87130a3f29ad6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 5061285284689610891}
+  health: {fileID: 4952023999217223063}
+  profile: {fileID: 0}
+  minFallSpeedToCountAsLand: 2.5
 --- !u!1 &7007842694339683431
 GameObject:
   m_ObjectHideFlags: 0

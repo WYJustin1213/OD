@@ -2,8 +2,12 @@ using UnityEngine;
 
 public class PlayerAttackThree : PlayerState
 {
-    public PlayerAttackThree(Player player) : base(player) { }
+    private PlayerSfxController sfx;
 
+    public PlayerAttackThree(Player player) : base(player) 
+    {
+        sfx = player.GetComponent<PlayerSfxController>();
+    }
 
     public override void Enter()
     {
@@ -14,6 +18,8 @@ public class PlayerAttackThree : PlayerState
         combat.damage = AttackThreeDamage;
 
         rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
+
+        sfx?.PlayAttack3Start();
     }
 
     public override void FixedUpdate()

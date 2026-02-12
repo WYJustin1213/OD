@@ -36,6 +36,8 @@ public class EnemyCombatController : MonoBehaviour
     [Header("Post-attack behavior")]
     [SerializeField] private float postAttackStandTime = 0.25f; // stand briefly after attack
 
+    public bool IsTargetingPlayer => _isTargetingPlayer;
+
     private bool _isTargetingPlayer;
 
     private float _postAttackUntil;
