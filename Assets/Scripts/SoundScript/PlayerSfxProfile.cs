@@ -19,8 +19,8 @@ public class PlayerSfxProfile : ScriptableObject
     public SfxClip land;
 
     [Header("Movement")]
-    public SfxClip walk;
-    public SfxClip run;
+    public SfxClip slide1;
+    public SfxClip slide2;
 
     [Header("Hit")]
     public SfxClip hit;

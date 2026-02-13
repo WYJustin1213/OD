@@ -37,11 +37,11 @@ public class PlayerSfxController : MonoBehaviour
     public void PlayerLand()
         => SfxManager.Instance?.Play2D(profile?.land);
 
-    public void PlayerWalk()
-        => SfxManager.Instance?.Play2D(profile?.walk);
+    public void PlayerSlide1()
+        => SfxManager.Instance?.Play2D(profile?.slide1);
 
-    public void PlayerRun()
-        => SfxManager.Instance?.Play2D(profile?.run);
+    public void PlayerSlide2()
+        => SfxManager.Instance?.Play2D(profile?.slide2);
 
     // ---------- HEALTH SOUNDS (called by animation events) ----------
 
