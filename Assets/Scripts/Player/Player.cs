@@ -385,25 +385,20 @@ public class Player : MonoBehaviour
 
     void PortalAnimation()
     {
-        //Portal.transform.position = new Vector2(transform.position.x, transform.position.y);
-        Renderer portalRenderer = Portal.GetComponent<Renderer>();
+        var portalRenderer = Portal.GetComponent<Renderer>();
 
         if (portalPressed)
         {
             Portal.SetActive(true);
-
-            if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Alpha3))
-            {
-                portalRenderer.sortingOrder = 1;    
-            }
+            portalRenderer.sortingOrder = 1;
         }
-
         else
         {
             Portal.SetActive(false);
             portalRenderer.sortingOrder = -1;
         }
     }
+
 
     void Animation()
     {
@@ -451,6 +446,25 @@ public class Player : MonoBehaviour
     }
 
 
+    private void TryUniverseSwitch(UniverseId target)
+    {
+        if (!portalPressed) return;
+        if (isDead || inputLocked) return;
+
+        // optional: early reject for feedback
+        if (UniverseUnlockManager.Instance != null &&
+            !UniverseUnlockManager.Instance.IsUnlocked(target))
+        {
+            Debug.Log($"Universe {target} is locked.");
+            return;
+        }
+
+        UniverseManager.Instance?.TrySetUniverse(target);
+    }
+
+
+
+
     // system
     public void OnMove(InputValue value)
     {
@@ -486,6 +500,27 @@ public class Player : MonoBehaviour
         climbPressed = Input.GetKey(KeyCode.W);
     }
     */
+
+
+    public void OnUniverse1(InputValue value)
+    {
+        if (!value.isPressed) return;
+        TryUniverseSwitch(UniverseId.U1);
+    }
+
+    public void OnUniverse2(InputValue value)
+    {
+        if (!value.isPressed) return;
+        TryUniverseSwitch(UniverseId.U2);
+    }
+
+    public void OnUniverse3(InputValue value)
+    {
+        if (!value.isPressed) return;
+        TryUniverseSwitch(UniverseId.U3);
+    }
+
+
 
     public void OnPortal(InputValue value)
     {

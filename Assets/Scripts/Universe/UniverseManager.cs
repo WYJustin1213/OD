@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine;
 
 public sealed class UniverseManager : MonoBehaviour
@@ -7,16 +7,11 @@ public sealed class UniverseManager : MonoBehaviour
 
     [field: SerializeField] public UniverseId CurrentUniverse { get; private set; } = UniverseId.U1;
 
-    // Universe Will Change: Fired before systems swap (for cleanup / caching).
     public event Action<UniverseId, UniverseId> UniverseWillChange;
-
-    // Universe Changed: Fired after systems swap (applying visuals / ai / forms).
     public event Action<UniverseId, UniverseId> UniverseChanged;
 
     [SerializeField] private bool logChanges = false;
     private bool _isSwitching;
-
-
 
     private void Awake()
     {
@@ -29,14 +24,25 @@ public sealed class UniverseManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
     }
-    
+
+    public bool CanSwitchTo(UniverseId target)
+    {
+        var unlock = UniverseUnlockManager.Instance;
+
+        // If you want switching to require unlock manager:
+        // if (unlock == null) return false;
+
+        if (unlock == null) return true;
+        return unlock.IsUnlocked(target);
+    }
+
     public bool TrySetUniverse(UniverseId newUniverse)
     {
-        if (_isSwitching)
-        { return false; }
+        if (_isSwitching) return false;
+        if (newUniverse == CurrentUniverse) return false;
 
-        if (newUniverse == CurrentUniverse)
-        { return false; }
+        // ✅ enforce lock here (prevents bypass)
+        if (!CanSwitchTo(newUniverse)) return false;
 
         _isSwitching = true;
 
@@ -48,10 +54,11 @@ public sealed class UniverseManager : MonoBehaviour
 
             CurrentUniverse = newUniverse;
 
+            // ✅ Keep this if you want guaranteed sync
             MusicManager.Instance?.SetUniverse(CurrentUniverse);
 
             if (logChanges)
-            { Debug.Log($"Universe changed: {old} -> {newUniverse}", this); }
+                Debug.Log($"Universe changed: {old} -> {newUniverse}", this);
 
             UniverseChanged?.Invoke(old, newUniverse);
         }
@@ -61,12 +68,5 @@ public sealed class UniverseManager : MonoBehaviour
         }
 
         return true;
-    }
-
-    public void CycleUniverse()
-    {
-        // Example cycling logic; customize as needed.
-        UniverseId next = CurrentUniverse == UniverseId.U1 ? UniverseId.U2 : UniverseId.U1;
-        TrySetUniverse(next);
     }
 }
