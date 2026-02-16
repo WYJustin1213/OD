@@ -257,8 +257,8 @@ MonoBehaviour:
   m_text: 'Greetings, Chosen of the Door. Press A/D to move. Shift to sprint. Greetings,
     Chosen of the Door. '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2f5a19874e7125d4097908a0cb6c8b7f, type: 2}
-  m_sharedMaterial: {fileID: 7481810752256006085, guid: 2f5a19874e7125d4097908a0cb6c8b7f, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3205028e7efcd95429d70beb2bc29b53, type: 2}
+  m_sharedMaterial: {fileID: -5542358187134128576, guid: 3205028e7efcd95429d70beb2bc29b53, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

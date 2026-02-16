@@ -134,22 +134,26 @@ MonoBehaviour:
     attackPoint: {fileID: 4377822670880743153}
     groundCheckOrigin: {fileID: 6243190150873594183}
     wallCheckOrigin: {fileID: 4542738104104868123}
+    sfxProfile: {fileID: 0}
   - universe: 1
     root: {fileID: 8921653983276654083}
     animator: {fileID: 9129405309403913112}
     attackPoint: {fileID: 4377822670880743153}
     groundCheckOrigin: {fileID: 6243190150873594183}
     wallCheckOrigin: {fileID: 4542738104104868123}
+    sfxProfile: {fileID: 0}
   - universe: 3
     root: {fileID: 9080279583122571699}
     animator: {fileID: 1556675445172334117}
     attackPoint: {fileID: 4377822670880743153}
     groundCheckOrigin: {fileID: 6243190150873594183}
     wallCheckOrigin: {fileID: 4542738104104868123}
+    sfxProfile: {fileID: 0}
   enemyFx: {fileID: 472496142121680217}
   combat: {fileID: 3826210180328794968}
   motor: {fileID: 7326732224613170362}
   idle: {fileID: 3409058740434413318}
+  sfx: {fileID: 0}
 --- !u!114 &7189756636640616056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -292,7 +296,7 @@ GameObject:
   - component: {fileID: 7828273674804449375}
   - component: {fileID: 2539587524464664437}
   - component: {fileID: 2234461620979076246}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: EnemyHeartsCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -394,7 +398,7 @@ GameObject:
   - component: {fileID: 8847880824631359532}
   - component: {fileID: 3845476041154333886}
   - component: {fileID: 7232391815658700726}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: EnemyHeartsCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -581,7 +585,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4937971439493093912}
   - component: {fileID: 1044126692905615228}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: EnemyHeartsUIOne
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -638,7 +642,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4700766437623979715}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: HeartsPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -704,7 +708,7 @@ GameObject:
   - component: {fileID: 4679843071390695486}
   - component: {fileID: 2975236688813746825}
   - component: {fileID: 1653885292020900921}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: HeartsContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -813,7 +817,7 @@ GameObject:
   - component: {fileID: 1113035210648389472}
   - component: {fileID: 2635335776373195149}
   - component: {fileID: 1416422442795608487}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: EnemyHeartsCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1166,7 +1170,7 @@ GameObject:
   - component: {fileID: 5570624061794238945}
   - component: {fileID: 8813576487066591216}
   - component: {fileID: 6560452417069992063}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: HeartsContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1276,7 +1280,7 @@ GameObject:
   - component: {fileID: 4490684458439361626}
   - component: {fileID: 919545025392550540}
   - component: {fileID: 1085724687232358133}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: HeartsContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1382,7 +1386,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8939273792450634668}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: HeartsPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1444,7 +1448,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4215302235121991574}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: HeartsPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1476,7 +1480,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8495935485799785024}
   - component: {fileID: 4963654333952957836}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: EnemyHeartsUIThree
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1783,7 +1787,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2233778976952705963}
   - component: {fileID: 6456714566416141512}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: EnemyHeartsUITwo
   m_TagString: Untagged
   m_Icon: {fileID: 0}

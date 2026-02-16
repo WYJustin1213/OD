@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 5066555916953930545}
   - component: {fileID: 3854122233036257851}
   - component: {fileID: 8878809576994372304}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: HeartsContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -250,10 +250,10 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -271,7 +271,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.09792431, y: -0.8023975}
+  m_Offset: {x: -0.10548866, y: -0.52352273}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -281,7 +281,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.5359212, y: 0.02127099}
+  m_Size: {x: 0.84497786, y: 0.5790205}
   m_EdgeRadius: 0
 --- !u!70 &4028905993425278254
 CapsuleCollider2D:
@@ -449,7 +449,7 @@ GameObject:
   - component: {fileID: 3401922384143992533}
   - component: {fileID: 4762799182353805875}
   - component: {fileID: 2873980839287384223}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: EnemyHeartsCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -583,7 +583,7 @@ GameObject:
   - component: {fileID: 4019668178654761848}
   - component: {fileID: 4438538828695723314}
   - component: {fileID: 3225206170767216223}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: HeartsContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -789,10 +789,10 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -810,7 +810,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.12080017, y: -0.70298874}
+  m_Offset: {x: -0.11431655, y: -0.50165474}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -820,7 +820,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.3946516, y: 0.033839226}
+  m_Size: {x: 0.7188372, y: 0.43650723}
   m_EdgeRadius: 0
 --- !u!70 &7160265125241422233
 CapsuleCollider2D:
@@ -989,7 +989,7 @@ GameObject:
   - component: {fileID: 2444858627585270681}
   - component: {fileID: 6698570359821799662}
   - component: {fileID: 4507862730272100647}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: EnemyHeartsCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1091,7 +1091,7 @@ GameObject:
   - component: {fileID: 5240726563659745662}
   - component: {fileID: 1017556063033347213}
   - component: {fileID: 209849040331169485}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: EnemyHeartsCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1290,10 +1290,10 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -1311,7 +1311,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.079172194, y: -1.0036191}
+  m_Offset: {x: -0.041155875, y: -0.7859607}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1321,7 +1321,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.2132038, y: 0.03166032}
+  m_Size: {x: 1.1773149, y: 0.46697712}
   m_EdgeRadius: 0
 --- !u!70 &938433672682614158
 CapsuleCollider2D:
@@ -1612,22 +1612,26 @@ MonoBehaviour:
     attackPoint: {fileID: 7064514497824872702}
     groundCheckOrigin: {fileID: 8583739411576652121}
     wallCheckOrigin: {fileID: 1142404372154281170}
+    sfxProfile: {fileID: 0}
   - universe: 1
     root: {fileID: 5036757899310505318}
     animator: {fileID: 1257416968978283416}
     attackPoint: {fileID: 7064514497824872702}
     groundCheckOrigin: {fileID: 8583739411576652121}
     wallCheckOrigin: {fileID: 1142404372154281170}
+    sfxProfile: {fileID: 0}
   - universe: 3
     root: {fileID: 1473498606207902834}
     animator: {fileID: 1316318521143579775}
     attackPoint: {fileID: 7064514497824872702}
     groundCheckOrigin: {fileID: 8583739411576652121}
     wallCheckOrigin: {fileID: 1142404372154281170}
+    sfxProfile: {fileID: 0}
   enemyFx: {fileID: 6105106111234066417}
   combat: {fileID: 4705235300133812274}
   motor: {fileID: 6224855072797816391}
   idle: {fileID: 607487217466192225}
+  sfx: {fileID: 0}
 --- !u!114 &3655197886708990611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1768,7 +1772,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3547024159030653351}
   - component: {fileID: 1834626521361197771}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: EnemyHeartsUIOne
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1826,7 +1830,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8206698203091409902}
   - component: {fileID: 8224133017963681621}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: EnemyHeartsUITwo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1887,7 +1891,7 @@ GameObject:
   - component: {fileID: 3801153382888520020}
   - component: {fileID: 7941734752727816554}
   - component: {fileID: 217951413988678149}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: HeartsContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2025,7 +2029,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3909871792687872861}
   - component: {fileID: 8290267824414635638}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: EnemyHeartsUIThree
   m_TagString: Untagged
   m_Icon: {fileID: 0}

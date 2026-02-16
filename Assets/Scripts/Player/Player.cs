@@ -2,6 +2,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using static Unity.Burst.Intrinsics.X86.Avx;
 
 public class Player : MonoBehaviour
@@ -188,6 +189,29 @@ public class Player : MonoBehaviour
             //Climb();
         }
 
+        /*
+        if (currentState == slideState)
+        {
+            int playerLayer = LayerMask.NameToLayer("Player");
+            int EnemyLargeLayer = LayerMask.NameToLayer("EnemyLarge");
+            int EnemySmallLayer = LayerMask.NameToLayer("EnemySmall");
+
+            Physics.IgnoreLayerCollision(playerLayer, EnemyLargeLayer, true);
+            Physics.IgnoreLayerCollision(playerLayer, EnemySmallLayer, true);
+        }
+
+        else 
+        {
+            int playerLayer = LayerMask.NameToLayer("Player");
+            int EnemyLargeLayer = LayerMask.NameToLayer("EnemyLarge");
+            int EnemySmallLayer = LayerMask.NameToLayer("EnemySmall");
+
+            Physics.IgnoreLayerCollision(playerLayer, EnemyLargeLayer, false);
+            Physics.IgnoreLayerCollision(playerLayer, EnemySmallLayer, false);
+        }
+        */
+
+        RestartOrQuit();
         PortalAnimation();
         Animation();
         currentState.Update();
@@ -206,6 +230,19 @@ public class Player : MonoBehaviour
         
         currentState = newState;
         currentState.Enter();
+    }
+
+    public void RestartOrQuit()
+    {
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
     }
 
     public void ApplySpeedCap(float maxSpeed, float duration)
@@ -461,8 +498,6 @@ public class Player : MonoBehaviour
 
         UniverseManager.Instance?.TrySetUniverse(target);
     }
-
-
 
 
     // system
